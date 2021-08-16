@@ -3,7 +3,6 @@ from app.models import Media
 
 media_routes = Blueprint('media', __name__)
 
-
 @media_routes.route('/')
 def recent_media():
 	media = Media.query.order_by(Media.createdAt).limit(5)
