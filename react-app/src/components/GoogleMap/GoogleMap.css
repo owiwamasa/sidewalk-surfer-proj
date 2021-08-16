@@ -3,7 +3,7 @@
 }
 
 .mapMarker img {
-  width: 30px;
+  width: 50px;
   position: absolute;
   transform: translate(-50%, -50%);
 }
