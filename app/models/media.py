@@ -1,4 +1,5 @@
 from .db import db
+# import datetime
 
 
 class Media(db.Model):
@@ -9,7 +10,8 @@ class Media(db.Model):
     mediaUrl = db.Column(db.String(500))
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
     spotId = db.Column(db.Integer, db.ForeignKey('spots.id'))
-
+    createdAt = db.Column(db.DateTime, nullable=False, default=db.func.now())
+    updatedAt = db.Column(db.DateTime, nullable=False, default=db.func.now())
 
     comments = db.relationship("Comment", back_populates="media")
     spots = db.relationship("Spot", back_populates="media")
