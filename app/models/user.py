@@ -13,10 +13,8 @@ class User(db.Model, UserMixin):
     profilepic = db.Column(db.String(500))
 
 
-media = db.relationship("Media", back_populates="user")
-comments = db.relationship("Comment", back_populates="user")
-followers = db.relationship("Follower", back_populates="user")
-follower = db.relationship("Follower", back_populates="users")
+    media = db.relationship("Media", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user")
 
 #! maybe useful for many-to-many relationship
 # followers = db.relationship(
