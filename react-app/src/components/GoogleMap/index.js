@@ -31,7 +31,7 @@ function GoogleMap(){
                 defaultZoom={props.zoom}
                 >
                 {!!spots && spots?.map(spot =>(
-                    <Link key={spot.id} to={`/spots/${spot.id}`} lat={spot.longitude} lng={spot.latitude}>
+                    <Link key={spot.id} to={`/spots/${spot.id}`} lat={spot.latitude} lng={spot.longitude}>
                         <Marker/>
                     </Link>
                 ))}
