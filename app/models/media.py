@@ -11,9 +11,9 @@ class Media(db.Model):
     spotId = db.Column(db.Integer, db.ForeignKey('spots.id'))
 
 
-comments = db.relationship("Comment", back_populates="media")
-spots = db.relationship("Spot", back_populates="media")
-user = db.relationship("User", back_populates="media")
+    comments = db.relationship("Comment", back_populates="media")
+    spots = db.relationship("Spot", back_populates="media")
+    user = db.relationship("User", back_populates="media")
 
     def to_dict(self):
         return {
