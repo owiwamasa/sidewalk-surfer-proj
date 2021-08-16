@@ -1,6 +1,6 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect} from 'react';
-import {useHistory,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import GoogleMapReact from 'google-map-react';
 import { fetchSpots } from '../../store/spots';
 import './GoogleMap.css'
@@ -22,10 +22,7 @@ function GoogleMap(){
     };
     const Marker = ({lat, lng}) => <div className='mapMarker' ><img src='https://i.imgur.com/yyandSM.png'></img></div>;
 
-    const history = useHistory()
-    function toSpotPage(path){
-        return history.push(`${path}`)
-    }
+
     return(
         <div style={{ height: '100vh', width: '100%' }}>
             <GoogleMapReact
@@ -34,12 +31,8 @@ function GoogleMap(){
                 defaultZoom={props.zoom}
                 >
                 {!!spots && spots?.map(spot =>(
-                    <Link to={`/spots/${spot.id}`}>
-                        <Marker 
-                            key={spot.id} lat={spot.longitude} lng={spot.latitude}
-                            // onClick={()=>toSpotPage(`/spots/${spot.id}`)}
-                        >
-                        </Marker>
+                    <Link key={spot.id} to={`/spots/${spot.id}`} lat={spot.longitude} lng={spot.latitude}>
+                        <Marker/>
                     </Link>
                 ))}
             </GoogleMapReact>
