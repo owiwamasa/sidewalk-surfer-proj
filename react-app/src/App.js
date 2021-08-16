@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import SpotPage from "./components/SpotPage/SpotPage";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path="/spots/:id">
+          <SpotPage />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
