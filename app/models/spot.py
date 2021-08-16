@@ -12,6 +12,9 @@ class Spot(db.Model):
     description = db.Column(db.String(500), nullable=False)
     imageUrl = db.Column(db.String(500), nullable=False)
 
+
+media = db.relationship("Media", back_populates="spots")
+
     def to_dict(self):
         return{
             'id': self.id,
