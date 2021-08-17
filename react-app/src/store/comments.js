@@ -22,7 +22,7 @@ export const fetchComments = (id) => async (dispatch) => {
 }
 
 export const fetchOneComment = (id) => async (dispatch) => {
-  const res = await fetch(`/api/media/${id}/comments/`);
+  const res = await fetch(`/api/media/${id}/comments/${id}`);
 
   if (res.ok) {
     const comment = await res.json();
@@ -31,5 +31,18 @@ export const fetchOneComment = (id) => async (dispatch) => {
 }
 
 //initialize state
+const initialState = { comments: [] };
+
+const commentReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_COMMENTS:
+      return {...state, ...action.comments};
+    case GET_ONE_COMMENT:
+      return {...state, ...action.comment};
+    default:
+      return state;
+  }
+};
 
 //export
+export default commentReducer
