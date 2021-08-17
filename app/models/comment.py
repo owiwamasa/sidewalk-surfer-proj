@@ -23,5 +23,6 @@ class Comment(db.Model):
             'comment': self.comment,
             'userId': self.userId,
             'mediaId': self.mediaId,
-            'username': self.user.username
+            'username': self.user.username,
+            'createdAt': self.createdAt
         }
