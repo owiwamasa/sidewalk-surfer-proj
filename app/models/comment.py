@@ -22,5 +22,6 @@ class Comment(db.Model):
             'id': self.id,
             'comment': self.comment,
             'userId': self.userId,
-            'mediaId': self.mediaId
+            'mediaId': self.mediaId,
+            'username': self.user.username
         }
