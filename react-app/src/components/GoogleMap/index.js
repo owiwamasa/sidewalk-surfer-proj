@@ -1,27 +1,30 @@
-import {useSelector, useDispatch} from 'react-redux';
-import {useEffect} from 'react';
-import {Link} from 'react-router-dom'
-import GoogleMapReact from 'google-map-react';
-import { fetchSpots } from '../../store/spots';
-import './GoogleMap.css'
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import GoogleMapReact from "google-map-react";
+import { fetchSpots } from "../../store/spots";
+import "./GoogleMap.css";
 
-function GoogleMap(){
-    const dispatch = useDispatch();
-    const spots = useSelector(state => state.spotReducer.spots);
+function GoogleMap() {
+  const dispatch = useDispatch();
+  const spots = useSelector((state) => state.spotReducer.spots);
 
-    useEffect(() => {
-        dispatch(fetchSpots())
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchSpots());
+  }, [dispatch]);
 
-    const props = {
-        center: {
-            lat: 34.05223,
-            lng: -118.24368
-        },
-        zoom: 11
-    };
-    const Marker = ({lat, lng}) => <div className='mapMarker' ><img src='https://i.imgur.com/yyandSM.png'></img></div>;
-
+  const props = {
+    center: {
+      lat: 34.05223,
+      lng: -118.24368,
+    },
+    zoom: 11,
+  };
+  const Marker = ({ lat, lng }) => (
+    <div className="mapMarker">
+      <img src="https://i.imgur.com/yyandSM.png"></img>
+    </div>
+  );
 
     return(
         <div className='google-map'>

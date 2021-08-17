@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchOneSpot } from "../../store/spots";
 import { fetchMedia, getOneMedium } from "../../store/media";
+import MediaCard from "../MediaCard/MediaCard";
 
 const SpotPage = () => {
   const dispatch = useDispatch();
@@ -22,10 +23,12 @@ const SpotPage = () => {
           <div>{spot.name}</div>
           <img src={spot.imageUrl} alt={spot.name}></img>
           <div>{spot.address}</div>
-					<div>{spot.description}</div>
-					<div>{media.map((medium) => (
-						<img src={medium.mediaUrl} alt={medium.description} />
-					))}</div>
+          <div>{spot.description}</div>
+          <div>
+            {media.map((medium) => (
+              <MediaCard media={medium} />
+            ))}
+          </div>
         </div>
       ) : (
         <h1>404 Spot Not Found</h1>
