@@ -1,0 +1,63 @@
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fd1c00;
+}
+
+.nav-logo img {
+  width: 130px;
+  height: auto;
+}
+
+.nav-logo {
+  margin-left: 30px;
+  margin-right: 60px;
+}
+
+.nav-nonuser,
+.nav-user {
+  margin-right: 40px;
+  display: flex;
+  width: 180px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-searchbar {
+  display: flex;
+  justify-content: center;
+}
+.nav-searchbar form {
+  border-radius: 30px;
+}
+
+.nav-search-input {
+  border-radius: 30px;
+  padding: 10px 15px;
+  width: 300px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-profile-pic {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-radius: 700px;
+  height: 70px;
+  width: 70px;
+  background-color: rgb(50, 50, 50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-profile-pic img {
+  width: auto;
+  height: 70px;
+}
