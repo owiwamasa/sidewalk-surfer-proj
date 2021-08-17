@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "react-player": "^2.9.0",
+    "react-timeago": "^6.2.1",
     "timeago-react": "^3.0.3"
   }
 }
