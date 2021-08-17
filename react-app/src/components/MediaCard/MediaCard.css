@@ -1,0 +1,44 @@
+.profilePic {
+  border-radius: 50%;
+  width: 30px;
+}
+
+.cardHeader {
+  padding-left: 10px;
+  display: flex;
+  max-width: 613.75px;
+  height: 40px;
+  align-items: center;
+  border: 1px solid grey;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.mediaCard {
+  width: 613.75px;
+  max-height: 1090px;
+  margin: 20px;
+  background-color: #fafafa;
+}
+
+.description {
+  padding-top: 16px;
+  height: 120px;
+  width: 100%;
+  border: 1px solid grey;
+  margin: 0px;
+}
+
+iframe {
+  overflow: hidden;
+  min-height: 400px;
+  max-height: 700px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.userName {
+  padding-left: 16px;
+  padding-right: 16px;
+  font-weight: bold;
+}
