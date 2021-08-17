@@ -9,4 +9,4 @@ class SpotForm(FlaskForm):
     description = StringField('Description', validators=[DataRequired()])
     latitude= DecimalField('Latitude', validators=[DataRequired()])
     longitude = DecimalField('Longitude', validators=[DataRequired()])
-    imageUrl = StringField('Spot Image',validators=[DataRequired()], placeholder='image URL')
+    imageUrl = StringField('Spot Image',validators=[DataRequired()])
