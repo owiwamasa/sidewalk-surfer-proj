@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
+import LoginFormModal from '../login_modal'
+import SignUpFormModal from '../signup_modal'
+import CreateSpotModal from '../spot_modal'
 import './NavBar.css'
 
 const NavBar = () => {
@@ -39,29 +42,24 @@ const NavBar = () => {
                 <button>Demo</button>
             </div>
             <div>
-                <button>
-                    <NavLink to='/login' exact={true} activeClassName='active'>
-                        Login
-                    </NavLink>
-                </button>
+                <LoginFormModal/>
             </div>
             <div>
-                <button>
-                    <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                        Sign Up
-                    </NavLink>
-                </button>
+                <SignUpFormModal/>
             </div>
         </div> :
         <div className='nav-user'>
             <div>
-                    <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active'>
-                        <div>
-                            <div className='nav-profile-pic'>
-                                <img src={user.profilepic}/>
-                            </div>
+                <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active'>
+                    <div>
+                        <div className='nav-profile-pic'>
+                            <img src={user.profilepic}/>
                         </div>
-                    </NavLink>
+                    </div>
+                </NavLink>
+            </div>
+            <div>
+                <CreateSpotModal/>
             </div>
             <div>
                 <LogoutButton />
