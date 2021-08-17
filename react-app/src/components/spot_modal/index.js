@@ -10,7 +10,7 @@ function CreateSpotModal() {
             <button id='create-spot-btn' onClick={() => setShowModal(true)}>Create Spot</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <CreateSpotForm />
+                    <CreateSpotForm setShowModal={setShowModal}/>
                 </Modal>
             )}
         </>
