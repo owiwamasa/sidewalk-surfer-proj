@@ -39,6 +39,7 @@ export const addOneSpot = (spot) => async (dispatch) => {
   })
     if (res.ok) {
       const spot = await res.json();
+      console.log(spot);
       dispatch(addSpot(spot));
       return spot
     }

@@ -20,7 +20,7 @@ const CreateSpotForm =({setShowModal}) =>{
     }
 
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <div>
                 <label>Name</label>
                 <input

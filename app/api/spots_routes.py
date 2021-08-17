@@ -17,6 +17,7 @@ def create_spot():
         spot = form.populate_obj(Spot())
         db.session.add(spot)
         db.session.commit()
+        print('------------------', spot)
         return jsonify(spot.to_dict())
 
 
