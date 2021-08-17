@@ -26,27 +26,21 @@ function GoogleMap() {
     </div>
   );
 
-  return (
-    <div style={{ height: "100vh", width: "100%" }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCAr1UIay5E-L26k5sIxbrGHmuwr2AhQ9o" }}
-        defaultCenter={props.center}
-        defaultZoom={props.zoom}
-      >
-        {!!spots &&
-          spots?.map((spot) => (
-            <Link
-              key={spot.id}
-              to={`/spots/${spot.id}`}
-              lat={spot.latitude}
-              lng={spot.longitude}
-            >
-              <Marker />
-            </Link>
-          ))}
-      </GoogleMapReact>
-    </div>
-  );
+    return(
+        <div className='google-map'>
+            <GoogleMapReact
+                bootstrapURLKeys={{ key: 'AIzaSyCAr1UIay5E-L26k5sIxbrGHmuwr2AhQ9o' }}
+                defaultCenter={props.center}
+                defaultZoom={props.zoom}
+                >
+                {!!spots && spots?.map(spot =>(
+                    <Link key={spot.id} to={`/spots/${spot.id}`} lat={spot.latitude} lng={spot.longitude}>
+                        <Marker/>
+                    </Link>
+                ))}
+            </GoogleMapReact>
+        </div>
+    )
 }
 
 export default GoogleMap;
