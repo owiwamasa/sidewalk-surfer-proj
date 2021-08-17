@@ -24,14 +24,14 @@ function GoogleMap(){
 
 
     return(
-        <div style={{ height: '100vh', width: '100%' }}>
+        <div className='google-map'>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyCAr1UIay5E-L26k5sIxbrGHmuwr2AhQ9o' }}
                 defaultCenter={props.center}
                 defaultZoom={props.zoom}
                 >
                 {!!spots && spots?.map(spot =>(
-                    <Link key={spot.id} to={`/spots/${spot.id}`} lat={spot.longitude} lng={spot.latitude}>
+                    <Link key={spot.id} to={`/spots/${spot.id}`} lat={spot.latitude} lng={spot.longitude}>
                         <Marker/>
                     </Link>
                 ))}
