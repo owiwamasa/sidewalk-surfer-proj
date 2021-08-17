@@ -11,9 +11,11 @@ class Spot(db.Model):
     longitude = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(500), nullable=False)
     imageUrl = db.Column(db.String(500), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
     media = db.relationship("Media", back_populates="spots")
+    user = db.relationship("User", back_populates="spots")
 
     def to_dict(self):
         return{

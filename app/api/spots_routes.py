@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Spot, db
 from app.forms import SpotForm
+from flask_login import current_user
 
 spots_routes = Blueprint('spots', __name__)
 
@@ -21,7 +22,8 @@ def create_spot():
             latitude=form.latitude.data,
             longitude=form.longitude.data,
             description=form.description.data,
-            imageUrl=form.imageUrl.data
+            imageUrl=form.imageUrl.data,
+            userId=current_user.id
         )
         db.session.add(spot)
         db.session.commit()

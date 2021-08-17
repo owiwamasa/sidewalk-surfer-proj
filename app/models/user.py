@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
 
     media = db.relationship("Media", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
+    spots = db.relationship("Spot", back_populates="user")
 
 #! maybe useful for many-to-many relationship
 # followers = db.relationship(
