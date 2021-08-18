@@ -48,6 +48,6 @@ def edit_spot(id):
         spot.imageUrl=form.imageUrl.data,
         spot.userId=current_user.id
         db.session.commit()
-    return {'spot': spot.to_dict()}
+    return {'spots': [spot.to_dict()]}
 
 

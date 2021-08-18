@@ -1,7 +1,7 @@
 const GET_SPOTS = "spots/getSpots";
 const GET_ONE_SPOT = "spots/getOneSpot";
 const ADD_SPOT = "spots/addSpot";
-const EDIT_SPOT = "spots/editSpot"
+const EDIT_SPOT = "spots/editSpot";
 
 const getSpots = (spots) => {
   return { type: GET_SPOTS, spots };
@@ -13,11 +13,11 @@ const getOneSpot = (spot) => {
 
 const addSpot = (spot) => {
   return { type: ADD_SPOT, spot };
-}
+};
 
 const editSpot = (spot) => {
-  return { type: EDIT_SPOT, spot}
-}
+  return { type: EDIT_SPOT, spot };
+};
 
 export const fetchSpots = () => async (dispatch) => {
   const res = await fetch("/api/spots");
@@ -38,28 +38,28 @@ export const fetchOneSpot = (id) => async (dispatch) => {
 export const addOneSpot = (spot) => async (dispatch) => {
   const res = await fetch(`/api/spots`, {
     method: "POST",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(spot)
-  })
-    if (res.ok) {
-      const spot = await res.json();
-      dispatch(addSpot(spot));
-      return spot
-    }
-}
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(spot),
+  });
+  if (res.ok) {
+    const spot = await res.json();
+    dispatch(addSpot(spot));
+    return spot;
+  }
+};
 
-export const editOneSpot = (payload,spotId) => async (dispatch) =>{
-  const res = await fetch(`/api/spots/${spotId}`,{
-    method :"PUT",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
+export const editOneSpot = (payload, spotId) => async (dispatch) => {
+  const res = await fetch(`/api/spots/${spotId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
   if (res.ok) {
     const spot = await res.json();
     dispatch(editSpot(spot));
-    return spot
+    return spot;
   }
-}
+};
 
 const initialState = { spots: [] };
 
@@ -70,18 +70,9 @@ const spotReducer = (state = initialState, action) => {
     case GET_ONE_SPOT:
       return { ...state, ...action.spot };
     case ADD_SPOT:
-      return {...state, spots: [...state.spots, action.spot]};
-      case EDIT_SPOT:
-        const newState = {...state}
-        newState.spots.forEach(spot=> {
-          if (spot.id === action.spot.id){
-              spot = action.spot
-          }
-        })
-      return newState
-        // return {
-        //   ...state,
-        //   spots : action.spot}
+      return { ...state, spots: [...state.spots, action.spot] };
+    case EDIT_SPOT:
+      return { ...state, ...action.spot };
     default:
       return state;
   }
