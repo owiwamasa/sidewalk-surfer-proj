@@ -1,19 +1,36 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { fetchOneSpot } from "../../store/spots";
+import { fetchMedia } from "../../store/media";
+import { fetchComments } from "../../store/comments";
 import TimeAgo from "timeago-react";
+import MediaModal from "../MediaModal";
 import "./MediaCard.css";
 
 const MediaCard = ({ media, comments }) => {
-  console.log(media);
   let url = media.mediaUrl;
+  const dispatch = useDispatch();
 
   if (media?.mediaUrl.includes("youtube")) {
     url = media.mediaUrl.split("watch?v=");
     url[1] = "embed/" + url[1];
     url = url.join("");
   }
+  // const { id } = useParams();
+  // useEffect(() => {
+  //   dispatch(fetchOneSpot(id));
+  //   dispatch(fetchMedia(id));
+  //   dispatch(fetchComments());
+  // }, [dispatch, id]);
 
-  //   console.log(media.user.username);
+  // const medium = useSelector((state) => state.mediaReducer.media);
+  // const mediumComments = useSelector((state) => state.commentReducer.comments);
+  // const thisMedia = medium.filter((m) => m.id === media.id);
+  // const thisComments = mediumComments.filter((c) => c.mediaId === media.id);
+
+  // const mediaId = media.id;
+
   return (
     <div className="mediaCard">
       <div className="cardHeader">
@@ -41,6 +58,8 @@ const MediaCard = ({ media, comments }) => {
         ))}
         <TimeAgo datetime={media.createdAt} />
       </div>
+        <MediaModal media={media} comments={comments} />
+
     </div>
   );
 };
