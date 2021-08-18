@@ -21,7 +21,7 @@ const NavBar = () => {
       <div className='nav-container'>
         <div className='nav-logo'>
             <NavLink to='/' exact={true} activeClassName='active'>
-                <img src={'https://i.imgur.com/VyEdcWj.png'} />
+                <img src={'https://i.imgur.com/2y2FmRJ.png'} />
             </NavLink>
         </div>
         <div className='nav-searchbar'>
@@ -39,7 +39,7 @@ const NavBar = () => {
         { !user ?
         <div className='nav-nonuser'>
             <div>
-                <button>Demo</button>
+                <button id='demo-btn'>Demo</button>
             </div>
             <div>
                 <LoginFormModal/>
@@ -50,6 +50,12 @@ const NavBar = () => {
         </div> :
         <div className='nav-user'>
             <div>
+                <CreateSpotModal/>
+            </div>
+            <div>
+                <LogoutButton />
+            </div>
+            <div>
                 <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active'>
                     <div>
                         <div className='nav-profile-pic'>
@@ -57,12 +63,6 @@ const NavBar = () => {
                         </div>
                     </div>
                 </NavLink>
-            </div>
-            <div>
-                <CreateSpotModal/>
-            </div>
-            <div>
-                <LogoutButton />
             </div>
         </div> }
 

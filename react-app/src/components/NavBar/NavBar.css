@@ -2,24 +2,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fd1c00;
+  background-color: rgb(165, 2, 2);
 }
 
 .nav-logo img {
-  width: 130px;
+  width: 90px;
   height: auto;
+  margin: 15px 0 15px 0;
 }
 
 .nav-logo {
-  margin-left: 30px;
-  margin-right: 60px;
+  margin-left: 50px;
 }
 
 .nav-nonuser,
 .nav-user {
   margin-right: 40px;
   display: flex;
-  width: 180px;
+  width: 320px;
   justify-content: space-between;
   align-items: center;
 }
@@ -34,10 +34,11 @@
 
 .nav-search-input {
   border-radius: 30px;
-  padding: 10px 15px;
-  width: 300px;
-  font-family: "Poppins", sans-serif;
+  padding: 15px 15px;
+  width: 700px;
+  font-family: "Prompt", sans-serif;
   font-size: 15px;
+  border: 5px solid rgb(118, 0, 0);
 }
 
 a {
@@ -49,15 +50,47 @@ a {
   overflow-x: hidden;
   overflow-y: hidden;
   border-radius: 700px;
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
   background-color: rgb(50, 50, 50);
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 3px solid white;
 }
 
 .nav-profile-pic img {
   width: auto;
-  height: 70px;
+  height: 60px;
+}
+
+#create-spot-btn,
+#logout-btn {
+  border-radius: 30px;
+  background-color: rgb(165, 2, 2);
+  color: white;
+  padding: 15px 15px;
+  border: 3px solid white;
+  font-family: "Prompt", sans-serif;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+#demo-btn,
+#login-btn,
+#signup-btn {
+  border-radius: 30px;
+  background-color: rgb(165, 2, 2);
+  color: white;
+  padding: 15px 20px;
+  border: 3px solid white;
+  font-family: "Prompt", sans-serif;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+#demo-btn {
+  background-color: rgb(118, 0, 0);
+  color: white;
+  border: 3px solid white;
 }
