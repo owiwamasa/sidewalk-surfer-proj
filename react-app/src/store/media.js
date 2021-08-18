@@ -3,10 +3,14 @@ const GET_MEDIA = "media/getMedia";
 const GET_ONE_MEDIUM = "media/getOneMedium";
 const ADD_MEDIA = "media/addMedia";
 const EDIT_MEDIA = "media/editMedia";
+const DELETE_MEDIA = "media/deleteMedia";
 
 //action creators
 export const getMedia = (media) => {
   return { type: GET_MEDIA, media };
+};
+export const deleteMedia = (mediaId) => {
+  return { type: DELETE_MEDIA, mediaId };
 };
 
 export const getOneMedium = (medium) => {
@@ -75,6 +79,15 @@ export const editMedium = (medium, id) => async (dispatch) => {
   }
 };
 
+export const deleteMedium = (id) => async (dispatch) => {
+  const res = await fetch(`/api/media/${id}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    dispatch(deleteMedia(id));
+  }
+};
+
 //initialState
 const initialState = { media: [] };
 
@@ -88,6 +101,13 @@ const mediaReducer = (state = initialState, action) => {
       return { ...state, media: [action.medium, ...state.media] };
     case EDIT_MEDIA:
       return { ...state, media: [action.medium, ...state.media] };
+    case DELETE_MEDIA:
+      return {
+        ...state,
+        media: [
+          ...state.media.filter((medium) => medium.id !== action.mediaId),
+        ],
+      };
     default:
       return state;
   }

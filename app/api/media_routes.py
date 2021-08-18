@@ -50,3 +50,10 @@ def edit_media(id):
         db.session.commit()
 
         return medium.to_dict()
+
+@media_routes.route('/<int:id>',methods=['DELETE'])
+def delete_media(id):
+    medium = Media.query.get(id)
+    db.session.delete(medium)
+    db.session.commit()
+    return 'deleted'

@@ -1,21 +1,22 @@
-import { useState } from 'react'
+import { useState } from "react";
 import EditMediaForm from "./EditMediaPost";
-import { Modal } from '../../context/Modal'
+import { Modal } from "../../context/Modal";
 
-function EditMediaModal() {
-    const [showModal, setShowModal] = useState(false)
+function EditMediaModal({ media }) {
+  const [showModal, setShowModal] = useState(false);
 
-    return (
-        <>
-            <button id='create-spot-btn' onClick={() => setShowModal(true)}>Edit Media</button>
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <EditMediaForm setShowModal={setShowModal}/>
-                </Modal>
-            )}
-        </>
-
-    )
+  return (
+    <>
+      <button id="create-spot-btn" onClick={() => setShowModal(true)}>
+        Edit Media
+      </button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <EditMediaForm setShowModal={setShowModal} media={media} />
+        </Modal>
+      )}
+    </>
+  );
 }
 
-export default EditMediaModal
+export default EditMediaModal;

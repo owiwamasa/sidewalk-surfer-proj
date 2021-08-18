@@ -1,10 +1,13 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TimeAgo from "timeago-react";
+import EditMediaModal from "../EditPost";
+import { deleteMedium } from "../../store/media";
 import "./MediaCard.css";
 
 const MediaCard = ({ media, comments }) => {
-  console.log(media);
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
   let url = media.mediaUrl;
 
   if (media?.mediaUrl.includes("youtube")) {
@@ -13,12 +16,20 @@ const MediaCard = ({ media, comments }) => {
     url = url.join("");
   }
 
+  function deleteMedia() {
+    dispatch(deleteMedium(media.id));
+  }
+
   //   console.log(media.user.username);
   return (
     <div className="mediaCard">
       <div className="cardHeader">
         <img className="profilePic" alt="profilePic" src={media.profilePic} />
         <span className="mainuserName">{media.username}</span>
+        {media?.userId === user?.id && <EditMediaModal media={media} />}
+        {media?.userId === user?.id && (
+          <button onClick={deleteMedia}>Delete</button>
+        )}
       </div>
       <iframe
         width="613.75"

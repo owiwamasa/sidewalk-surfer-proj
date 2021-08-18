@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMedium, fetchMedia } from "../../store/media";
+import { editMedium, fetchMedia } from "../../store/media";
 import { fetchOneSpot } from "../../store/spots";
 
-const EditMediaForm = ({ setShowModal }) => {
-  const [description, setDescription] = useState("");
-  const [mediaUrl, setMediaUrl] = useState("");
-  const spot = useSelector((state) => state.spotReducer.spots[0]);
+const EditMediaForm = ({ setShowModal, media }) => {
+  const [description, setDescription] = useState(media.description);
+  const [mediaUrl, setMediaUrl] = useState(media.mediaUrl);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const media = { description, mediaUrl };
+    const payload = { description, mediaUrl };
 
-    dispatch(addMedium(media, spot.id));
+    dispatch(editMedium(payload, media.id));
     setShowModal(false);
   };
 
