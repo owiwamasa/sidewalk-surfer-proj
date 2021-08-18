@@ -2,6 +2,7 @@
 const GET_MEDIA = "media/getMedia";
 const GET_ONE_MEDIUM = "media/getOneMedium";
 const ADD_MEDIA = "media/addMedia";
+const EDIT_MEDIA = "media/editMedia";
 
 //action creators
 export const getMedia = (media) => {
@@ -14,6 +15,9 @@ export const getOneMedium = (medium) => {
 
 export const addMedia = (medium) => {
   return { type: ADD_MEDIA, medium };
+};
+export const editMedia = (medium) => {
+  return { type: EDIT_MEDIA, medium };
 };
 
 //thunk creator
@@ -57,6 +61,20 @@ export const addMedium = (medium, id) => async (dispatch) => {
   }
 };
 
+export const editMedium = (medium, id) => async (dispatch) => {
+  const res = await fetch(`/api/media/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(medium),
+  });
+
+  if (res.ok) {
+    const medium = await res.json();
+    dispatch(editMedia(medium));
+    return medium;
+  }
+};
+
 //initialState
 const initialState = { media: [] };
 
@@ -67,6 +85,8 @@ const mediaReducer = (state = initialState, action) => {
     case GET_ONE_MEDIUM:
       return { ...state, ...action.medium };
     case ADD_MEDIA:
+      return { ...state, media: [action.medium, ...state.media] };
+    case EDIT_MEDIA:
       return { ...state, media: [action.medium, ...state.media] };
     default:
       return state;
