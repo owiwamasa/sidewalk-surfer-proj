@@ -37,3 +37,23 @@ def create_media(id):
         db.session.commit()
 
         return media.to_dict()
+
+@media_routes.route('/<int:id>', methods=["PUT"])
+def edit_media(id):
+    medium = Media.query.get(id)
+    form = MediaForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        medium.description=form.description.data,
+        medium.mediaUrl=form.mediaUrl.data,
+
+        db.session.commit()
+
+        return medium.to_dict()
+
+@media_routes.route('/<int:id>',methods=['DELETE'])
+def delete_media(id):
+    medium = Media.query.get(id)
+    db.session.delete(medium)
+    db.session.commit()
+    return 'deleted'

@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-import { fetchOneSpot } from "../../store/spots";
-import { fetchMedia } from "../../store/media";
-import { fetchComments } from "../../store/comments";
 import TimeAgo from "timeago-react";
-import MediaModal from "../MediaModal";
+import EditMediaModal from "../EditPost";
+import { deleteMedium } from "../../store/media";
 import "./MediaCard.css";
 
 const MediaCard = ({ media, comments }) => {
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
+
   let url = media.mediaUrl;
   const dispatch = useDispatch();
 
@@ -31,11 +31,18 @@ const MediaCard = ({ media, comments }) => {
 
   // const mediaId = media.id;
 
+  function deleteMedia() {
+    dispatch(deleteMedium(media.id));
+  }
   return (
     <div className="mediaCard">
       <div className="cardHeader">
         <img className="profilePic" alt="profilePic" src={media.profilePic} />
         <span className="mainuserName">{media.username}</span>
+        {media?.userId === user?.id && <EditMediaModal media={media} />}
+        {media?.userId === user?.id && (
+          <button onClick={deleteMedia}>Delete</button>
+        )}
       </div>
       <iframe
         width="613.75"
