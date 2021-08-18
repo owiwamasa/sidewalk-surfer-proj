@@ -35,6 +35,11 @@ const LoginForm = () => {
     <div className='form-div'>
       <form onSubmit={onLogin}>
         <div className='form-content'>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
         <div className='form-all-inputs-container'>
           <div className='form-h3-container'>
               <h3 className='form-h3'>Log In</h3>
