@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import TimeAgo from "react-timeago";
+import TimeAgo from "timeago-react";
 import "./MediaCard.css";
 
 const MediaCard = ({ media, comments }) => {
@@ -28,7 +28,6 @@ const MediaCard = ({ media, comments }) => {
       <div className="description">
         <span className="mainuserName">{media.username}</span>{" "}
         {media.description}
-        {media.createdAt}
         {comments.map((comment) => (
           <div className="comment">
             <span className="userName">
@@ -37,7 +36,7 @@ const MediaCard = ({ media, comments }) => {
             </span>
           </div>
         ))}
-        {/* <TimeAgo date={media.createdAt} /> */}
+        <TimeAgo datetime={media.createdAt} />
       </div>
     </div>
   );

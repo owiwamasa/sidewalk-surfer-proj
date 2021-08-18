@@ -28,5 +28,6 @@ class Media(db.Model):
             'spotId': self.spotId,
             'username': self.user.username,
             'profilePic': self.user.profilepic,
+            'createdAt': self.createdAt
             # 'comments': {comment for comment in self.comments}
         }
