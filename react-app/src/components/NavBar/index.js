@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import LoginFormModal from '../login_modal'
 import SignUpFormModal from '../signup_modal'
 import CreateSpotModal from '../spot_modal'
+import { login } from '../../store/session';
+
 import './NavBar.css'
 
 const NavBar = () => {
@@ -14,6 +16,12 @@ const NavBar = () => {
     const onSubmit = (e) => {
         e.preventDefault()
     }
+    const dispatch = useDispatch()
+
+    const demoHandler = (e) => {
+        e.preventDefault();
+        dispatch(login('Demo@email.com','Demo'));
+    };
 
   return (
     <nav>
@@ -38,7 +46,7 @@ const NavBar = () => {
         { !user ?
         <div className='nav-nonuser'>
             <div>
-                <button id='demo-btn'>Demo</button>
+                <button id='demo-btn' onClick={demoHandler}>Demo</button>
             </div>
             <div>
                 <LoginFormModal/>
