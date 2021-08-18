@@ -1,10 +1,13 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import TimeAgo from "timeago-react";
 import "./MediaCard.css";
 
 const MediaCard = ({ media, comments }) => {
+  console.log(media);
   let url = media.mediaUrl;
-  if (media.mediaUrl.includes("youtube")) {
+
+  if (media?.mediaUrl.includes("youtube")) {
     url = media.mediaUrl.split("watch?v=");
     url[1] = "embed/" + url[1];
     url = url.join("");

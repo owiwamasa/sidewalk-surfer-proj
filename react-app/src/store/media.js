@@ -67,7 +67,7 @@ const mediaReducer = (state = initialState, action) => {
     case GET_ONE_MEDIUM:
       return { ...state, ...action.medium };
     case ADD_MEDIA:
-      return { ...state, media: [...state.media, action.medium] };
+      return { ...state, media: [action.medium, ...state.media] };
     default:
       return state;
   }

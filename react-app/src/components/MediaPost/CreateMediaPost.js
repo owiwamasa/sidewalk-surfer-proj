@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMedium } from "../../store/media";
+import { addMedium, fetchMedia } from "../../store/media";
+import { fetchOneSpot } from "../../store/spots";
 
 const CreateMediaForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");

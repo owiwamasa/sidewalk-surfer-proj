@@ -40,7 +40,13 @@ const SpotPage = () => {
               let mediaComments = comments.filter(
                 (comment) => comment.mediaId === medium.id
               );
-              return <MediaCard media={medium} comments={mediaComments} />;
+              return (
+                <MediaCard
+                  media={medium}
+                  key={medium.id}
+                  comments={mediaComments}
+                />
+              );
             })}
           </div>
         </div>

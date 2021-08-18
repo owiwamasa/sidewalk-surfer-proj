@@ -14,7 +14,7 @@ def recent_media():
 
 @media_routes.route('/spots/<int:id>')
 def spot_media(id):
-	media = Media.query.join(User).join(Comment).filter(Media.spotId == id).all()
+	media = Media.query.join(User).join(Comment).filter(Media.spotId == id).order_by(Media.createdAt.desc()).all()
 	return {'media': [medium.to_dict() for medium in media]}
 
 @media_routes.route('/<int:id>')
@@ -36,4 +36,4 @@ def create_media(id):
         db.session.add(media)
         db.session.commit()
 
-        return {'media': media.to_dict()}
+        return media.to_dict()
