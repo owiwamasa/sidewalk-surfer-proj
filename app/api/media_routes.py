@@ -1,6 +1,9 @@
 from app.models.comment import Comment
 from flask import Blueprint, jsonify
-from app.models import Media,User,Comment
+from app.models import Media, User, Comment
+from app.forms import MediaForm
+from flask_login import login_required, current_user
+
 
 media_routes = Blueprint('media', __name__)
 
@@ -18,3 +21,19 @@ def spot_media(id):
 def one_medium(id):
 	media = Media.query.get(id)
 	return {'media': [media.to_dict()]}
+
+@media_routes.route('/spots/<int:id>', methods=["POST"])
+def create_media(id):
+    form = MediaForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        media = Media(
+            spotId = id,
+            userId = current_user.id,
+            description=form.description.data,
+            mediaUrl=form.mediaUrl.data,
+        )
+        db.session.add(media)
+        db.session.commit()
+
+        return {'media': media.to_dict()}

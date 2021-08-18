@@ -6,6 +6,7 @@ import { fetchMedia, getOneMedium } from "../../store/media";
 import { fetchComments } from "../../store/comments";
 import EditSpotModal from '../edit_spot_modal'
 import MediaCard from "../MediaCard/MediaCard";
+import CreateMediaModal from "../MediaPost"
 
 const SpotPage = () => {
   const user = useSelector(state => state.session.user)
@@ -32,6 +33,7 @@ const SpotPage = () => {
           <img src={spot.imageUrl} alt={spot.name}></img>
           <div>{spot.address}</div>
           <div>{spot.description}</div>
+          <div><CreateMediaModal /></div>
           <div>
             {media.map((medium) => {
               let mediaComments = comments.filter(

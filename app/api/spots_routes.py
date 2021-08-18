@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Spot, db
 from app.forms import SpotForm
-from flask_login import current_user
 
 spots_routes = Blueprint('spots', __name__)
 
