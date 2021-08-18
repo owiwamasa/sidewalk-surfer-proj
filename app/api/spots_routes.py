@@ -33,3 +33,21 @@ def create_spot():
 def one_spot(id):
     spot = Spot.query.get(id)
     return {'spots': [spot.to_dict()]}
+
+@spots_routes.route('/<int:id>', methods = ["PUT"])
+def edit_spot(id):
+    spot = Spot.query.get(id)
+    form = SpotForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        spot.name=form.name.data,
+        spot.address=form.address.data,
+        spot.latitude=form.latitude.data,
+        spot.longitude=form.longitude.data,
+        spot.description=form.description.data,
+        spot.imageUrl=form.imageUrl.data,
+        spot.userId=current_user.id
+        db.session.commit()
+    return {'spot': spot.to_dict()}
+
+

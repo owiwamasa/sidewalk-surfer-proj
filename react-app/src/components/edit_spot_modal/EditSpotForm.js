@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addOneSpot } from "../../store/spots";
+import { editOneSpot } from "../../store/spots";
 
 const EditSpotForm = ({ setShowModal}) => {
   const spot = useSelector((state) => state.spotReducer.spots[0]);
@@ -16,8 +16,8 @@ const EditSpotForm = ({ setShowModal}) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const spot = { name, address, latitude, longitude, description, imageUrl };
-    return dispatch(addOneSpot(spot)).then(() => setShowModal(false));
+    const payload = { name, address, latitude, longitude, description, imageUrl };
+    return dispatch(editOneSpot(payload,spot.id)).then(() => setShowModal(false));
   };
 
   return (
