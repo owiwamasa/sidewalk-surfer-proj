@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import ReactPlayer from "react-player";
+import TimeAgo from "timeago-react";
 import "./MediaCard.css";
 
-const MediaCard = ({ media }) => {
+const MediaCard = ({ media, comments }) => {
   let url = media.mediaUrl;
   if (media.mediaUrl.includes("youtube")) {
     url = media.mediaUrl.split("watch?v=");
@@ -15,7 +15,7 @@ const MediaCard = ({ media }) => {
     <div className="mediaCard">
       <div className="cardHeader">
         <img className="profilePic" alt="profilePic" src={media.profilePic} />
-        <span className="userName">{media.username}</span>
+        <span className="mainuserName">{media.username}</span>
       </div>
       <iframe
         width="613.75"
@@ -26,7 +26,17 @@ const MediaCard = ({ media }) => {
         frameborder="0"
       ></iframe>
       <div className="description">
-        <span className="userName">{media.username}</span> {media.description}
+        <span className="mainuserName">{media.username}</span>{" "}
+        {media.description}
+        {comments.map((comment) => (
+          <div className="comment">
+            <span className="userName">
+              {comment.username}{" "}
+              <span className="content">{comment.comment}</span>
+            </span>
+          </div>
+        ))}
+        <TimeAgo datetime={media.createdAt} />
       </div>
     </div>
   );

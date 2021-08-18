@@ -1,11 +1,11 @@
 from flask import Blueprint, jsonify
-from app.models import Comment
+from app.models import Comment,User
 
 comments_routes = Blueprint('comments', __name__)
 
 @comments_routes.route('/')
 def all_comments():
-	comments = Comment.query.all()
+	comments = Comment.query.join(User).all()
 	return {'comments': [comment.to_dict() for comment in comments]}
 
 @comments_routes.route('/<int:id>')
