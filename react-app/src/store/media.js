@@ -14,7 +14,7 @@ export const getOneMedium = (medium) => {
 
 export const addMedia = (medium) => {
   return { type: ADD_MEDIA, medium };
-}
+};
 
 //thunk creator
 export const fetchMedia = (id) => async (dispatch) => {
@@ -44,19 +44,18 @@ export const fetchHomeMedia = () => async (dispatch) => {
 };
 
 export const addMedium = (medium, id) => async (dispatch) => {
-  const res = await fetch(`api/media/spots/${id}`, {
+  const res = await fetch(`/api/media/spots/${id}`, {
     method: "POST",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(medium)
-  })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(medium),
+  });
 
   if (res.ok) {
     const medium = await res.json();
     dispatch(addMedia(medium));
     return medium;
   }
-}
-
+};
 
 //initialState
 const initialState = { media: [] };

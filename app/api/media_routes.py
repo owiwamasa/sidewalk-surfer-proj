@@ -1,6 +1,6 @@
 from app.models.comment import Comment
-from flask import Blueprint, jsonify
-from app.models import Media, User, Comment
+from flask import Blueprint, jsonify,request
+from app.models import Media, User, Comment,db
 from app.forms import MediaForm
 from flask_login import login_required, current_user
 

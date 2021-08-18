@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addMedia } from "../../store/media";
+import { useDispatch, useSelector } from "react-redux";
+import { addMedium } from "../../store/media";
 
 const CreateMediaForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
   const [mediaUrl, setMediaUrl] = useState("");
-
+  const spot = useSelector((state) => state.spotReducer.spots[0]);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
@@ -13,7 +13,8 @@ const CreateMediaForm = ({ setShowModal }) => {
 
     const media = { description, mediaUrl };
 
-    return dispatch(addMedia(media)).then(() => setShowModal(false));
+    dispatch(addMedium(media, spot.id));
+    setShowModal(false);
   };
 
   return (
@@ -52,6 +53,6 @@ const CreateMediaForm = ({ setShowModal }) => {
       </form>
     </div>
   );
-}
+};
 
-export default CreateMediaForm
+export default CreateMediaForm;
