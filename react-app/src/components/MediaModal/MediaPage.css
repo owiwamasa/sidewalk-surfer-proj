@@ -1,0 +1,12 @@
+.mediaPage {
+  width: 613.75px;
+  max-height: 1090px;
+  margin: 20px;
+  background-color: #fafafa;
+}
+
+.mediaPage-profilePic {
+  border-radius: 50%;
+  width: 30px;
+  height: auto;
+}
