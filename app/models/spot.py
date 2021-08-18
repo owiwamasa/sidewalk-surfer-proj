@@ -25,5 +25,6 @@ class Spot(db.Model):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'description': self.description,
-            'imageUrl': self.imageUrl
+            'imageUrl': self.imageUrl,
+            'userId': self.userId
         }

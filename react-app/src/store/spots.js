@@ -24,7 +24,6 @@ export const fetchSpots = () => async (dispatch) => {
 
 export const fetchOneSpot = (id) => async (dispatch) => {
   const res = await fetch(`/api/spots/${id}`);
-
   if (res.ok) {
     const spot = await res.json();
     dispatch(getOneSpot(spot));

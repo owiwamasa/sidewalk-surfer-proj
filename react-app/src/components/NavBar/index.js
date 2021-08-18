@@ -10,7 +10,6 @@ import './NavBar.css'
 const NavBar = () => {
     const user = useSelector(state => state.session.user)
     const [search, setSearch] = useState('')
-    console.log(user)
 
     const onSubmit = (e) => {
         e.preventDefault()

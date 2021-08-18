@@ -4,9 +4,13 @@ import { useParams } from "react-router-dom";
 import { fetchOneSpot } from "../../store/spots";
 import { fetchMedia, getOneMedium } from "../../store/media";
 import { fetchComments } from "../../store/comments";
+import EditSpotModal from '../edit_spot_modal'
 import MediaCard from "../MediaCard/MediaCard";
 
 const SpotPage = () => {
+  const user = useSelector(state => state.session.user)
+  
+  
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
@@ -14,13 +18,14 @@ const SpotPage = () => {
     dispatch(fetchMedia(id));
     dispatch(fetchComments());
   }, [dispatch]);
-
+  
   const spot = useSelector((state) => state.spotReducer.spots[0]);
   const media = useSelector((state) => state.mediaReducer.media);
   const comments = useSelector((state) => state.commentReducer.comments);
-
+  
   return (
     <div>
+      {spot?.userId === user?.id && <EditSpotModal spot={spot?.id} /> }
       {spot ? (
         <div>
           <div>{spot.name}</div>
