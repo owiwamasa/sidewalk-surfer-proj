@@ -1,17 +1,22 @@
 const GET_SPOTS = "spots/getSpots";
 const GET_ONE_SPOT = "spots/getOneSpot";
 const ADD_SPOT = "spots/addSpot";
+const EDIT_SPOT = "spots/editSpot"
 
-export const getSpots = (spots) => {
+const getSpots = (spots) => {
   return { type: GET_SPOTS, spots };
 };
 
-export const getOneSpot = (spot) => {
+const getOneSpot = (spot) => {
   return { type: GET_ONE_SPOT, spot };
 };
 
-export const addSpot = (spot) => {
+const addSpot = (spot) => {
   return { type: ADD_SPOT, spot };
+}
+
+const editSpot = (spot) => {
+  return { type: EDIT_SPOT, spot}
 }
 
 export const fetchSpots = () => async (dispatch) => {
@@ -38,10 +43,22 @@ export const addOneSpot = (spot) => async (dispatch) => {
   })
     if (res.ok) {
       const spot = await res.json();
-      console.log(spot);
       dispatch(addSpot(spot));
       return spot
     }
+}
+
+export const editOneSpot = (payload,spotId) => async (dispatch) =>{
+  const res = await fetch(`/api/spots/${spotId}`,{
+    method :"PUT",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  if (res.ok) {
+    const spot = await res.json();
+    dispatch(editSpot(spot));
+    return spot
+  }
 }
 
 const initialState = { spots: [] };
@@ -54,6 +71,17 @@ const spotReducer = (state = initialState, action) => {
       return { ...state, ...action.spot };
     case ADD_SPOT:
       return {...state, spots: [...state.spots, action.spot]};
+      case EDIT_SPOT:
+        const newState = {...state}
+        newState.spots.forEach(spot=> {
+          if (spot.id === action.spot.id){
+              spot = action.spot
+          }
+        })
+      return newState
+        // return {
+        //   ...state,
+        //   spots : action.spot}
     default:
       return state;
   }
