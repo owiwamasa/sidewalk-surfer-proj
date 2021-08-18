@@ -5,8 +5,8 @@
 
 .form-content {
   border-radius: 80px;
-  background-color: rgb(230, 185, 4);
-  border: 4px solid rgb(67, 65, 65);
+  background-color: rgb(118, 0, 0);
+  border: 4px solid rgb(255, 255, 255);
 }
 
 .form-h3-container {
@@ -29,7 +29,7 @@
   font-family: "Prompt", sans-serif;
   font-size: 25px;
   text-transform: uppercase;
-  color: black;
+  color: white;
 }
 
 .form-label {
@@ -39,7 +39,7 @@
   font-family: "Prompt", sans-serif;
   font-weight: bolder;
   font-size: 20px;
-  color: black;
+  color: white;
 }
 
 .form-input-container {
@@ -55,7 +55,7 @@
   font-family: "Prompt", sans-serif;
   font-weight: 500;
   font-size: 17px;
-  border: 2px solid black;
+  border: 2px solid white;
 }
 
 .form-all-inputs-container {
@@ -78,8 +78,8 @@
   font-size: 17px;
   text-transform: uppercase;
   border-radius: 30px;
-  background-color: rgb(235, 235, 235);
-  color: black;
+  background-color: rgb(118, 0, 0);
+  color: white;
   padding: 15px 25px;
-  border: 2px solid black;
+  border: 2px solid white;
 }
