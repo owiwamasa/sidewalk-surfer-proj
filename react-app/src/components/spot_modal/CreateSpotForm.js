@@ -24,7 +24,7 @@ const CreateSpotForm = ({ setShowModal }) => {
         <div className="form-content">
           <div className="form-all-inputs-container">
             <div className="form-h3-container">
-              <h3 className="form-h3">Log In</h3>
+              <h3 className="form-h3">Create Spot</h3>
             </div>
             <div className="form-input-container">
               <label className="form-label">Name</label>
