@@ -1,12 +1,52 @@
 .mediaPage {
-  width: 613.75px;
-  max-height: 1090px;
+  width: 750px;
+  height: 400px;
   margin: 20px;
   background-color: #fafafa;
+  display: flex;
+  border-radius: 50px;
 }
 
 .mediaPage-profilePic {
   border-radius: 50%;
   width: 30px;
   height: auto;
+}
+
+.mediaPage-info {
+  width: 300px;
+}
+
+.mediaPage-media {
+  width: 430px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  overflow-y: hidden;
+  border-radius: 50px;
+}
+
+.mediaPage-media iframe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mediaPage-media img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 400px;
+}
+
+.mediaPage-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.mediaPage-user {
+  display: flex;
 }
