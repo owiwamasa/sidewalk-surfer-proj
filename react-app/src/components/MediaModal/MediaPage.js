@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import TimeAgo from "timeago-react";
-import {postComment}from '../../store/comments';
+import {postComment,editOneComment}from '../../store/comments';
 import './MediaPage.css'
 
 function MediaPage({media, comments}){
@@ -24,8 +24,10 @@ function MediaPage({media, comments}){
     dispatch(postComment(payload));
   }
 
-  const editCommentSubmit = (e) => {
+  const editCommentSubmit = (e,id) => {
     e.preventDefault();
+    dispatch(editOneComment({comment: editComment,userId:user?.id, mediaId: media?.id},id))
+    setEditClicked(false)
   }
 
   const deleteComment = (e) => {
@@ -74,7 +76,7 @@ function MediaPage({media, comments}){
                                 }
                             </div>
                             {(editClicked && comment?.userId === user?.id)?
-                            <form className='editComment-form' onSubmit={editCommentSubmit}>
+                            <form className='editComment-form' onSubmit={(e)=> editCommentSubmit(e,comment.id)}>
                                 <textarea type="text" className="editComment" value={editComment} onChange={(e) => setEditComment(e.target.value)}/>
                                 <button className="editComment-btn" type='submit'>Submit</button>
                             </form>
