@@ -9,6 +9,7 @@ function MediaPage({media, comments}){
     const [editClicked, setEditClicked] = useState(false);
     const [comment, setComment] = useState('');
     const [editComment, setEditComment] = useState('');
+    const [targetId, setTargetId] = useState('');
     const dispatch = useDispatch();
     let url = media.mediaUrl;
 
@@ -70,12 +71,13 @@ function MediaPage({media, comments}){
                                     <button onClick={() => {
                                         setEditClicked(!editClicked)
                                         setEditComment(comment.comment)
+                                        setTargetId(comment.id)
                                         }}>Edit</button>
                                     <button onClick={() => deleteComment(comment.id)}>Delete</button>
                                 </div>
                                 }
                             </div>
-                            {(editClicked && comment?.userId === user?.id)?
+                            {(editClicked && comment?.id === targetId) ?
                             <form className='editComment-form' onSubmit={(e)=> editCommentSubmit(e,comment.id)}>
                                 <textarea type="text" className="editComment" value={editComment} onChange={(e) => setEditComment(e.target.value)}/>
                                 <button className="editComment-btn" type='submit'>Submit</button>
