@@ -64,17 +64,17 @@ function MediaPage({ media, comments }) {
       <div className="mediaPage-info">
         <div className="mediaPage-Header">
           <div className="mediaPage-user">
-            <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
               <div>
-                <div className='nav-profile-pic'>
-                  <img
-                  className="mediaPage-profilePic"
-                  alt="profilePic"onCanPlayThroughCapture
-                  src={media.profilePic}
-                  />
+                <div className='mediaPage-profile-pic'>
+                    <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
+                        <img
+                        className="mediaPage-profilePic"
+                        alt="profilePic"onCanPlayThroughCapture
+                        src={media.profilePic}
+                        />
+                    </NavLink>
                 </div>
               </div>
-            </NavLink>
             {/* <img
               className="mediaPage-profilePic"
               alt="profilePic"

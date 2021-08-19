@@ -24,13 +24,13 @@ const MediaCard = ({ media, comments }) => {
   return (
     <div className="mediaCard">
       <div className="cardHeader">
-      <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
         <div>
-          <div className='nav-profile-pic'>
-            <img className="profilePic" alt="profilePic" src={media.profilePic} />
+          <div className='mediaPage-profile-pic'>
+            <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
+              <img className="profilePic" alt="profilePic" src={media.profilePic} />
+            </NavLink>
           </div>
         </div>
-      </NavLink>
         {/* <img className="profilePic" alt="profilePic" src={media.profilePic} /> */}
         <span className="mainuserName">{media.username}</span>
         {media?.userId === user?.id && <EditMediaModal media={media} />}
@@ -47,8 +47,9 @@ const MediaCard = ({ media, comments }) => {
         frameborder="0"
       ></iframe>
       <div className="description">
-        <span className="mainuserName">{media.username}</span>{" "}
+        <span className="mainuserName">{media.username} </span>{" "}
         {media.description}
+        <MediaModal media={media} comments={comments} />
         {comments.map((comment) => (
           <div className="comment">
             <span className="userName">
@@ -59,7 +60,6 @@ const MediaCard = ({ media, comments }) => {
         ))}
         <TimeAgo datetime={media.createdAt} />
       </div>
-      <MediaModal media={media} comments={comments} />
     </div>
   );
 };
