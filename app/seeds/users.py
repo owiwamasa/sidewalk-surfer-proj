@@ -14,7 +14,7 @@ def seed_users():
     Owen = User(
         username="Owen", email="Owen@email.com", password="Owen", profilepic="https://media-exp1.licdn.com/dms/image/C4E03AQEMA-yoL7vrDg/profile-displayphoto-shrink_200_200/0/1627330413871?e=1633564800&v=beta&t=c0iEdnzdDJ-pgFe-kW1qbR1IvBo6Akt5q_h4A0alA74")
     Messi = User(
-        username="Messi", email="Messi@email.com", password="Messi", profilepic="https://static.footballtransfers.com/images/cn/image/upload/q_90, w_1200, h_800, ar_3.2/footballcritic/s8xqnig1iiyq75fqldqj")
+        username="Messi", email="Messi@email.com", password="Messi", profilepic="https://footballplayerpro.com/wp-content/uploads/2016/10/Lionel-Messi-Profile-Biography.png")
     Christiano = User(
         username="Christiano", email="Christiano@email.com", password="Christiano", profilepic="https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png")
     Parthenia = User(
