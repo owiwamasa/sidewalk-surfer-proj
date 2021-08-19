@@ -20,7 +20,7 @@ def seed_users():
     Parthenia = User(
         username="Parthenia", email="Parthenia@email.com", password="Parthenia", profilepic="https://thumbs.dreamstime.com/z/female-silhoutte-avatar-default-profile-picture-photo-placeholder-vector-illustration-130555145.jpg")
     MoSalah = User(
-        username="Mo Salah", email="MoSalah@email.com", password="MoSalah", profilepic="https://static.wikia.nocookie.net/liverpoolfc/images/6/68/MSalah2020.jpeg/revision/latest?cb=20200803041821")
+        username="Mo Salah", email="MoSalah@email.com", password="MoSalah", profilepic="https://static.wikia.nocookie.net/liverpoolfc/images/6/68/MSalah2020.jpeg")
     Javier = User(
         username="Javier", email="Javier@email.com", password="Javier", profilepic="https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png")
 
