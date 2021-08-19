@@ -1,6 +1,7 @@
 //setup constants
 const GET_COMMENTS = "comments/getComments";
 const GET_ONE_COMMENT = "comments/getOneComment";
+const POST_ONE_COMMENT = "comments/postOneComment";
 
 //action creators
 export const getComments = (comments) => {
@@ -11,7 +12,24 @@ export const getOneComment = (comment) => {
   return { type: GET_ONE_COMMENT, comment };
 };
 
+export const postOneComment = (comment) => {
+  return { type: POST_ONE_COMMENT, comment };
+}
+
 //thunk creator
+export const postComment = (comment) => async (dispatch) => {
+  const res = await fetch(`/api/comments`, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify(comment)
+  })
+  if (res.ok) {
+    const comment = await res.json();
+    dispatch(postOneComment(comment));
+  }
+  return comment;
+}
+
 export const fetchComments = () => async (dispatch) => {
   const res = await fetch(`/api/comments`);
 
@@ -39,6 +57,8 @@ const commentReducer = (state = initialState, action) => {
       return { ...state, ...action.comments };
     case GET_ONE_COMMENT:
       return { ...state, ...action.comment };
+    case POST_ONE_COMMENT:
+      return { ...state, comments: [action.comment, ...state.comments] };
     default:
       return state;
   }

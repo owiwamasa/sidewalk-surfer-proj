@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import TimeAgo from "timeago-react";
+import {postComment}from '../../store/comments';
 import './MediaPage.css'
 
 function MediaPage({media, comments}){
@@ -8,6 +9,7 @@ function MediaPage({media, comments}){
     const [editClicked, setEditClicked] = useState(false);
     const [comment, setComment] = useState('');
     const [editComment, setEditComment] = useState('');
+    const dispatch = useDispatch();
     let url = media.mediaUrl;
 
   if (media?.mediaUrl.includes("youtube")) {
@@ -18,9 +20,15 @@ function MediaPage({media, comments}){
 
   const commentSubmit = (e) => {
     e.preventDefault();
+    const payload = {comment, mediaId: media.id}
+    dispatch(postComment(payload));
   }
 
   const editCommentSubmit = (e) => {
+    e.preventDefault();
+  }
+
+  const deleteComment = (e) => {
     e.preventDefault();
   }
 
@@ -61,7 +69,7 @@ function MediaPage({media, comments}){
                                         setEditClicked(!editClicked)
                                         setEditComment(comment.comment)
                                         }}>Edit</button>
-                                    <button>Delete</button>
+                                    <button onClick={() => deleteComment(comment.id)}>Delete</button>
                                 </div>
                                 }
                             </div>
