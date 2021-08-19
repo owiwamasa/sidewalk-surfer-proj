@@ -54,7 +54,7 @@ export const fetchOneMedium = (id) => async (dispatch) => {
 };
 
 export const fetchHomeMedia = () => async (dispatch) => {
-  const res = await fetch("/api/media");
+  const res = await fetch("/api/media/");
 
   if (res.ok) {
     const media = await res.json();
