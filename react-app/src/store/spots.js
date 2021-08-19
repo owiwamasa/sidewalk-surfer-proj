@@ -20,7 +20,7 @@ const editSpot = (spot) => {
 };
 
 export const fetchSpots = () => async (dispatch) => {
-  const res = await fetch("/api/spots");
+  const res = await fetch("/api/spots/");
   if (res.ok) {
     const spots = await res.json();
     dispatch(getSpots(spots));
@@ -36,7 +36,7 @@ export const fetchOneSpot = (id) => async (dispatch) => {
 };
 
 export const addOneSpot = (spot) => async (dispatch) => {
-  const res = await fetch(`/api/spots`, {
+  const res = await fetch(`/api/spots/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(spot),
