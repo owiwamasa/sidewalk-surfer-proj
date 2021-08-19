@@ -9,13 +9,17 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [profilepic, setProfilepic] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      // if (!profilepic){
+      //   setProfilepic('https://i.imgur.com/2y2FmRJ.png')
+      // }
+      const data = await dispatch(signUp(username, email, password,profilepic));
       if (data) {
         setErrors(data)
       }
@@ -37,6 +41,14 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  // const updateProfilePic = (e) => {
+  //   if (e.target.value){
+  //     setProfilepic(e.target.value);
+  //   }else{
+  //     // setProfilepic('https://i.imgur.com/2y2FmRJ.png');
+  //   }
+  // };
 
   if (user) {
     return <Redirect to='/' />;
@@ -96,6 +108,16 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
+        <div className='form-input-container'>
+          <label className='form-label'>Profile Picture</label>
+          <input
+            className='form-input'
+            type='text'
+            name='profilepic'
+            onChange={(e)=>(e.target.value) ? setProfilepic(e.target.value) : setProfilepic('https://i.imgur.com/2y2FmRJ.png') }
+            value={profilepic}
+          ></input>
+         </div>
         </div>
         <div className='form-submit-btn'>
           <button className='form-btn' type='submit'>Sign Up</button>

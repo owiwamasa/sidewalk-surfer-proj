@@ -89,6 +89,14 @@ function MediaPage({ media, comments }) {
             <div className="mediaPage-comment" key={comment.id}>
               <div className="mediaPage-comment-info">
                 <span className="mediaPage-userName">{comment?.username} </span>
+                <NavLink to={`/users/${comment.userId}`} exact={true} activeClassName='active'>
+                  <div>
+                    <div className='nav-profile-pic'>
+                      {/* <span className="mediaPage-userName">{comment?.username} </span> */}
+                      <img className="profilePic" alt="profilePic" src={comment?.profilePic} />
+                    </div>
+                  </div>  
+                </NavLink>
                 {comment?.userId === user?.id && (
                   <div className="mediaPage-comment-btns">
                     <button
