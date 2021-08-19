@@ -2,8 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { NavLink } from 'react-router-dom';
 import TimeAgo from "timeago-react";
-import { postComment, editOneComment } from "../../store/comments";
-import "./MediaPage.css";
+import {postComment, editOneComment, deleteOneComment }from '../../store/comments';
+import './MediaPage.css'
+
 
 function MediaPage({ media, comments }) {
   const user = useSelector((state) => state.session.user);
@@ -13,6 +14,7 @@ function MediaPage({ media, comments }) {
   const [targetId, setTargetId] = useState("");
   const dispatch = useDispatch();
   let url = media.mediaUrl;
+
 
   if (media?.mediaUrl.includes("youtube")) {
     url = media.mediaUrl.split("watch?v=");
@@ -38,9 +40,10 @@ function MediaPage({ media, comments }) {
     setEditClicked(false);
   };
 
-  const deleteComment = (e) => {
+  const deleteComment = (e, id) => {
     e.preventDefault();
-  };
+    dispatch(deleteOneComment(id));
+  }
 
   return (
     <div className="mediaPage">
@@ -76,8 +79,8 @@ function MediaPage({ media, comments }) {
               className="mediaPage-profilePic"
               alt="profilePic"
               src={media.profilePic}
-            /> */}vvvvvvcz    
-h fr 5u            <span className="mediaPage-mainuserName">{media.username}</span>
+            /> */}
+            <span className="mediaPage-mainuserName">{media.username}</span>
           </div>
           <TimeAgo datetime={media.createdAt} />
         </div>
@@ -121,16 +124,17 @@ h fr 5u            <span className="mediaPage-mainuserName">{media.username}</sp
               ) : (
                 <span className="content">{comment?.comment}</span>
               )}
+                        </div>
+                    )) }
             </div>
-          ))}
-        </div>
-        <form className="mediaPage-commentForm" onSubmit={commentSubmit}>
-          <textarea
-            type="text"
-            placeholder="Write a comment..."
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          ></textarea>
+            <form className='mediaPage-commentForm' onSubmit={commentSubmit}>
+                <textarea
+                type="text"
+                placeholder="Write a comment..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                >
+                </textarea>
           <button type="submit">Submit Comment</button>
         </form>
       </div>
