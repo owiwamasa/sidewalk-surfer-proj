@@ -46,35 +46,43 @@ function MediaPage({media, comments}){
                     <img className="mediaPage-profilePic" alt="profilePic" src={media.profilePic} />
                     <span className="mediaPage-mainuserName">{media.username}</span>
                 </div>
-                <TimeAgo datetime={media.createdAt} />
+                    <TimeAgo datetime={media.createdAt} />
             </div>
-            {comments.map((comment) => (
-                    <div className="comment" key={comment.id}>
-                        <span className="userName">
-                        {comment.username}{" "}
-                        {editClicked ?
-                        <form onSubmit={editCommentSubmit}>
-                            <textarea type="text" className="editComment" value={comment.comment} onChange={(e) => setEditComment(e.target.value)}/>
-                            <button type='submit'>Submit Edit</button>
-                        </form>
-                        :
-                        <span className="content">{comment.comment}</span>}
-                        </span>
-                        {comment.userId === user.id &&
-                        <div>
-                            <button onClick={() => setEditClicked(!editClicked)}>Edit</button>
-                            <button>Delete</button>
+            <div className='mediaPage-comments'>
+                {comments.map((comment) => (
+                        <div className="mediaPage-comment" key={comment.id}>
+                            <div className='mediaPage-comment-info'>
+                                <span className="mediaPage-userName">
+                                {comment?.username}{" "}
+                                </span>
+                                {comment?.userId === user?.id &&
+                                <div className='mediaPage-comment-btns'>
+                                    <button onClick={() => {
+                                        setEditClicked(!editClicked)
+                                        setEditComment(comment.comment)
+                                        }}>Edit</button>
+                                    <button>Delete</button>
+                                </div>
+                                }
+                            </div>
+                            {(editClicked && comment?.userId === user?.id)?
+                            <form className='editComment-form' onSubmit={editCommentSubmit}>
+                                <textarea type="text" className="editComment" value={editComment} onChange={(e) => setEditComment(e.target.value)}/>
+                                <button className="editComment-btn" type='submit'>Submit</button>
+                            </form>
+                            :
+                            <span className="content">{comment?.comment}</span>}
                         </div>
-                        }
-                    </div>
-                )) }
-            <form onSubmit={commentSubmit}>
-                <input
+                    )) }
+            </div>
+            <form className='mediaPage-commentForm' onSubmit={commentSubmit}>
+                <textarea
+                type="text"
                 placeholder="Write a comment..."
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 >
-                </input>
+                </textarea>
                 <button type='submit'>Submit Comment</button>
             </form>
         </div>
