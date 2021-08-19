@@ -22,7 +22,7 @@ function GoogleMap() {
   };
   const Marker = ({ lat, lng }) => (
     <div className="mapMarker">
-      <img src="https://i.imgur.com/yyandSM.png"></img>
+      <img src="https://i.imgur.com/yyandSM.png" alt =""></img>
     </div>
   );
 

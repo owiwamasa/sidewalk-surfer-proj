@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editOneSpot, fetchOneSpot } from "../../store/spots";
+import { editOneSpot } from "../../store/spots";
 
 const EditSpotForm = ({ setShowModal }) => {
   const spot = useSelector((state) => state.spotReducer.spots[0]);
-  console.log(spot);
   const [name, setName] = useState(spot?.name);
   const [address, setAddress] = useState(spot?.address);
   const [latitude, setLatitude] = useState(spot?.latitude);

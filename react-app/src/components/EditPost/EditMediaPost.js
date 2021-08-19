@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { editMedium, fetchMedia } from "../../store/media";
-import { fetchOneSpot } from "../../store/spots";
+import { useDispatch } from "react-redux";
+import { editMedium } from "../../store/media";
 
 const EditMediaForm = ({ setShowModal, media }) => {
   const [description, setDescription] = useState(media.description);

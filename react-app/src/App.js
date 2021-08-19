@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NavBar from "./components/NavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
 import ProfilePage from "./components/ProfilePage";
 import SpotPage from "./components/SpotPage/SpotPage";
 import HomePage from "./components/HomePage";
