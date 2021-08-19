@@ -61,18 +61,18 @@ export const editOneSpot = (payload, spotId) => async (dispatch) => {
   }
 };
 
-const initialState = { spots: [] };
+const initialState = { spots: [], curSpot: {} };
 
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SPOTS:
-      return { ...state, ...action.spots };
+      return { ...state, ...action.spots, curSpot: {} };
     case GET_ONE_SPOT:
-      return { ...state, ...action.spot };
+      return { ...state, curSpot: action.spot };
     case ADD_SPOT:
       return { ...state, spots: [...state.spots, action.spot] };
     case EDIT_SPOT:
-      return { ...state, ...action.spot };
+      return { ...state, curSpot: action.spot };
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import { addMedium } from "../../store/media";
 const CreateMediaForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
   const [mediaUrl, setMediaUrl] = useState("");
-  const spot = useSelector((state) => state.spotReducer.spots[0]);
+  const spot = useSelector((state) => state.spotReducer.curSpot);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {

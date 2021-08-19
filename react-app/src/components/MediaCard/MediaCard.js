@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import TimeAgo from "timeago-react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import EditMediaModal from "../EditPost";
 import { deleteMedium } from "../../store/media";
 import MediaModal from "../MediaModal";
@@ -24,15 +24,17 @@ const MediaCard = ({ media, comments }) => {
   return (
     <div className="mediaCard">
       <div className="cardHeader">
-        <div>
-          <div className='mediaPage-profile-pic'>
-            <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
-              <img className="profilePic" alt="profilePic" src={media.profilePic} />
-            </NavLink>
+        <NavLink to={`/users/${media.userId}`} exact={true}>
+          <div className="profileLink">
+            <img
+              className="profilePic"
+              alt="profilePic"
+              src={media.profilePic}
+            />
+            <span className="mainuserName">{media.username}</span>
           </div>
-        </div>
+        </NavLink>
         {/* <img className="profilePic" alt="profilePic" src={media.profilePic} /> */}
-        <span className="mainuserName">{media.username}</span>
         {media?.userId === user?.id && <EditMediaModal media={media} />}
         {media?.userId === user?.id && (
           <button onClick={deleteMedia}>Delete</button>
@@ -52,10 +54,10 @@ const MediaCard = ({ media, comments }) => {
         <MediaModal media={media} comments={comments} />
         {comments.map((comment) => (
           <div className="comment">
-            <span className="userName">
-              {comment.username}{" "}
-              <span className="content">{comment.comment}</span>
-            </span>
+            <NavLink to={`/users/${comment.userId}`}>
+              <span className="userName">{comment.username}</span>
+            </NavLink>
+            <span className="content">{comment.comment}</span>
           </div>
         ))}
         <TimeAgo datetime={media.createdAt} />

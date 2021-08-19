@@ -1,10 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import TimeAgo from "timeago-react";
-import {postComment, editOneComment, deleteOneComment }from '../../store/comments';
-import './MediaPage.css'
-
+import {
+  postComment,
+  editOneComment,
+  deleteOneComment,
+} from "../../store/comments";
+import "./MediaPage.css";
 
 function MediaPage({ media, comments }) {
   const user = useSelector((state) => state.session.user);
@@ -14,7 +17,6 @@ function MediaPage({ media, comments }) {
   const [targetId, setTargetId] = useState("");
   const dispatch = useDispatch();
   let url = media.mediaUrl;
-
 
   if (media?.mediaUrl.includes("youtube")) {
     url = media.mediaUrl.split("watch?v=");
@@ -43,7 +45,7 @@ function MediaPage({ media, comments }) {
   const deleteComment = (e, id) => {
     e.preventDefault();
     dispatch(deleteOneComment(id));
-  }
+  };
 
   return (
     <div className="mediaPage">
@@ -64,23 +66,30 @@ function MediaPage({ media, comments }) {
       <div className="mediaPage-info">
         <div className="mediaPage-Header">
           <div className="mediaPage-user">
-              <div>
-                <div className='mediaPage-profile-pic'>
-                    <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
-                        <img
-                        className="mediaPage-profilePic"
-                        alt="profilePic"onCanPlayThroughCapture
-                        src={media.profilePic}
-                        />
-                    </NavLink>
-                </div>
+            <div>
+              <div className="mediaPage-profile-pic">
+                <NavLink
+                  to={`/users/${media.userId}`}
+                  exact={true}
+                  activeClassName="active"
+                >
+                  <img
+                    className="mediaPage-profilePic"
+                    alt="profilePic"
+                    onCanPlayThroughCapture
+                    src={media.profilePic}
+                  />
+                </NavLink>
               </div>
+            </div>
             {/* <img
               className="mediaPage-profilePic"
               alt="profilePic"
               src={media.profilePic}
             /> */}
-            <span className="mediaPage-mainuserName">{media.username}</span>
+            <NavLink to={`/users/${media.userId}`}>
+              <span className="mediaPage-mainuserName">{media.username}</span>
+            </NavLink>
           </div>
           <TimeAgo datetime={media.createdAt} />
         </div>
@@ -88,7 +97,11 @@ function MediaPage({ media, comments }) {
           {comments.map((comment) => (
             <div className="mediaPage-comment" key={comment.id}>
               <div className="mediaPage-comment-info">
-                <span className="mediaPage-userName">{comment?.username} </span>
+                <NavLink to={`/users/${comment.userId}`}>
+                  <span className="mediaPage-userName">
+                    {comment?.username}{" "}
+                  </span>
+                </NavLink>
                 {comment?.userId === user?.id && (
                   <div className="mediaPage-comment-btns">
                     <button
@@ -124,17 +137,16 @@ function MediaPage({ media, comments }) {
               ) : (
                 <span className="content">{comment?.comment}</span>
               )}
-                        </div>
-                    )) }
             </div>
-            <form className='mediaPage-commentForm' onSubmit={commentSubmit}>
-                <textarea
-                type="text"
-                placeholder="Write a comment..."
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                >
-                </textarea>
+          ))}
+        </div>
+        <form className="mediaPage-commentForm" onSubmit={commentSubmit}>
+          <textarea
+            type="text"
+            placeholder="Write a comment..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          ></textarea>
           <button type="submit">Submit Comment</button>
         </form>
       </div>
