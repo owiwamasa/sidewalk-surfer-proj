@@ -38,7 +38,8 @@ def edit_comment(id):
 		comment.comment = form.comment.data
 		db.session.commit()
 		# return comment.to_dict()
-	return {'comments': [comment.to_dict()]}
+		comments = Comment.query.all()
+		return {'comments': [comment.to_dict() for comment in comments]}
 
 	
 
