@@ -20,7 +20,7 @@ function MediaPage({media, comments}){
 
   const commentSubmit = (e) => {
     e.preventDefault();
-    const payload = {comment, mediaId: media.id}
+    const payload = {comment, userId:user?.id, mediaId: media?.id}
     dispatch(postComment(payload));
   }
 

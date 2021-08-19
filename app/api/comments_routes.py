@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request
 from app.models import Comment, User, db
-from flask_login import current_user
 from app.forms import CommentForm
 
 comments_routes = Blueprint('comments', __name__)
@@ -10,15 +9,14 @@ def all_comments():
 	comments = Comment.query.join(User).all()
 	return {'comments': [comment.to_dict() for comment in comments]}
 
-@comments_routes.route('/', methods=['POST'])
+@comments_routes.route('', methods=["POST"])
 def post_comment():
-	print('------------------')
 	form = CommentForm()
 	form['csrf_token'].data = request.cookies['csrf_token']
 	if form.validate_on_submit():
 		comment = Comment(
 			comment=form.comment.data,
-			userId=current_user.id,
+			userId=form.userId.data,
 			mediaId=form.mediaId.data
 		)
 		db.session.add(comment)
