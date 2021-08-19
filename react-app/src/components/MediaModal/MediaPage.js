@@ -4,15 +4,16 @@ import TimeAgo from "timeago-react";
 import {postComment, editOneComment, deleteOneComment }from '../../store/comments';
 import './MediaPage.css'
 
-function MediaPage({media, comments}){
-    const user = useSelector((state) => state.session.user);
-    const [editClicked, setEditClicked] = useState(false);
-    const [comment, setComment] = useState('');
-    const [editComment, setEditComment] = useState('');
-    // const [deleteComment, setDeleteComment] = useState('');
 
-    const dispatch = useDispatch();
-    let url = media.mediaUrl;
+function MediaPage({ media, comments }) {
+  const user = useSelector((state) => state.session.user);
+  const [editClicked, setEditClicked] = useState(false);
+  const [comment, setComment] = useState("");
+  const [editComment, setEditComment] = useState("");
+  const [targetId, setTargetId] = useState("");
+  const dispatch = useDispatch();
+  let url = media.mediaUrl;
+
 
   if (media?.mediaUrl.includes("youtube")) {
     url = media.mediaUrl.split("watch?v=");
@@ -22,15 +23,21 @@ function MediaPage({media, comments}){
 
   const commentSubmit = (e) => {
     e.preventDefault();
-    const payload = {comment, userId:user?.id, mediaId: media?.id}
+    const payload = { comment, userId: user?.id, mediaId: media?.id };
     dispatch(postComment(payload));
-  }
+    setComment("");
+  };
 
-  const editCommentSubmit = (e,id) => {
+  const editCommentSubmit = (e, id) => {
     e.preventDefault();
-    dispatch(editOneComment({comment: editComment,userId:user?.id, mediaId: media?.id},id))
-    setEditClicked(false)
-  }
+    dispatch(
+      editOneComment(
+        { comment: editComment, userId: user?.id, mediaId: media?.id },
+        id
+      )
+    );
+    setEditClicked(false);
+  };
 
   const deleteComment = (e, id) => {
     e.preventDefault();
@@ -73,6 +80,7 @@ function MediaPage({media, comments}){
                                     <button onClick={() => {
                                         setEditClicked(!editClicked)
                                         setEditComment(comment.comment)
+                                        setTargetId(comment.id);
                                         }}>Edit</button>
                                     <button onClick={(e) => {
                                         deleteComment(e, comment.id)
@@ -80,7 +88,7 @@ function MediaPage({media, comments}){
                                 </div>
                                 }
                             </div>
-                            {(editClicked && comment?.userId === user?.id)?
+                            {(editClicked && comment?.id === targetId)?
                             <form className='editComment-form' onSubmit={(e)=> editCommentSubmit(e,comment.id)}>
                                 <textarea type="text" className="editComment" value={editComment} onChange={(e) => setEditComment(e.target.value)}/>
                                 <button className="editComment-btn" type='submit'>Submit</button>
@@ -98,10 +106,11 @@ function MediaPage({media, comments}){
                 onChange={(e) => setComment(e.target.value)}
                 >
                 </textarea>
-                <button type='submit'>Submit Comment</button>
-            </form>
-        </div>
+          <button type="submit">Submit Comment</button>
+        </form>
+      </div>
     </div>
-  )}
+  );
+}
 
-export default MediaPage
+export default MediaPage;
