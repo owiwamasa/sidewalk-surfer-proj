@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import TimeAgo from "timeago-react";
+import { NavLink } from 'react-router-dom';
 import EditMediaModal from "../EditPost";
 import { deleteMedium } from "../../store/media";
 import MediaModal from "../MediaModal";
@@ -23,7 +24,14 @@ const MediaCard = ({ media, comments }) => {
   return (
     <div className="mediaCard">
       <div className="cardHeader">
-        <img className="profilePic" alt="profilePic" src={media.profilePic} />
+      <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
+        <div>
+          <div className='nav-profile-pic'>
+            <img className="profilePic" alt="profilePic" src={media.profilePic} />
+          </div>
+        </div>
+      </NavLink>
+        {/* <img className="profilePic" alt="profilePic" src={media.profilePic} /> */}
         <span className="mainuserName">{media.username}</span>
         {media?.userId === user?.id && <EditMediaModal media={media} />}
         {media?.userId === user?.id && (

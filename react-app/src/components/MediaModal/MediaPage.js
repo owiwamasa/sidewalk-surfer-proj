@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { NavLink } from 'react-router-dom';
 import TimeAgo from "timeago-react";
 import {postComment, editOneComment, deleteOneComment }from '../../store/comments';
 import './MediaPage.css'
@@ -46,55 +47,83 @@ function MediaPage({ media, comments }) {
 
   return (
     <div className="mediaPage">
-            <div className='mediaPage-media'>
-                {media?.mediaUrl.includes("youtube") ?
-                <iframe
-                    width="613.75"
-                    height="100%"
-                    src={url}
-                    title={media.name}
-                    scrolling="no"
-                    frameborder="0"
-                ></iframe>
-                :
-                <img src={media.mediaUrl} alt='media'/>
-                }
-            </div>
-        <div className="mediaPage-info">
-            <div className="mediaPage-Header">
-                <div className='mediaPage-user'>
-                    <img className="mediaPage-profilePic" alt="profilePic" src={media.profilePic} />
-                    <span className="mediaPage-mainuserName">{media.username}</span>
+      <div className="mediaPage-media">
+        {media?.mediaUrl.includes("youtube") ? (
+          <iframe
+            width="613.75"
+            height="100%"
+            src={url}
+            title={media.name}
+            scrolling="no"
+            frameborder="0"
+          ></iframe>
+        ) : (
+          <img src={media.mediaUrl} alt="media" />
+        )}
+      </div>
+      <div className="mediaPage-info">
+        <div className="mediaPage-Header">
+          <div className="mediaPage-user">
+            <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
+              <div>
+                <div className='nav-profile-pic'>
+                  <img
+                  className="mediaPage-profilePic"
+                  alt="profilePic"onCanPlayThroughCapture 
+                  src={media.profilePic}
+                  />
                 </div>
-                    <TimeAgo datetime={media.createdAt} />
-            </div>
-            <div className='mediaPage-comments'>
-                {comments.map((comment) => (
-                        <div className="mediaPage-comment" key={comment.id}>
-                            <div className='mediaPage-comment-info'>
-                                <span className="mediaPage-userName">
-                                {comment?.username}{" "}
-                                </span>
-                                {comment?.userId === user?.id &&
-                                <div className='mediaPage-comment-btns'>
-                                    <button onClick={() => {
-                                        setEditClicked(!editClicked)
-                                        setEditComment(comment.comment)
-                                        setTargetId(comment.id);
-                                        }}>Edit</button>
-                                    <button onClick={(e) => {
-                                        deleteComment(e, comment.id)
-                                    }}>Delete</button>
-                                </div>
-                                }
-                            </div>
-                            {(editClicked && comment?.id === targetId)?
-                            <form className='editComment-form' onSubmit={(e)=> editCommentSubmit(e,comment.id)}>
-                                <textarea type="text" className="editComment" value={editComment} onChange={(e) => setEditComment(e.target.value)}/>
-                                <button className="editComment-btn" type='submit'>Submit</button>
-                            </form>
-                            :
-                            <span className="content">{comment?.comment}</span>}
+              </div>
+            </NavLink> 
+            {/* <img
+              className="mediaPage-profilePic"
+              alt="profilePic"
+              src={media.profilePic}
+            /> */}
+            <span className="mediaPage-mainuserName">{media.username}</span>
+          </div>
+          <TimeAgo datetime={media.createdAt} />
+        </div>
+        <div className="mediaPage-comments">
+          {comments.map((comment) => (
+            <div className="mediaPage-comment" key={comment.id}>
+              <div className="mediaPage-comment-info">
+                <span className="mediaPage-userName">{comment?.username} </span>
+                {comment?.userId === user?.id && (
+                  <div className="mediaPage-comment-btns">
+                    <button
+                      onClick={() => {
+                        setEditClicked(!editClicked);
+                        setEditComment(comment.comment);
+                        setTargetId(comment.id);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button onClick={() => deleteComment(comment.id)}>
+                      Delete
+                    </button>
+                  </div>
+                )}
+              </div>
+              {editClicked && comment?.id === targetId ? (
+                <form
+                  className="editComment-form"
+                  onSubmit={(e) => editCommentSubmit(e, comment.id)}
+                >
+                  <textarea
+                    type="text"
+                    className="editComment"
+                    value={editComment}
+                    onChange={(e) => setEditComment(e.target.value)}
+                  />
+                  <button className="editComment-btn" type="submit">
+                    Submit
+                  </button>
+                </form>
+              ) : (
+                <span className="content">{comment?.comment}</span>
+              )}
                         </div>
                     )) }
             </div>
