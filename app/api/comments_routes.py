@@ -41,7 +41,11 @@ def edit_comment(id):
 		comments = Comment.query.join(User).order_by(Comment.createdAt).all()
 		return {'comments': [comment.to_dict() for comment in comments]}
 
-	
 
+@comments_routes.route('/<int:id>', methods=["DELETE"])
+def delete_comment(id):
+    comment = Comment.query.get(id)
+    db.session.delete(comment)
+    db.session.commit()
 
-
+    return "deleted"
