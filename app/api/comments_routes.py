@@ -27,3 +27,20 @@ def post_comment():
 def one_comment(id):
 	comment = Comment.query.get(id)
 	return { 'comments': [comment.to_dict()]}
+
+@comments_routes.route('/<int:id>', methods=["PUT"])
+def edit_comment(id):
+	comment = Comment.query.get(id)
+	form = CommentForm()
+	form['csrf_token'].data = request.cookies['csrf_token']
+
+	if form.validate_on_submit():
+		comment.comment = form.comment.data
+		db.session.commit()
+		# return comment.to_dict()
+	return {'comments': [comment.to_dict()]}
+
+	
+
+
+
