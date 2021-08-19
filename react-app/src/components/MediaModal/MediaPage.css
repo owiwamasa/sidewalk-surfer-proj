@@ -1,10 +1,11 @@
 .mediaPage {
-  width: 750px;
+  width: 780px;
   height: 400px;
   margin: 20px;
-  background-color: #fafafa;
+  background-color: white;
   display: flex;
   border-radius: 50px;
+  margin: 50px;
 }
 
 .mediaPage-profilePic {
@@ -15,6 +16,7 @@
 
 .mediaPage-info {
   width: 300px;
+  margin-left: 45px;
 }
 
 .mediaPage-media {
@@ -42,11 +44,108 @@
   height: 400px;
 }
 
-.mediaPage-header {
+.mediaPage-Header {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .mediaPage-user {
   display: flex;
+  align-items: center;
+}
+
+.mediaPage-profilePic {
+  margin-right: 10px;
+}
+
+.mediaPage-mainuserName {
+  white-space: nowrap;
+}
+
+.mediaPage-commentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mediaPage-commentForm textarea {
+  width: 290px;
+  height: 50px;
+  resize: none;
+  border-radius: 20px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.editComment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editComment {
+  width: 200px;
+  height: 50px;
+  resize: none;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.editComment-btn {
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-family: "Prompt";
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.mediaPage-comments {
+  margin-top: 10px;
+  height: 240px;
+  overflow-y: scroll;
+}
+
+.mediaPage-commentForm button {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-family: "Prompt";
+  margin-top: 10px;
+}
+
+.userName {
+  margin-right: 10px;
+}
+
+time {
+  white-space: nowrap;
+  font-size: smaller;
+}
+
+.mediaPage-comment {
+  display: flex;
+  padding-top: 10px;
+  font-size: 14px;
+  word-spacing: 2px;
+}
+
+.mediaPage-comment-info {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  min-width: 75px;
+}
+
+.mediaPage-comment-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+}
+
+.mediaPage-comment-btns button {
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-family: "Prompt";
+  font-size: 10px;
+  margin-top: 5px;
 }
