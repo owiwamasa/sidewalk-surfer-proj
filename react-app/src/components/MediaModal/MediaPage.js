@@ -69,12 +69,12 @@ function MediaPage({ media, comments }) {
                 <div className='nav-profile-pic'>
                   <img
                   className="mediaPage-profilePic"
-                  alt="profilePic"onCanPlayThroughCapture 
+                  alt="profilePic"onCanPlayThroughCapture
                   src={media.profilePic}
                   />
                 </div>
               </div>
-            </NavLink> 
+            </NavLink>
             {/* <img
               className="mediaPage-profilePic"
               alt="profilePic"
@@ -100,7 +100,7 @@ function MediaPage({ media, comments }) {
                     >
                       Edit
                     </button>
-                    <button onClick={() => deleteComment(comment.id)}>
+                    <button onClick={(e) => deleteComment(e, comment.id)}>
                       Delete
                     </button>
                   </div>
