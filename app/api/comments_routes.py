@@ -40,7 +40,11 @@ def edit_comment(id):
 		# return comment.to_dict()
 	return {'comments': [comment.to_dict()]}
 
-	
 
+@comments_routes.route('/<int:id>', methods=["DELETE"])
+def delete_comment(id):
+    comment = Comment.query.get(id)
+    db.session.delete(comment)
+    db.session.commit()
 
-
+    return "deleted"

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import TimeAgo from "timeago-react";
-import {postComment,editOneComment}from '../../store/comments';
+import {postComment, editOneComment, deleteOneComment }from '../../store/comments';
 import './MediaPage.css'
 
 function MediaPage({media, comments}){
@@ -9,6 +9,8 @@ function MediaPage({media, comments}){
     const [editClicked, setEditClicked] = useState(false);
     const [comment, setComment] = useState('');
     const [editComment, setEditComment] = useState('');
+    // const [deleteComment, setDeleteComment] = useState('');
+
     const dispatch = useDispatch();
     let url = media.mediaUrl;
 
@@ -30,8 +32,9 @@ function MediaPage({media, comments}){
     setEditClicked(false)
   }
 
-  const deleteComment = (e) => {
+  const deleteComment = (e, id) => {
     e.preventDefault();
+    dispatch(deleteOneComment(id));
   }
 
   return (
@@ -71,7 +74,9 @@ function MediaPage({media, comments}){
                                         setEditClicked(!editClicked)
                                         setEditComment(comment.comment)
                                         }}>Edit</button>
-                                    <button onClick={() => deleteComment(comment.id)}>Delete</button>
+                                    <button onClick={(e) => {
+                                        deleteComment(e, comment.id)
+                                    }}>Delete</button>
                                 </div>
                                 }
                             </div>

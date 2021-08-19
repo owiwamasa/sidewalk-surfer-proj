@@ -3,6 +3,7 @@ const GET_COMMENTS = "comments/getComments";
 const GET_ONE_COMMENT = "comments/getOneComment";
 const POST_ONE_COMMENT = "comments/postOneComment";
 const EDIT_COMMENT = "comments/editComment"
+const DELETE_COMMENT = "comments/deleteComment"
 
 //action creators
 export const getComments = (comments) => {
@@ -19,6 +20,10 @@ export const postOneComment = (comment) => {
 
 const editComment = (comment) =>{
   return {type: EDIT_COMMENT, comment};
+}
+
+const deleteComment = (commentId) => {
+  return { type: DELETE_COMMENT, commentId };
 }
 
 //thunk creator
@@ -66,6 +71,16 @@ export const editOneComment = (comment,id) => async (dispatch) => {
   }
 }
 
+export const deleteOneComment = (id) => async (dispatch) => {
+  const res = await fetch(`/api/comments/${id}`, {
+    method: 'DELETE'
+  });
+
+  if (res.ok) {
+    dispatch(deleteComment(id));
+  }
+}
+
 //initialize state
 const initialState = { comments: [] };
 
@@ -79,7 +94,14 @@ const commentReducer = (state = initialState, action) => {
       return { ...state, comments: [action.comment, ...state.comments] };
     case EDIT_COMMENT:
       // return {...state, comments:[action.comment, ...state.comments]}
-      return {...state, ...action.comment}
+      return { ...state, ...action.comment }
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        comments: [
+          ...state.comments.filter((comment) => comment.id !== action.commentId),
+        ],
+      }
     default:
       return state;
   }
