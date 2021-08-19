@@ -76,7 +76,7 @@ const commentReducer = (state = initialState, action) => {
     case GET_ONE_COMMENT:
       return { ...state, ...action.comment };
     case POST_ONE_COMMENT:
-      return { ...state, comments: [action.comment, ...state.comments] };
+      return { ...state, comments: [...state.comments, action.comment] };
     case EDIT_COMMENT:
       return { ...state, ...action.comment };
     // return {...state, ...action.comment}
