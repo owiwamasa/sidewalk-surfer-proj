@@ -25,7 +25,6 @@ const SpotPage = () => {
   const comments = useSelector((state) => state.commentReducer.comments);
   return (
     <div>
-      {spot?.userId === user?.id && <EditSpotModal spot={spot?.id} />}
       {spot ? (
         <div>
           <div>{spot.name}</div>
@@ -34,6 +33,7 @@ const SpotPage = () => {
           <div>{spot.description}</div>
           <div>
             <CreateMediaModal />
+            {spot?.userId === user?.id && <EditSpotModal spot={spot?.id} />}
           </div>
           <div>
             {media.map((medium) => {
