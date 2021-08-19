@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { NavLink } from 'react-router-dom';
 import TimeAgo from "timeago-react";
 import { postComment, editOneComment } from "../../store/comments";
 import "./MediaPage.css";
@@ -60,12 +61,23 @@ function MediaPage({ media, comments }) {
       <div className="mediaPage-info">
         <div className="mediaPage-Header">
           <div className="mediaPage-user">
-            <img
+            <NavLink to={`/users/${media.userId}`} exact={true} activeClassName='active'>
+              <div>
+                <div className='nav-profile-pic'>
+                  <img
+                  className="mediaPage-profilePic"
+                  alt="profilePic"onCanPlayThroughCapture 
+                  src={media.profilePic}
+                  />
+                </div>
+              </div>
+            </NavLink> 
+            {/* <img
               className="mediaPage-profilePic"
               alt="profilePic"
               src={media.profilePic}
-            />
-            <span className="mediaPage-mainuserName">{media.username}</span>
+            /> */}vvvvvvcz    
+h fr 5u            <span className="mediaPage-mainuserName">{media.username}</span>
           </div>
           <TimeAgo datetime={media.createdAt} />
         </div>
