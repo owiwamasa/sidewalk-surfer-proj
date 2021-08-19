@@ -28,7 +28,7 @@ const NavBar = () => {
       <div className='nav-container'>
         <div className='nav-logo'>
             <NavLink to='/' exact={true} activeClassName='active'>
-                <img src={'https://i.imgur.com/2y2FmRJ.png'} />
+                <img src={'https://i.imgur.com/2y2FmRJ.png'} alt=""/>
             </NavLink>
         </div>
         <div className='nav-searchbar'>
@@ -66,7 +66,7 @@ const NavBar = () => {
                 <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active'>
                     <div>
                         <div className='nav-profile-pic'>
-                            <img src={user.profilepic}/>
+                            <img src={user.profilepic} alt=""/>
                         </div>
                     </div>
                 </NavLink>

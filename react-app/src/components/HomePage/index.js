@@ -13,7 +13,7 @@ function HomePage() {
     <div>
       <GoogleMap />
       {media.map((medium) => (
-        <img src={medium.mediaUrl} alt={medium.name} />
+        <img key={medium.id} src={medium.mediaUrl} alt={medium.name} />
       ))}
     </div>
   );

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchOneSpot } from "../../store/spots";
-import { fetchMedia, getOneMedium } from "../../store/media";
+import { fetchMedia } from "../../store/media";
 import { fetchComments } from "../../store/comments";
 import EditSpotModal from "../edit_spot_modal";
 import MediaCard from "../MediaCard/MediaCard";
@@ -21,8 +21,8 @@ const SpotPage = () => {
 
   const spot = useSelector((state) => state.spotReducer.spots[0]);
   const media = useSelector((state) => state.mediaReducer.media);
+  console.log(media)
   const comments = useSelector((state) => state.commentReducer.comments);
-
   return (
     <div>
       {spot?.userId === user?.id && <EditSpotModal spot={spot?.id} />}

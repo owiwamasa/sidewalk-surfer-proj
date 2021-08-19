@@ -4,27 +4,38 @@ const GET_ONE_MEDIUM = "media/getOneMedium";
 const ADD_MEDIA = "media/addMedia";
 const EDIT_MEDIA = "media/editMedia";
 const DELETE_MEDIA = "media/deleteMedia";
+const GET_ALL_MEDIA = "media/getallmedia"
 
 //action creators
-export const getMedia = (media) => {
+const getMedia = (media) => {
   return { type: GET_MEDIA, media };
 };
-export const deleteMedia = (mediaId) => {
+const deleteMedia = (mediaId) => {
   return { type: DELETE_MEDIA, mediaId };
 };
-
-export const getOneMedium = (medium) => {
+const getOneMedium = (medium) => {
   return { type: GET_ONE_MEDIUM, medium };
 };
-
-export const addMedia = (medium) => {
+const addMedia = (medium) => {
   return { type: ADD_MEDIA, medium };
 };
-export const editMedia = (medium) => {
+const editMedia = (medium) => {
   return { type: EDIT_MEDIA, medium };
 };
+const getAllMedia =(media) =>{
+  return { type: GET_ALL_MEDIA, media}
+}
 
 //thunk creator
+export const fetchAllMedia = () => async (dispatch) => {
+  const res = await fetch(`/api/media/`);
+
+  if (res.ok) {
+    const media = await res.json();
+    dispatch(getAllMedia(media));
+  }
+};
+
 export const fetchMedia = (id) => async (dispatch) => {
   const res = await fetch(`/api/media/spots/${id}`);
 
@@ -93,6 +104,8 @@ const initialState = { media: [] };
 
 const mediaReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ALL_MEDIA:
+      return {...state,...action.media}
     case GET_MEDIA:
       return { ...state, ...action.media };
     case GET_ONE_MEDIUM:
