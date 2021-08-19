@@ -26,7 +26,7 @@ def create_spot():
         )
         db.session.add(spot)
         db.session.commit()
-        return {'spot': spot.to_dict()}
+        return spot.to_dict()
 
 
 @spots_routes.route('/<int:id>')
@@ -49,5 +49,3 @@ def edit_spot(id):
         spot.userId=current_user.id
         db.session.commit()
     return {'spots': [spot.to_dict()]}
-
-
