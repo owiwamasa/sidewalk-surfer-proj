@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NavBar from "./components/NavBar";
+import FooterNav from "./components/FooterNav";
 import ProfilePage from "./components/ProfilePage";
 import SpotPage from "./components/SpotPage/SpotPage";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +38,7 @@ function App() {
           <HomePage/>
         </Route>
       </Switch>
+      <FooterNav />
     </BrowserRouter>
   );
 }
