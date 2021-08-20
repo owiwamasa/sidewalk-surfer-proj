@@ -136,6 +136,10 @@ time {
   min-width: 75px;
 }
 
+.mediaPage-comment-info a {
+  padding-top: 3px;
+}
+
 .mediaPage-comment-btns {
   display: flex;
   flex-direction: column;
@@ -151,9 +155,12 @@ time {
 }
 
 #mediaModal-btn {
-  padding: 4px 10px;
-  border-radius: 20px;
+  /* padding: 4px 10px;
+  border-radius: 20px; */
+  border: none;
+  background-color: #fafafa;
   font-family: "Prompt";
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 14px;
+  margin-left: 15px;
+  color: grey;
 }

@@ -34,33 +34,52 @@ const MediaCard = ({ media, comments }) => {
             <span className="mainuserName">{media.username}</span>
           </div>
         </NavLink>
-        {/* <img className="profilePic" alt="profilePic" src={media.profilePic} /> */}
-        {media?.userId === user?.id && <EditMediaModal media={media} />}
-        {media?.userId === user?.id && (
-          <button onClick={deleteMedia}>Delete</button>
-        )}
+        <div>
+          {media?.userId === user?.id && <EditMediaModal media={media} />}
+          {media?.userId === user?.id && (
+            <button className='mediaCard-delete' onClick={deleteMedia}>Delete</button>
+          )}
+        </div>
       </div>
-      <iframe
+      {/* <iframe
         width="613.75"
         height="100%"
         src={url}
         title={media.name}
         scrolling="no"
         frameborder="0"
-      ></iframe>
-      <div className="description">
-        <span className="mainuserName">{media.username} </span>{" "}
-        {media.description}
-        <MediaModal media={media} comments={comments} />
-        {comments.map((comment) => (
-          <div className="comment">
-            <NavLink to={`/users/${comment.userId}`}>
-              <span className="userName">{comment.username}</span>
-            </NavLink>
-            <span className="content">{comment.comment}</span>
+      ></iframe> */}
+      {media?.mediaUrl.includes("youtube") ? (
+          <iframe
+            width="613.75"
+            height="100%"
+            src={url}
+            title={media.name}
+            scrolling="no"
+            frameborder="0"
+          ></iframe>
+        ) : (
+          <div className='mediaCard-img-div'>
+            <img className='mediaCard-img' src={media.mediaUrl} alt="media" />
           </div>
-        ))}
+        )}
+      <div className="description">
+        <div className='mediaCard-user'>
+          <span className="mainuserName">{media.username} </span>{" "}
+          <span className='mediaCard-description'>{media.description}</span>
+        </div>
         <TimeAgo datetime={media.createdAt} />
+        <div className='mediaCard-comments'>
+          {comments.map((comment) => (
+            <div className="comment">
+              <NavLink to={`/users/${comment.userId}`}>
+                <span className="userName">{comment.username}</span>
+              </NavLink>
+              <span className="content">{comment.comment}</span>
+            </div>
+          ))}
+        </div>
+        <MediaModal media={media} comments={comments} />
       </div>
     </div>
   );
