@@ -1,10 +1,9 @@
-
 .top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .top_left {
@@ -17,7 +16,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid white;
+  border: 5px solid rgb(165, 2, 2);
+  margin-right: 20px;
 }
 
 .top_left img {
@@ -29,43 +29,69 @@
   font-size: 80px;
   color: rgb(165, 2, 2);
 }
-.grid-container>* {
-    flex: 1 1 1 ;
+.grid-container > * {
+  flex: 1 1 1;
 }
-.whole{
-    display: flex;
-    justify-content: center;
+.whole {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  border-top: 2px solid rgba(128, 128, 128, 0.406);
 }
+
+.whole-title {
+  margin-top: 50px;
+  font-size: 35px;
+  width: 50%;
+  text-align: center;
+  padding-bottom: 10px;
+  /* border-bottom: 3px solid rgba(128, 128, 128, 0.406); */
+}
+
+.profilePage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .grid-container {
-    display: flex;
-    flex-wrap: wrap;
-    border-top: 5px solid  gray;
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  padding-top: 30px;
+  align-items: center;
+  justify-content: center;
 }
 
 .spotdiv {
-    background-color: white;
-    opacity: .8;
-    border-radius: 15px;
-    border: 3px solid  rgb(165, 2, 2);
-    transition-property: background-color;
-    transition-delay: 0s;
-    margin: 10px;
+  background-color: white;
+  border-radius: 15px;
+  transition-property: background-color;
+  transition-delay: 0s;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
 }
 
-.spotdiv img{
-    height: 200px;
-    width: 300px;
-    margin: 20px;
-    border-radius: 15px;
+.profilePage-img {
+  height: 200px;
+  width: 300px;
+  overflow: hidden;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  border: 4px solid rgb(165, 2, 2);
 }
 
-.spotdiv:hover {
-  background-color: rgb(165, 2, 2);
-  opacity: 0.8;
+.spotdiv img {
+  height: 100%;
+  width: auto;
 }
 
 .commHead {
@@ -99,19 +125,18 @@
   border: 3px solid white;
 }
 
-.comments img {
-  width: 60;
-  height: 60px;
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 25px;
 }
 
-.flex{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 25px;   
+.modal button {
+  color: black;
+  background-color: white;
 }
 
-.modal button{
-    color: transparent;
+#profilePage-modal {
+  background-color: white;
 }
-
