@@ -92,7 +92,7 @@ function ProfilePage() {
                         <div className='flex'>
                           <div>
                             <NavLink to={`/users/${comment.userId}`} exact={true} activeClassName='active'>
-                              <img src={comment.profilePic} alt=''/>
+                              <img src={comment.profilepic} alt=''/>
                             </NavLink>
                           </div>
                           {/* <img src=`{comment.profilepic}` alt=''/> */}

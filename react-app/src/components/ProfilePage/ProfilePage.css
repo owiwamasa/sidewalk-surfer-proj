@@ -74,7 +74,6 @@ body{
 .spotdiv:hover{
     background-color: rgb(165, 2, 2);
     opacity: .8;
-    margin: 10px;
 }
 
 .commHead{
