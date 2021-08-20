@@ -76,7 +76,7 @@
   resize: none;
   border-radius: 20px;
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .editComment-form {
@@ -163,4 +163,15 @@ time {
   font-size: 14px;
   margin-left: 15px;
   color: grey;
+}
+
+.comment-error {
+  margin-top: 10px;
+  color: red;
+}
+
+.comment-edit-error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 5px;
 }

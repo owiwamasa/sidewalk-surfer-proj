@@ -1,0 +1,10 @@
+.edit-spot-error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.edit-spot-error-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editOneSpot } from "../../store/spots";
+import './EditSpotForm.css'
 
 const EditSpotForm = ({ setShowModal }) => {
   const spot = useSelector((state) => state.spotReducer.curSpot);
@@ -10,11 +11,12 @@ const EditSpotForm = ({ setShowModal }) => {
   const [longitude, setLongitude] = useState(spot?.longitude);
   const [description, setDescription] = useState(spot?.description);
   const [imageUrl, setImageUrl] = useState(spot?.imageUrl);
+  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    const errs = []
     const payload = {
       name,
       address,
@@ -23,8 +25,22 @@ const EditSpotForm = ({ setShowModal }) => {
       description,
       imageUrl,
     };
-    dispatch(editOneSpot(payload, spot.id));
-    setShowModal(false);
+    if (!name) errs.push("Name is required");
+    if (!address) errs.push("Address is required");
+    if (!latitude) errs.push("Latitude is required");
+    if (!longitude) errs.push("Longitude is required");
+    if (!description) errs.push("Description is required");
+    if (!imageUrl) errs.push("Image URL is required");
+    if (name.length > 255) errs.push("Name must be less than 255 characters");
+    if (address.length > 255) errs.push("Address must be less than 255 characters");
+    if (description.length > 500) errs.push("Description must be less than 500 characters");
+    if (imageUrl.length > 500) errs.push("Image URL must be less than 500 characters");
+
+    setErrors(errs)
+    if (!errors) {
+      dispatch(editOneSpot(payload, spot.id));
+      setShowModal(false);
+    }
   };
 
   return (
@@ -35,6 +51,11 @@ const EditSpotForm = ({ setShowModal }) => {
             <div className="form-h3-container">
               <h3 className="form-h3">Edit Spot</h3>
             </div>
+              <div className='edit-spot-error-div'>
+                {errors && errors.map(err => (
+                  <div className='edit-spot-error' key={err}>{err}</div>
+                ))}
+              </div>
             <div className="form-input-container">
               <label className="form-label">Name</label>
               <input

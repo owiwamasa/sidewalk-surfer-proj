@@ -15,6 +15,8 @@ function MediaPage({ media, comments }) {
   const [comment, setComment] = useState("");
   const [editComment, setEditComment] = useState("");
   const [targetId, setTargetId] = useState("");
+  const [commentErrors, setCommentErrors] = useState([]);
+  const [editErrors, setEditErrors] = useState([]);
   const dispatch = useDispatch();
   let url = media.mediaUrl;
 
@@ -27,19 +29,33 @@ function MediaPage({ media, comments }) {
   const commentSubmit = (e) => {
     e.preventDefault();
     const payload = { comment, userId: user?.id, mediaId: media?.id };
-    dispatch(postComment(payload));
-    setComment("");
+    const errs = []
+
+    if (comment.length === 0) errs.push('Comment must have a value.')
+    if (comment.length > 500) errs.push('Comment must be 500 characters or less.')
+
+    setCommentErrors(errs)
+    if (!commentErrors){
+        dispatch(postComment(payload));
+        setComment("");
+    }
   };
 
   const editCommentSubmit = (e, id) => {
     e.preventDefault();
-    dispatch(
-      editOneComment(
+    const errs = []
+
+    if (editComment.length === 0) errs.push('Comment must have a value.')
+    if (editComment.length > 500) errs.push('Comment must be 500 characters or less.')
+    setEditErrors(errs)
+    if (!editErrors){
+    dispatch(editOneComment(
         { comment: editComment, userId: user?.id, mediaId: media?.id },
         id
       )
     );
     setEditClicked(false);
+    }
   };
 
   const deleteComment = (e, id) => {
@@ -126,6 +142,11 @@ function MediaPage({ media, comments }) {
                   className="editComment-form"
                   onSubmit={(e) => editCommentSubmit(e, comment.id)}
                 >
+                    <div className='form-edit-errors'>
+                    {editErrors && editErrors.map(error => (
+                        <div className='comment-edit-error' key={error}>{error}</div>
+                    ))}
+                    </div>
                   <textarea
                     type="text"
                     className="editComment"
@@ -143,6 +164,11 @@ function MediaPage({ media, comments }) {
           ))}
         </div>
         <form className="mediaPage-commentForm" onSubmit={commentSubmit}>
+            <div className='form-errors'>
+            {commentErrors && commentErrors.map(error => (
+                <div className='comment-error' key={error}>{error}</div>
+            ))}
+            </div>
           <textarea
             type="text"
             placeholder="Write a comment..."
