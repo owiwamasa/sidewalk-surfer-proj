@@ -156,9 +156,9 @@ time {
   padding: 0;
 }
 
-#mediaModal-btn {
+.mediaModal-btn {
   border: none;
-  background-color: #fafafa;
+  background-color: transparent;
   font-family: "Prompt";
   font-size: 14px;
   margin-left: 15px;

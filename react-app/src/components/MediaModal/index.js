@@ -7,7 +7,7 @@ function MediaModal({media, comments}) {
 
     return (
         <>
-            <button id='mediaModal-btn' onClick={() => setShowModal(true)}>See All Comments....</button>
+            <button class='mediaModal-btn' onClick={() => setShowModal(true)}>See All Comments....</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <MediaPage media={media} comments={comments}/>

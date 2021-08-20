@@ -1,22 +1,30 @@
-import React, {useState} from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import LoginFormModal from '../login_modal'
 import SignUpFormModal from '../signup_modal'
 import CreateSpotModal from '../spot_modal'
+import { fetchSpots } from '../../store/spots';
 import { login } from '../../store/session';
 
 import './NavBar.css'
+// import SearchResults from '../SearchResults';
 
 const NavBar = () => {
     const user = useSelector(state => state.session.user)
     const [search, setSearch] = useState('')
+    const dispatch = useDispatch()
+    const spots = useSelector((state) => state.spotReducer.spots);
+    const searchSpots = spots.filter(spot => spot.name.toLowerCase().includes(search.toLowerCase()));
+
+    useEffect(() => {
+      dispatch(fetchSpots());
+    }, [dispatch]);
 
     const onSubmit = (e) => {
         e.preventDefault()
     }
-    const dispatch = useDispatch()
 
     const demoHandler = (e) => {
         e.preventDefault();
@@ -41,6 +49,13 @@ const NavBar = () => {
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder='Search...'>
                     </input>
+                    {/* {search &&
+                        <select>
+                            {searchSpots.map(spot => (
+                                <option key={spot.id} value={spot.id}>{spot.name}</option>
+                            ))}
+                        </select>
+                    } */}
                 </form>
         </div>
         { !user ?
@@ -72,9 +87,8 @@ const NavBar = () => {
                 </NavLink>
             </div>
         </div> }
-
-
       </div>
+      {/* {search && <SearchResults search={search} setSearch={setSearch}/>} */}
     </nav>
   );
 }

@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import { fetchSpots } from "../../store/spots";
 import { fetchAllMedia } from "../../store/media";
 import { fetchComments } from "../../store/comments";
+import EditMediaModal from "../EditPost";
 import { NavLink } from "react-router-dom";
+import { deleteMedium } from "../../store/media";
 import MediaModal from "../MediaModal";
 
 import "./ProfilePage.css";
@@ -14,6 +16,10 @@ function ProfilePage() {
   const { userId } = useParams();
 
   const dispatch = useDispatch();
+
+  function deleteMedia() {
+    dispatch(deleteMedium(media.id));
+  }
 
   useEffect(() => {
     if (!userId) {
@@ -45,8 +51,9 @@ function ProfilePage() {
   if (!user) {
     return null;
   }
+
   return (
-    <div>
+    <div className='profilePage-container'>
       <div className="top">
         <div className="top_left">
           <img src={user.profilepic} alt="" />
@@ -58,15 +65,21 @@ function ProfilePage() {
       </div>
 
       <div className="whole">
+            <div className='whole-title'>My Posts</div>
         <div className="grid-container">
           {media.map((m) => (
             <div key={m.id}>
               {user?.id === m?.userId ? (
                 <div className="spotdiv">
-                  <img src={convertLink(m)} alt=""></img>
-                  <div className="modal">
-                    <MediaModal media={m} comments={comments}></MediaModal>
-                  </div>
+                    <div className='profilePage-img'>
+                                <img src={convertLink(m)} alt=""></img>
+                    </div>
+                        <div className="modal">
+                            <MediaModal class='profilePage-modal' media={m} comments={comments}>
+                            </MediaModal>
+                            <EditMediaModal id='profilePage-modal' media={m}/>
+                            <button className='mediaCard-delete' onClick={deleteMedia}>Delete</button>
+                        </div>
                 </div>
               ) : null}
             </div>
