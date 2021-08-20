@@ -70,11 +70,15 @@ export const addMedium = (medium, id) => async (dispatch) => {
     body: JSON.stringify(medium),
   });
 
+  // const medium = await res.json();
+  
   if (res.ok) {
     const medium = await res.json();
     dispatch(addMedia(medium));
+    dispatch(setErrors([]))
     return medium;
   } else {
+    const medium = await res.json();
     dispatch(setErrors(medium))
   }
 };

@@ -7,6 +7,8 @@ const CreateMediaForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
   const [mediaUrl, setMediaUrl] = useState("");
   const spot = useSelector((state) => state.spotReducer.curSpot);
+  const errors = useSelector((state) => state.errorsReducer);
+  console.log(errors)
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
@@ -14,18 +16,25 @@ const CreateMediaForm = ({ setShowModal }) => {
 
     const media = { description, mediaUrl };
 
-    dispatch(addMedium(media, spot.id));
-    setShowModal(false);
+    dispatch(addMedium(media, spot.id))
+    .then(()=>{
+        if (!errors.length){
+          setShowModal(false);
+        } else {
+          setShowModal(true);
+        }
+      })
   };
+
 
   return (
     <div className="form-div">
       <form onSubmit={onSubmit}>
-        <Errors/>
         <div className="form-content">
           <div className="form-all-inputs-container">
             <div className="form-h3-container">
               <h3 className="form-h3">Media</h3>
+                <Errors/>
             </div>
             <div className="form-input-container">
               <label className="form-label">Description</label>

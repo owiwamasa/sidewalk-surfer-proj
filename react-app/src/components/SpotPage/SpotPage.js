@@ -18,7 +18,7 @@ const SpotPage = () => {
     dispatch(fetchOneSpot(id));
     dispatch(fetchMedia(id));
     dispatch(fetchComments());
-  }, [dispatch, id]);
+  }, [dispatch]);
 
   const spot = useSelector((state) => state.spotReducer.curSpot);
   const media = useSelector((state) => state.mediaReducer.media);

@@ -2,9 +2,12 @@ import {useSelector} from 'react-redux'
 import './errors.css'
 
 const Errors = () =>{
-    const errors = useSelector((state) => state.errors)
+    // const errors = useSelector((state) => state.errorsReducer.errors)
+    const errors = useSelector((state) => state.errorsReducer);
+    console.log('errors',errors)
+
     return(
-        <div>
+        <div className='errors'>
             { errors?.map((errors,idx) => (
                 <div className="errors" key={idx}>
                     {errors}

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import CreateMediaForm from "./CreateMediaPost";
 import { Modal } from '../../context/Modal'
 
+
 function CreateMediaModal() {
     const [showModal, setShowModal] = useState(false)
 

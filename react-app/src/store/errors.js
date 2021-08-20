@@ -1,7 +1,7 @@
 const SET_ERRORS = 'errors/set_errors'
 
 export const setErrors = (errors) => {
-    return {type:SET_ERRORS, errors};
+    return {type: SET_ERRORS, errors};
 }
 
 // no need for thunk
