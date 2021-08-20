@@ -48,8 +48,8 @@ def edit_media(id):
         medium.mediaUrl=form.mediaUrl.data,
 
         db.session.commit()
-
-        return medium.to_dict()
+        media = Media.query.join(User).join(Comment).filter(Media.spotId == medium.spotId).order_by(Media.createdAt.desc()).all()
+        return {'media': [medium.to_dict() for medium in media]}
 
 @media_routes.route('/<int:id>',methods=['DELETE'])
 def delete_media(id):
