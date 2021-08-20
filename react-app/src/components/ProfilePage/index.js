@@ -5,6 +5,8 @@ import { fetchSpots } from '../../store/spots'
 import { fetchAllMedia } from '../../store/media'
 import { fetchComments } from "../../store/comments";
 import { NavLink } from 'react-router-dom';
+import MediaModal from "../MediaModal";
+
 
 import './ProfilePage.css'
 
@@ -74,40 +76,16 @@ function ProfilePage() {
           </div>
         ))}
       </div> */}
-      <div className='grid-container'>
-        <div >
+      <div className='whole'>
+        <div className='grid-container' >
           {media.map((m) => (
             <div key={m.id}>
               {user?.id === m?.userId ?
               <div className='spotdiv'>
                 <img src={m.mediaUrl} alt=""></img>
-                <div className='commHead'>
-                  {m.description}
-                </div>
-                <div className='commHead2'>
-                  {comments.map((comment) => (
-                    <div key={comment.id}>
-                      {comment?.mediaId === m.id ?
-                      <div className='comments'>
-                        <div className='flex'>
-                          <div>
-                            <NavLink to={`/users/${comment.userId}`} exact={true} activeClassName='active'>
-                              <img src={comment.profilepic} alt=''/>
-                            </NavLink>
-                          </div>
-                          {/* <img src=`{comment.profilepic}` alt=''/> */}
-                          <div>
-                            {comment.username}
-                          </div>
-                        </div>
-                      <div>
-                        {comment.comment}
-                      </div>
-                      </div>
-                      : null
-                    }
-                    </div>
-                  ))}
+                <div className='modal'>
+                <MediaModal media={m} comments={comments}>
+                </MediaModal>
                 </div>
               </div>
               : null
