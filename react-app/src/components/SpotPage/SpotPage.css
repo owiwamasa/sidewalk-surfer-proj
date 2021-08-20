@@ -1,0 +1,50 @@
+.spotPage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spotPage-name {
+  margin-top: 50px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.spotPage-address {
+  margin-top: 15px;
+  font-size: 23px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.spotPage-image-div {
+  width: 650px;
+  height: 500px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spotPage-image {
+  width: auto;
+  height: 100%;
+  border: 8px solid #a50e02;
+  border-radius: 30px;
+}
+
+.spotPage-description {
+  margin-top: 45px;
+  font-size: 20px;
+  margin-bottom: 25px;
+  font-weight: 400;
+  text-align: center;
+  width: 800px;
+  line-height: 25px;
+}
+
+.spotPage-modal-div {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+}

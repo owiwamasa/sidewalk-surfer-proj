@@ -2,8 +2,8 @@
 const GET_COMMENTS = "comments/getComments";
 const GET_ONE_COMMENT = "comments/getOneComment";
 const POST_ONE_COMMENT = "comments/postOneComment";
-const EDIT_COMMENT = "comments/editComment"
-const DELETE_COMMENT = "comments/deleteComment"
+const EDIT_COMMENT = "comments/editComment";
+const DELETE_COMMENT = "comments/deleteComment";
 
 //action creators
 export const getComments = (comments) => {
@@ -24,11 +24,11 @@ const editComment = (comment) => {
 
 const deleteComment = (commentId) => {
   return { type: DELETE_COMMENT, commentId };
-}
+};
 
 //thunk creator
 export const postComment = (comment) => async (dispatch) => {
-  const res = await fetch(`/api/comments`, {
+  const res = await fetch(`/api/comments/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(comment),
@@ -41,7 +41,7 @@ export const postComment = (comment) => async (dispatch) => {
 };
 
 export const fetchComments = () => async (dispatch) => {
-  const res = await fetch(`/api/comments`);
+  const res = await fetch(`/api/comments/`);
 
   if (res.ok) {
     const comments = await res.json();
@@ -73,13 +73,13 @@ export const editOneComment = (comment, id) => async (dispatch) => {
 
 export const deleteOneComment = (id) => async (dispatch) => {
   const res = await fetch(`/api/comments/${id}`, {
-    method: 'DELETE'
+    method: "DELETE",
   });
 
   if (res.ok) {
     dispatch(deleteComment(id));
   }
-}
+};
 
 //initialize state
 const initialState = { comments: [] };
@@ -93,15 +93,16 @@ const commentReducer = (state = initialState, action) => {
     case POST_ONE_COMMENT:
       return { ...state, comments: [...state.comments, action.comment] };
     case EDIT_COMMENT:
-      // return {...state, comments:[action.comment, ...state.comments]}
-      return { ...state, ...action.comment }
+      return { ...state, ...action.comment };
     case DELETE_COMMENT:
       return {
         ...state,
         comments: [
-          ...state.comments.filter((comment) => comment.id !== action.commentId),
+          ...state.comments.filter(
+            (comment) => comment.id !== action.commentId
+          ),
         ],
-      }
+      };
     default:
       return state;
   }

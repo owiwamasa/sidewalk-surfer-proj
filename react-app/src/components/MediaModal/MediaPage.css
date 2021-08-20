@@ -149,3 +149,11 @@ time {
   font-size: 10px;
   margin-top: 5px;
 }
+
+#mediaModal-btn {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-family: "Prompt";
+  font-size: 12px;
+  margin-top: 5px;
+}

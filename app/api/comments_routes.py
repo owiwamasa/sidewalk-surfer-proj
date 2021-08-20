@@ -9,7 +9,7 @@ def all_comments():
 	comments = Comment.query.join(User).order_by(Comment.createdAt).all()
 	return {'comments': [comment.to_dict() for comment in comments]}
 
-@comments_routes.route('', methods=["POST"])
+@comments_routes.route('/', methods=["POST"])
 def post_comment():
 	form = CommentForm()
 	form['csrf_token'].data = request.cookies['csrf_token']

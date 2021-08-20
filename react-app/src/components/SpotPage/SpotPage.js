@@ -7,6 +7,7 @@ import { fetchComments } from "../../store/comments";
 import EditSpotModal from "../edit_spot_modal";
 import MediaCard from "../MediaCard/MediaCard";
 import CreateMediaModal from "../MediaPost";
+import "./SpotPage.css";
 
 const SpotPage = () => {
   const user = useSelector((state) => state.session.user);
@@ -19,21 +20,27 @@ const SpotPage = () => {
     dispatch(fetchComments());
   }, [dispatch, id]);
 
-  const spot = useSelector((state) => state.spotReducer.spots[0]);
+  const spot = useSelector((state) => state.spotReducer.curSpot);
   const media = useSelector((state) => state.mediaReducer.media);
-  console.log(media)
+  console.log(media);
   const comments = useSelector((state) => state.commentReducer.comments);
   return (
     <div>
-      {spot?.userId === user?.id && <EditSpotModal spot={spot?.id} />}
       {spot ? (
-        <div>
-          <div>{spot.name}</div>
-          <img src={spot.imageUrl} alt={spot.name}></img>
-          <div>{spot.address}</div>
-          <div>{spot.description}</div>
-          <div>
+        <div className="spotPage-container">
+          <div className="spotPage-name">{spot?.name}</div>
+          <div className="spotPage-address">{spot?.address}</div>
+          <div className="spotPage-image-div">
+            <img
+              className="spotPage-image"
+              src={spot?.imageUrl}
+              alt={spot?.name}
+            ></img>
+          </div>
+          <div className="spotPage-description">{spot?.description}</div>
+          <div className="spotPage-modal-div">
             <CreateMediaModal />
+            {spot?.userId === user?.id && <EditSpotModal spot={spot?.id} />}
           </div>
           <div>
             {media.map((medium) => {

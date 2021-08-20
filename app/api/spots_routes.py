@@ -10,11 +10,9 @@ def all_spots():
     spots = Spot.query.all()
     return {'spots': [spot.to_dict() for spot in spots]}
 
-@spots_routes.route('', methods=["POST"])
+@spots_routes.route('/', methods=["POST"])
 def create_spot():
     form = SpotForm()
-    print('<<<<<<<<<<<<<<<<<',form.data)
-    print('111111111111111111',form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         spot = Spot(
@@ -28,7 +26,6 @@ def create_spot():
         )
         db.session.add(spot)
         db.session.commit()
-        print('-----------------',spot)
         spots = Spot.query.all()
         return spot.to_dict()
 
@@ -36,7 +33,7 @@ def create_spot():
 @spots_routes.route('/<int:id>')
 def one_spot(id):
     spot = Spot.query.get(id)
-    return {'spots': [spot.to_dict()]}
+    return spot.to_dict()
 
 @spots_routes.route('/<int:id>', methods = ["PUT"])
 def edit_spot(id):
@@ -52,4 +49,4 @@ def edit_spot(id):
         spot.imageUrl=form.imageUrl.data,
         spot.userId=current_user.id
         db.session.commit()
-    return {'spots': [spot.to_dict()]}
+    return spot.to_dict()

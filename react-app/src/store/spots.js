@@ -20,7 +20,7 @@ const editSpot = (spot) => {
 };
 
 export const fetchSpots = () => async (dispatch) => {
-  const res = await fetch("/api/spots");
+  const res = await fetch("/api/spots/");
   if (res.ok) {
     const spots = await res.json();
     dispatch(getSpots(spots));
@@ -36,7 +36,7 @@ export const fetchOneSpot = (id) => async (dispatch) => {
 };
 
 export const addOneSpot = (spot) => async (dispatch) => {
-  const res = await fetch(`/api/spots`, {
+  const res = await fetch(`/api/spots/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(spot),
@@ -61,18 +61,18 @@ export const editOneSpot = (payload, spotId) => async (dispatch) => {
   }
 };
 
-const initialState = { spots: [] };
+const initialState = { spots: [], curSpot: {} };
 
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SPOTS:
-      return { ...state, ...action.spots };
+      return { ...state, ...action.spots, curSpot: {} };
     case GET_ONE_SPOT:
-      return { ...state, ...action.spot };
+      return { ...state, curSpot: action.spot };
     case ADD_SPOT:
       return { ...state, spots: [...state.spots, action.spot] };
     case EDIT_SPOT:
-      return { ...state, ...action.spot };
+      return { ...state, curSpot: action.spot };
     default:
       return state;
   }
