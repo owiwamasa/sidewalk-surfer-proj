@@ -113,9 +113,11 @@ function MediaPage({ media, comments }) {
                     >
                       Edit
                     </button>
-                    <button onClick={(e) => deleteComment(e, comment.id)}>
-                      Delete
-                    </button>
+                    <div>
+                        <button onClick={(e) => deleteComment(e, comment.id)}>
+                        Delete
+                        </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -131,7 +133,7 @@ function MediaPage({ media, comments }) {
                     onChange={(e) => setEditComment(e.target.value)}
                   />
                   <button className="editComment-btn" type="submit">
-                    Submit
+                    Submit Edit
                   </button>
                 </form>
               ) : (

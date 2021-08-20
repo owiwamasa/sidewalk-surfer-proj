@@ -14,13 +14,13 @@ def seed_users():
     Owen = User(
         username="Owen", email="Owen@email.com", password="Owen", profilepic="https://media-exp1.licdn.com/dms/image/C4E03AQEMA-yoL7vrDg/profile-displayphoto-shrink_200_200/0/1627330413871?e=1633564800&v=beta&t=c0iEdnzdDJ-pgFe-kW1qbR1IvBo6Akt5q_h4A0alA74")
     Messi = User(
-        username="Messi", email="Messi@email.com", password="Messi", profilepic="https://static.wikia.nocookie.net/liverpoolfc/images/6/68/MSalah2020.jpeg")
+        username="Messi", email="Messi@email.com", password="Messi", profilepic="https://footballplayerpro.com/wp-content/uploads/2016/10/Lionel-Messi-Profile-Biography.png")
     Christiano = User(
         username="Christiano", email="Christiano@email.com", password="Christiano", profilepic="https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png")
     Parthenia = User(
         username="Parthenia", email="Parthenia@email.com", password="Parthenia", profilepic="https://thumbs.dreamstime.com/z/female-silhoutte-avatar-default-profile-picture-photo-placeholder-vector-illustration-130555145.jpg")
     MoSalah = User(
-        username="Mo Salah", email="MoSalah@email.com", password="MoSalah", profilepic="https://footballplayerpro.com/wp-content/uploads/2016/10/Lionel-Messi-Profile-Biography.png")
+        username="Mo Salah", email="MoSalah@email.com", password="MoSalah", profilepic="https://static.wikia.nocookie.net/liverpoolfc/images/6/68/MSalah2020.jpeg")
     Javier = User(
         username="Javier", email="Javier@email.com", password="Javier", profilepic="https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png")
 

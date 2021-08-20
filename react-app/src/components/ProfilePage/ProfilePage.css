@@ -1,0 +1,117 @@
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.top_left {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-radius: 700px;
+  height: 160px;
+  width: 160px;
+  background-color: rgb(50, 50, 50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+}
+
+.top_left img {
+  width: auto;
+  height: 160px;
+}
+
+.un {
+  font-size: 80px;
+  color: rgb(165, 2, 2);
+}
+.grid-container>* {
+    flex: 1 1 1 ;
+}
+.whole{
+    display: flex;
+    justify-content: center;
+}
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 5px solid  gray;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+.spotdiv {
+    background-color: white;
+    opacity: .8;
+    border-radius: 15px;
+    border: 3px solid  rgb(165, 2, 2);
+    transition-property: background-color;
+    transition-delay: 0s;
+    margin: 10px;
+}
+
+.spotdiv img{
+    height: 200px;
+    width: 300px;
+    margin: 20px;
+    border-radius: 15px;
+}
+
+.spotdiv:hover {
+  background-color: rgb(165, 2, 2);
+  opacity: 0.8;
+}
+
+.commHead {
+  font-size: 25px;
+  color: rgb(189, 189, 59);
+}
+.commHead2 {
+  font-size: 20px;
+}
+.comments {
+  font-size: 15px;
+  background-color: white;
+  opacity: 0.8;
+  border: 1px solid gray;
+  padding: 20px;
+  transition-property: background-color;
+  transition-delay: 0s;
+  border-radius: 15px;
+}
+
+.comments img {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-radius: 700px;
+  height: 60px;
+  width: 60px;
+  background-color: rgb(165, 2, 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+}
+
+.comments img {
+  width: 60;
+  height: 60px;
+}
+
+.flex{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 25px;   
+}
+
+.modal button{
+    color: transparent;
+}
+
