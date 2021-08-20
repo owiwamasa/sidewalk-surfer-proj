@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { fetchSpots } from '../../store/spots'
 import { fetchAllMedia } from '../../store/media'
 import { fetchComments } from "../../store/comments";
+import { NavLink } from 'react-router-dom';
+
 import './ProfilePage.css'
 
 
@@ -88,7 +90,12 @@ function ProfilePage() {
                       {comment?.mediaId === m.id ?
                       <div className='comments'>
                         <div className='flex'>
-                          <img src={comment.profilepic} alt=''/>
+                          <div>
+                            <NavLink to={`/users/${comment.userId}`} exact={true} activeClassName='active'>
+                              <img src={comment.profilePic} alt=''/>
+                            </NavLink>
+                          </div>
+                          {/* <img src=`{comment.profilepic}` alt=''/> */}
                           <div>
                             {comment.username}
                           </div>
