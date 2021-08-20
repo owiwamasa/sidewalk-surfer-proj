@@ -22,7 +22,6 @@ const SpotPage = () => {
 
   const spot = useSelector((state) => state.spotReducer.curSpot);
   const media = useSelector((state) => state.mediaReducer.media);
-  console.log(media);
   const comments = useSelector((state) => state.commentReducer.comments);
   return (
     <div>

@@ -79,7 +79,7 @@ const MediaCard = ({ media, comments }) => {
             </div>
           ))}
         </div>
-        <MediaModal media={media} comments={comments} />
+          <MediaModal media={media} comments={comments} />
       </div>
     </div>
   );

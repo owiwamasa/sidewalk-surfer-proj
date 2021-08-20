@@ -1,3 +1,4 @@
+
 .top {
     display: flex;
     justify-content: center;
@@ -7,26 +8,26 @@
 }
 
 .top_left {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border-radius: 700px;
-    height: 160px;
-    width: 160px;
-    background-color: rgb(50, 50, 50);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid white;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-radius: 700px;
+  height: 160px;
+  width: 160px;
+  background-color: rgb(50, 50, 50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
 }
 
 .top_left img {
-    width: auto;
-    height: 160px;
+  width: auto;
+  height: 160px;
 }
 
 .un {
-    font-size: 80px;
-    color: rgb(165, 2, 2);
+  font-size: 80px;
+  color: rgb(165, 2, 2);
 }
 .grid-container>* {
     flex: 1 1 1 ;
@@ -62,47 +63,45 @@
     border-radius: 15px;
 }
 
-.spotdiv:hover{
-    background-color: rgb(165, 2, 2);
-    opacity: .8;
+.spotdiv:hover {
+  background-color: rgb(165, 2, 2);
+  opacity: 0.8;
 }
 
-.commHead{
-    font-size: 25px;
-    color: rgb(189, 189, 59)
-
+.commHead {
+  font-size: 25px;
+  color: rgb(189, 189, 59);
 }
-.commHead2{
-    font-size: 20px;
+.commHead2 {
+  font-size: 20px;
 }
-.comments{
-    font-size: 15px;
-    background-color: white;
-    opacity: .8;
-    border: 1px solid gray;
-    padding: 20px;
-    transition-property: background-color;
-    transition-delay: 0s;
-    border-radius: 15px;
-
+.comments {
+  font-size: 15px;
+  background-color: white;
+  opacity: 0.8;
+  border: 1px solid gray;
+  padding: 20px;
+  transition-property: background-color;
+  transition-delay: 0s;
+  border-radius: 15px;
 }
 
 .comments img {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border-radius: 700px;
-    height: 60px;
-    width: 60px;
-    background-color: rgb(165,2,2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid white;
-  }
-  
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-radius: 700px;
+  height: 60px;
+  width: 60px;
+  background-color: rgb(165, 2, 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+}
+
 .comments img {
-    width: 60;
-    height: 60px;
+  width: 60;
+  height: 60px;
 }
 
 .flex{
@@ -115,3 +114,4 @@
 .modal button{
     color: transparent;
 }
+
