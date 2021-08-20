@@ -28,7 +28,7 @@ const SpotPage = () => {
     <div>
       {spot ? (
         <div className="spotPage-container">
-          <div className='spotPage-header'>
+          <div className="spotPage-header">
             <div className="spotPage-image-div">
               <img
                 className="spotPage-image"
@@ -36,19 +36,19 @@ const SpotPage = () => {
                 alt={spot?.name}
               ></img>
             </div>
-            <div className='spotPage-info-container'>
-              <div className='spotPage-info'>
+            <div className="spotPage-info-container">
+              <div className="spotPage-info">
                 <div className="spotPage-name">{spot?.name}</div>
                 <div className="spotPage-address">{spot?.address}</div>
                 <div className="spotPage-description">{spot?.description}</div>
               </div>
-                <div className="spotPage-modal-div">
-                <CreateMediaModal />
+              <div className="spotPage-modal-div">
+                {user ? <CreateMediaModal /> : null}
                 {spot?.userId === user?.id && <EditSpotModal spot={spot?.id} />}
               </div>
             </div>
           </div>
-          <div className='spotPage-divider'></div>
+          <div className="spotPage-divider"></div>
           <div>
             {media.map((medium) => {
               let mediaComments = comments.filter(
