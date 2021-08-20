@@ -1,6 +1,6 @@
 body{
     background: url(https://i.imgur.com/2y2FmRJ.png)
-    repeat center center fixed;
+    no-repeat  fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
