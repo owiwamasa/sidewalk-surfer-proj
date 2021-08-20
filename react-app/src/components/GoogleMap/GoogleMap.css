@@ -11,4 +11,5 @@
 .google-map {
   height: 450px;
   width: 100%;
+  border-bottom: 5px solid #a50e02;
 }

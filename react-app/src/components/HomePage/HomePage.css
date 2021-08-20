@@ -1,0 +1,36 @@
+.home-media-title {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.home-media-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-media-divider {
+  width: 900px;
+  border: 2px solid rgba(128, 128, 128, 0.4);
+}
+
+.home-media-scroll {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.home-mediaCard iframe {
+  overflow: hidden;
+  min-height: 400px;
+  max-height: 700px;
+  margin: 0px;
+  padding: 0px;
+  border-top: 3px solid #a50e02;
+  border-bottom: 3px solid #a50e02;
+}
