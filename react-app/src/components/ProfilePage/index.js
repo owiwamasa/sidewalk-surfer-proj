@@ -76,7 +76,7 @@ function ProfilePage() {
           </div>
         ))}
       </div> */}
-      <div >
+      <div className='whole'>
         <div className='grid-container' >
           {media.map((m) => (
             <div key={m.id}>

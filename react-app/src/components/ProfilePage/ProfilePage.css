@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .top_left {
@@ -29,15 +31,18 @@
 .grid-container>* {
     flex: 1 1 1 ;
 }
-
+.whole{
+    display: flex;
+    justify-content: center;
+}
 .grid-container {
     display: flex;
     flex-wrap: wrap;
-    border: 15px solid  rgb(165, 2, 2);
-    border-radius: 15px;
+    border-top: 5px solid  gray;
     padding: 20px;
     align-items: center;
     justify-content: center;
+    width: 80%;
 }
 
 .spotdiv {
@@ -47,7 +52,7 @@
     border: 3px solid  rgb(165, 2, 2);
     transition-property: background-color;
     transition-delay: 0s;
-    
+    margin: 10px;
 }
 
 .spotdiv img{
