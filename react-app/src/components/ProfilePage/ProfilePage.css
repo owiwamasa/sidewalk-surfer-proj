@@ -1,17 +1,10 @@
-/* body{
-    background: url(https://i.imgur.com/2y2FmRJ.png)
-    no-repeat  fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
-  } */
 
 .top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .top_left {
@@ -36,37 +29,38 @@
   font-size: 80px;
   color: rgb(165, 2, 2);
 }
-
+.grid-container>* {
+    flex: 1 1 1 ;
+}
+.whole{
+    display: flex;
+    justify-content: center;
+}
 .grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row: auto;
-  grid-gap: 25px 5px;
-  border: 1px solid;
-  border-radius: 15px;
-  padding: 20px;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px 500px 50px 500px;
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 5px solid  gray;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
 }
 
 .spotdiv {
-  background-color: white;
-  opacity: 0.8;
-  border-radius: 15px;
-  border: 1px solid gray;
-  /* padding: 50px 500px 50px 500px; */
-  transition-property: background-color;
-  transition-delay: 0s;
+    background-color: white;
+    opacity: .8;
+    border-radius: 15px;
+    border: 3px solid  rgb(165, 2, 2);
+    transition-property: background-color;
+    transition-delay: 0s;
+    margin: 10px;
 }
 
-.spotdiv img {
-  height: auto;
-  width: 300px;
-  margin: 0px;
-  border-radius: 15px;
+.spotdiv img{
+    height: 200px;
+    width: 300px;
+    margin: 20px;
+    border-radius: 15px;
 }
 
 .spotdiv:hover {
@@ -110,9 +104,14 @@
   height: 60px;
 }
 
-.flex {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 25px;
+.flex{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 25px;   
 }
+
+.modal button{
+    color: transparent;
+}
+
