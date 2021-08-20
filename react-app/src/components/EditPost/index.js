@@ -7,8 +7,8 @@ function EditMediaModal({ media }) {
 
   return (
     <>
-      <button id="create-spot-btn" onClick={() => setShowModal(true)}>
-        Edit Media
+      <button id="edit-media-btn" onClick={() => setShowModal(true)}>
+        Edit
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
