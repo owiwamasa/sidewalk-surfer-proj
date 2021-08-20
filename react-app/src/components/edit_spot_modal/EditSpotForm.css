@@ -1,9 +1,9 @@
-.edit-spot-error {
+.form-error {
   color: red;
   margin-bottom: 10px;
 }
 
-.edit-spot-error-div {
+.form-error-div {
   display: flex;
   flex-direction: column;
   align-items: center;

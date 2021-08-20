@@ -9,17 +9,19 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [profilepic, setProfilepic] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
+
+      const data = await dispatch(signUp(username, email, password, profilepic));
+      if (data && (password !== repeatPassword)) {
+        setErrors(data.concat(['Passwords do not match']));
+      } else if (data) {
         setErrors(data)
       }
-    }
   };
 
   const updateUsername = (e) => {
@@ -46,15 +48,15 @@ const SignUpForm = () => {
     <div className='form-div'>
       <form onSubmit={onSignUp}>
       <div className='form-content'>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
         <div className='form-all-inputs-container'>
           <div className='form-h3-container'>
               <h3 className='form-h3'>Sign Up</h3>
           </div>
+        <div className='form-error-div'>
+          {errors.map((error, ind) => (
+            <div className='form-error' key={ind}>{error}</div>
+          ))}
+        </div>
         <div className='form-input-container'>
           <label className='form-label'>User Name</label>
           <input
@@ -93,7 +95,17 @@ const SignUpForm = () => {
             name='repeat_password'
             onChange={updateRepeatPassword}
             value={repeatPassword}
-            required={true}
+            // required={true}
+          ></input>
+        </div>
+        <div className='form-input-container'>
+          <label className='form-label'>Profile Picture URL</label>
+          <input
+            className='form-input'
+            type='text'
+            name='profilepic'
+            onChange={(e) => setProfilepic(e.target.value)}
+            value={profilepic}
           ></input>
         </div>
         </div>

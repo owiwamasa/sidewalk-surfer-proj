@@ -75,10 +75,9 @@ function ProfilePage() {
                                 <img src={convertLink(m)} alt=""></img>
                     </div>
                         <div className="modal">
-                            <MediaModal class='profilePage-modal' media={m} comments={comments}>
-                            </MediaModal>
-                            <EditMediaModal id='profilePage-modal' media={m}/>
-                            <button className='mediaCard-delete' onClick={deleteMedia}>Delete</button>
+                            <MediaModal class='profilePage-modal' media={m} comments={comments}></MediaModal>
+                            {/* <EditMediaModal id='profilePage-modal' media={m}/>
+                            <button className='mediaCard-delete' onClick={deleteMedia}>Delete</button> */}
                         </div>
                 </div>
               ) : null}
