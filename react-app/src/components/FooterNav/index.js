@@ -35,11 +35,11 @@ const FooterNav = () => {
                       <i class="far fa-envelope" />
                     </a>
                     &nbsp;
-                    <a href="https://www.linkedin.com/in/david-h-374b30154/" target="_blank" rel="noreferrer">
+                    <a href="https://github.com/deardaveed" target="_blank" rel="noreferrer">
                       <i class="fab fa-github" />
                     </a>
                     &nbsp;
-                    <a href="https://github.com/deardaveed" target="_blank" rel="noreferrer">
+                    <a href="https://www.linkedin.com/in/david-h-374b30154/" target="_blank" rel="noreferrer">
                       <i class="fab fa-linkedin" />
                     </a>
                   </div>
@@ -52,11 +52,11 @@ const FooterNav = () => {
                       <i class="far fa-envelope" />
                     </a>
                     &nbsp;
-                    <a href="https://www.linkedin.com/in/john-wanis-764957138/" target="_blank" rel="noreferrer">
+                    <a href="https://github.com/Jomix-13" target="_blank" rel="noreferrer">
                       <i class="fab fa-github" />
                     </a>
                     &nbsp;
-                    <a href="https://github.com/Jomix-13" target="_blank" rel="noreferrer">
+                    <a href="https://www.linkedin.com/in/john-wanis-764957138/" target="_blank" rel="noreferrer">
                       <i class="fab fa-linkedin" />
                     </a>
                   </div>
@@ -69,11 +69,11 @@ const FooterNav = () => {
                       <i class="far fa-envelope" />
                     </a>
                     &nbsp;
-                    <a href="https://www.linkedin.com/in/owen-iwamasa-6ab3a9166/" target="_blank" rel="noreferrer">
+                    <a href="https://github.com/owiwamasa" target="_blank" rel="noreferrer">
                       <i class="fab fa-github" />
                     </a>
                     &nbsp;
-                    <a href="https://github.com/owiwamasa" target="_blank" rel="noreferrer">
+                    <a href="https://www.linkedin.com/in/owen-iwamasa-6ab3a9166/" target="_blank" rel="noreferrer">
                       <i class="fab fa-linkedin" />
                     </a>
                   </div>
