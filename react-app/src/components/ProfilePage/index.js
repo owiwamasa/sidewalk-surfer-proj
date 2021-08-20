@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import { fetchSpots } from '../../store/spots'
 import { fetchAllMedia } from '../../store/media'
 import { fetchComments } from "../../store/comments";
+import { NavLink } from 'react-router-dom';
+
+import './ProfilePage.css'
 
 
 function ProfilePage() {
@@ -36,14 +39,18 @@ function ProfilePage() {
   }
   return (
     <div>
-      <div>
-        <img src={user.profilepic} alt=""/>
-      </div>
-      <div>
-        Username: {user.username}
-      </div>
-      <div>
-        Email: {user.email}
+      <div className='top'>
+        <div className='top_left'>
+          <img src={user.profilepic} alt=""/>
+        </div>
+        <div className='top_right'>
+          <div className='un'>
+            {user.username}
+          </div>
+          <div className='email'>
+            Email: {user.email}
+          </div>
+        </div>
       </div>
       {/* <div>
         Spots:
@@ -67,35 +74,47 @@ function ProfilePage() {
           </div>
         ))}
       </div> */}
-      <div>
-        Posts:
-        {media.map((m) => (
-          <div key={m.id}>
-            {user?.id === m?.userId ?
-            <div>
-              <img src={m.mediaUrl} alt=""></img>
-              <div>
-                {m.description}
-              </div>
-              
-              <div>
-                comments:
-                {comments.map((comment) => (
-                  <div key={comment.id}>
-                    {comment?.mediaId === m.id ?
-                    <div>
-                      {comment.comment}
+      <div className='grid-container'>
+        <div >
+          {media.map((m) => (
+            <div key={m.id}>
+              {user?.id === m?.userId ?
+              <div className='spotdiv'>
+                <img src={m.mediaUrl} alt=""></img>
+                <div className='commHead'>
+                  {m.description}
+                </div>
+                <div className='commHead2'>
+                  {comments.map((comment) => (
+                    <div key={comment.id}>
+                      {comment?.mediaId === m.id ?
+                      <div className='comments'>
+                        <div className='flex'>
+                          <div>
+                            <NavLink to={`/users/${comment.userId}`} exact={true} activeClassName='active'>
+                              <img src={comment.profilepic} alt=''/>
+                            </NavLink>
+                          </div>
+                          {/* <img src=`{comment.profilepic}` alt=''/> */}
+                          <div>
+                            {comment.username}
+                          </div>
+                        </div>
+                      <div>
+                        {comment.comment}
+                      </div>
+                      </div>
+                      : null
+                    }
                     </div>
-                    : null
-                  }
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-            : null
+              : null
             }
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
