@@ -1,6 +1,37 @@
 .footer-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background-color: rgb(165, 2, 2);
+	background-color: rgb(165, 2, 2);
+  /* background-color: #FFA500; */
+	/* height: 50px; */
+}
+
+.footers-footer-container {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	height: 80px;
+}
+
+.footer-data {
+	color: white;
+	font-weight: 100;
+	font-size: small;
+	padding: 10px 10px;
+}
+
+.footer-links-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 250px;
+	width: 500px;
+	/* border: 1px solid black; */
+}
+
+.profile-images-small img {
+	border-radius: 50%;
 }
