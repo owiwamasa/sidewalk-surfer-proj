@@ -9,7 +9,7 @@
 
 .footers-footer-container {
 
-	display: flex;
+	display: grid;
 	justify-content: center;
 	align-items: center;
 	background-color: black;
@@ -26,12 +26,13 @@
 .footer-links-container {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	height: 250px;
-	width: 500px;
-	/* border: 1px solid black; */
+	justify-content: left;
+	height: 450px;
+	width: 300px;
+	border: 1px solid black;
 }
 
 .profile-images-small img {
-	border-radius: 50%;
+	/* display: flex; */
+	border-radius: 30%;
 }
