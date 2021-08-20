@@ -9,13 +9,28 @@ const CreateSpotForm = ({ setShowModal }) => {
   const [longitude, setLongitude] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+//   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    // const errs = []
     const spot = { name, address, latitude, longitude, description, imageUrl };
-    return dispatch(addOneSpot(spot)).then(() => setShowModal(false));
+    // if (!name) errs.push("Name is required");
+    // if (!address) errs.push("Address is required");
+    // if (!latitude) errs.push("Latitude is required");
+    // if (!longitude) errs.push("Longitude is required");
+    // if (!description) errs.push("Description is required");
+    // if (!imageUrl) errs.push("Image URL is required");
+    // if (name.length > 255) errs.push("Name must be less than 255 characters");
+    // if (address.length > 255) errs.push("Address must be less than 255 characters");
+    // if (description.length > 500) errs.push("Description must be less than 500 characters");
+    // if (imageUrl.length > 500) errs.push("Image URL must be less than 500 characters");
+
+    // setErrors(errs)
+    // if (!errors) {
+    dispatch(addOneSpot(spot)).then(() => setShowModal(false));
+    // }
   };
 
   return (
@@ -26,6 +41,11 @@ const CreateSpotForm = ({ setShowModal }) => {
             <div className="form-h3-container">
               <h3 className="form-h3">Create Spot</h3>
             </div>
+            {/* <div className='form-error-div'>
+                {errors && errors.map(err => (
+                  <div className='form-error' key={err}>{err}</div>
+                ))}
+              </div> */}
             <div className="form-input-container">
               <label className="form-label">Name</label>
               <input

@@ -5,16 +5,25 @@ import { addMedium } from "../../store/media";
 const CreateMediaForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
   const [mediaUrl, setMediaUrl] = useState("");
+  // const [errors, setErrors] = useState([]);
   const spot = useSelector((state) => state.spotReducer.curSpot);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // const errs = []
 
-    const media = { description, mediaUrl };
-
-    dispatch(addMedium(media, spot.id));
-    setShowModal(false);
+    // if (!description.length) errs.push("Description is required");
+    // if (!mediaUrl.length) errs.push("Media URL is required");
+    // if (description.length > 500) errs.push("Description must be 500 characters or less");
+    // if (mediaUrl.length > 500) errs.push("Media URL must be 500 characters or less");
+    // setErrors(errs);
+    // console.log(errors)
+    // if (!errors){
+      const media = { description, mediaUrl };
+      dispatch(addMedium(media, spot.id));
+      setShowModal(false);
+    // }
   };
 
   return (
@@ -25,6 +34,11 @@ const CreateMediaForm = ({ setShowModal }) => {
             <div className="form-h3-container">
               <h3 className="form-h3">Media</h3>
             </div>
+            {/* <div className='form-error-div'>
+                {errors && errors.map(err => (
+                  <div className='form-error' key={err}>{err}</div>
+                ))}
+            </div> */}
             <div className="form-input-container">
               <label className="form-label">Description</label>
               <input
