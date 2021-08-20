@@ -37,6 +37,10 @@ def create_media(id):
         db.session.commit()
 
         return media.to_dict()
+    errors = form.errors
+    return jsonify([f'{field.capitalize()}: {error}'
+            for field in errors
+            for error in errors[field]]),400
 
 @media_routes.route('/<int:id>', methods=["PUT"])
 def edit_media(id):

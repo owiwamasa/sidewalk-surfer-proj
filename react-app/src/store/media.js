@@ -1,3 +1,4 @@
+import {setErrors} from './errors' 
 //setup constants
 const GET_MEDIA = "media/getMedia";
 const GET_ONE_MEDIUM = "media/getOneMedium";
@@ -73,6 +74,8 @@ export const addMedium = (medium, id) => async (dispatch) => {
     const medium = await res.json();
     dispatch(addMedia(medium));
     return medium;
+  } else {
+    dispatch(setErrors(medium))
   }
 };
 

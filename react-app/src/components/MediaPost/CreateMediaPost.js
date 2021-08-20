@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMedium } from "../../store/media";
+import Errors from '../errors'
 
 const CreateMediaForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
@@ -20,6 +21,7 @@ const CreateMediaForm = ({ setShowModal }) => {
   return (
     <div className="form-div">
       <form onSubmit={onSubmit}>
+        <Errors/>
         <div className="form-content">
           <div className="form-all-inputs-container">
             <div className="form-h3-container">
