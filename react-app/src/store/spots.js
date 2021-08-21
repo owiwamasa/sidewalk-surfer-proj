@@ -1,3 +1,6 @@
+import {setErrors} from './errors'
+
+
 const GET_SPOTS = "spots/getSpots";
 const GET_ONE_SPOT = "spots/getOneSpot";
 const ADD_SPOT = "spots/addSpot";
@@ -45,6 +48,9 @@ export const addOneSpot = (spot) => async (dispatch) => {
     const spot = await res.json();
     dispatch(addSpot(spot));
     return spot;
+  } else {
+    const spot = await res.json();
+    dispatch(setErrors(spot))
   }
 };
 
@@ -58,6 +64,9 @@ export const editOneSpot = (payload, spotId) => async (dispatch) => {
     const spot = await res.json();
     dispatch(editSpot(spot));
     return spot;
+  } else {
+    const spot = await res.json();
+    dispatch(setErrors(spot))
   }
 };
 

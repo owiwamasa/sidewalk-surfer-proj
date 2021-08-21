@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addOneSpot } from "../../store/spots";
+import Errors from '../errors'
 
 const CreateSpotForm = ({ setShowModal }) => {
   const [name, setName] = useState("");
@@ -12,7 +13,7 @@ const CreateSpotForm = ({ setShowModal }) => {
 //   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
     // const errs = []
     const spot = { name, address, latitude, longitude, description, imageUrl };
@@ -29,7 +30,10 @@ const CreateSpotForm = ({ setShowModal }) => {
 
     // setErrors(errs)
     // if (!errors) {
-    dispatch(addOneSpot(spot)).then(() => setShowModal(false));
+    const success = await dispatch(addOneSpot(spot))
+    if (success){
+      setShowModal(false);
+    }
     // }
   };
 
@@ -41,6 +45,8 @@ const CreateSpotForm = ({ setShowModal }) => {
             <div className="form-h3-container">
               <h3 className="form-h3">Create Spot</h3>
             </div>
+            <Errors/>
+
             {/* <div className='form-error-div'>
                 {errors && errors.map(err => (
                   <div className='form-error' key={err}>{err}</div>

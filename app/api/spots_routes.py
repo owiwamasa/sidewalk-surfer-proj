@@ -28,6 +28,11 @@ def create_spot():
         db.session.commit()
         spots = Spot.query.all()
         return spot.to_dict()
+    errors = form.errors
+    return jsonify([f'{field.capitalize()}: {error}'
+                for field in errors
+                for error in errors[field]]),400
+
 
 
 @spots_routes.route('/<int:id>')
@@ -49,4 +54,9 @@ def edit_spot(id):
         spot.imageUrl=form.imageUrl.data,
         spot.userId=current_user.id
         db.session.commit()
-    return spot.to_dict()
+        return spot.to_dict()
+    errors = form.errors
+    return jsonify([f'{field.capitalize()}: {error}'
+                for field in errors
+                for error in errors[field]]),400
+
