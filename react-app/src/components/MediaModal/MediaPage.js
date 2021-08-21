@@ -8,6 +8,7 @@ import {
   deleteOneComment,
 } from "../../store/comments";
 import "./MediaPage.css";
+import Errors from '../errors'
 
 function MediaPage({ media, comments }) {
   const user = useSelector((state) => state.session.user);
@@ -15,8 +16,8 @@ function MediaPage({ media, comments }) {
   const [comment, setComment] = useState("");
   const [editComment, setEditComment] = useState("");
   const [targetId, setTargetId] = useState("");
-//   const [commentErrors, setCommentErrors] = useState([]);
-//   const [editErrors, setEditErrors] = useState([]);
+  const [commentErrors, setCommentErrors] = useState(false);
+  const [editCommentErrors, setEditCommentErrors] = useState(false);
   const dispatch = useDispatch();
   let url = media.mediaUrl;
 
@@ -26,36 +27,31 @@ function MediaPage({ media, comments }) {
     url = url.join("");
   }
 
-  const commentSubmit = (e) => {
+  const commentSubmit = async(e) => {
     e.preventDefault();
     const payload = { comment, userId: user?.id, mediaId: media?.id };
-    // const errs = []
 
-    // if (comment.length === 0) errs.push('Comment must have a value.')
-    // if (comment.length > 500) errs.push('Comment must be 500 characters or less.')
-
-    // setCommentErrors(errs)
-    // if (!commentErrors){
-        dispatch(postComment(payload));
+    const success = await dispatch(postComment(payload));
+    if (success){
         setComment("");
-    // }
+    } else {
+        setCommentErrors(true)
+    }
   };
 
-  const editCommentSubmit = (e, id) => {
+  const editCommentSubmit = async (e, id) => {
     e.preventDefault();
-    // const errs = []
-
-    // if (editComment.length === 0) errs.push('Comment must have a value.')
-    // if (editComment.length > 500) errs.push('Comment must be 500 characters or less.')
-    // setEditErrors(errs)
-    // if (!editErrors){
-    dispatch(editOneComment(
+    const success = await dispatch(editOneComment(
         { comment: editComment, userId: user?.id, mediaId: media?.id },
         id
       )
     );
+    if (success){
     setEditClicked(false);
-    // }
+    } else {
+    setEditCommentErrors(true)
+    setCommentErrors(false)
+    }
   };
 
   const deleteComment = (e, id) => {
@@ -142,11 +138,7 @@ function MediaPage({ media, comments }) {
                   className="editComment-form"
                   onSubmit={(e) => editCommentSubmit(e, comment.id)}
                 >
-                    {/* <div className='form-edit-errors'>
-                    {editErrors && editErrors.map(error => (
-                        <div className='comment-edit-error' key={error}>{error}</div>
-                    ))}
-                    </div> */}
+                  {editCommentErrors ? <Errors /> : null}
                   <textarea
                     type="text"
                     className="editComment"
@@ -164,11 +156,7 @@ function MediaPage({ media, comments }) {
           ))}
         </div>
         <form className="mediaPage-commentForm" onSubmit={commentSubmit}>
-            {/* <div className='form-errors'>
-            {commentErrors && commentErrors.map(error => (
-                <div className='comment-error' key={error}>{error}</div>
-            ))}
-            </div> */}
+          {commentErrors ? <Errors /> : null}
           <textarea
             type="text"
             placeholder="Write a comment..."

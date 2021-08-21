@@ -22,6 +22,10 @@ def post_comment():
 		db.session.add(comment)
 		db.session.commit()
 		return comment.to_dict()
+	errors = form.errors
+	return jsonify([f'{field.capitalize()}: {error}'
+                for field in errors
+                for error in errors[field]]),400
 
 @comments_routes.route('/<int:id>')
 def one_comment(id):
@@ -40,6 +44,10 @@ def edit_comment(id):
 		# return comment.to_dict()
 		comments = Comment.query.join(User).order_by(Comment.id).all()
 		return {'comments': [comment.to_dict() for comment in comments]}
+	errors = form.errors
+	return jsonify([f'{field.capitalize()}: {error}'
+                for field in errors
+                for error in errors[field]]),400
 
 
 @comments_routes.route('/<int:id>', methods=["DELETE"])
