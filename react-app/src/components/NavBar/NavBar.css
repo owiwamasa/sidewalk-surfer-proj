@@ -94,3 +94,11 @@ a {
   color: white;
   border: 3px solid white;
 }
+
+.nav-search-input:focus {
+  outline: none;
+}
+
+.search-results:focus {
+  outline: none;
+}
