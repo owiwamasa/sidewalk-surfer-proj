@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMedium } from "../../store/media";
+import Errors from '../errors'
 
 const CreateMediaForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
@@ -9,7 +10,7 @@ const CreateMediaForm = ({ setShowModal }) => {
   const spot = useSelector((state) => state.spotReducer.curSpot);
   const dispatch = useDispatch();
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
     // const errs = []
 
@@ -21,8 +22,10 @@ const CreateMediaForm = ({ setShowModal }) => {
     // console.log(errors)
     // if (!errors){
       const media = { description, mediaUrl };
-      dispatch(addMedium(media, spot.id));
-      setShowModal(false);
+      const success = await dispatch(addMedium(media, spot.id))
+      if (success){
+        setShowModal(false);
+      }
     // }
   };
 
@@ -34,6 +37,7 @@ const CreateMediaForm = ({ setShowModal }) => {
             <div className="form-h3-container">
               <h3 className="form-h3">Media</h3>
             </div>
+            <Errors/>
             {/* <div className='form-error-div'>
                 {errors && errors.map(err => (
                   <div className='form-error' key={err}>{err}</div>
