@@ -30,6 +30,7 @@
 }
 .nav-searchbar form {
   border-radius: 30px;
+  position: relative;
 }
 
 .nav-search-input {
@@ -39,6 +40,10 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   border: 5px solid rgb(118, 0, 0);
+}
+
+.nav-search-input:focus {
+  outline: none;
 }
 
 a {
@@ -93,4 +98,26 @@ a {
   background-color: rgb(118, 0, 0);
   color: white;
   border: 3px solid white;
+}
+
+.search-results {
+  position: absolute;
+  right: 20px;
+  top: 62px;
+  border-radius: 20px;
+  padding: 10px;
+  width: 700px;
+  font-family: "Prompt";
+  font-size: 15px;
+  z-index: 1;
+}
+
+.search-results-title {
+  color: grey;
+  font-family: "Prompt";
+  font-style: italic;
+}
+
+.search-results:focus {
+  outline: none;
 }

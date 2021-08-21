@@ -5,14 +5,17 @@ import spotReducer from "./spots";
 import mediaReducer from "./media";
 import commentReducer from "./comments";
 import errorsReducer from "./errors";
+import usersReducer from "./users";
 
 const rootReducer = combineReducers({
   session,
   spotReducer,
   mediaReducer,
   commentReducer,
-  errorsReducer
+  errorsReducer,
+  usersReducer
 });
+
 
 let enhancer;
 
