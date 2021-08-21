@@ -1,3 +1,4 @@
+import {setErrors} from './errors'
 //setup constants
 const GET_COMMENTS = "comments/getComments";
 const GET_ONE_COMMENT = "comments/getOneComment";
@@ -36,8 +37,11 @@ export const postComment = (comment) => async (dispatch) => {
   if (res.ok) {
     const comment = await res.json();
     dispatch(postOneComment(comment));
+    return comment
+  } else {
+    const comment = await res.json();
+    dispatch(setErrors(comment))
   }
-  return comment;
 };
 
 export const fetchComments = () => async (dispatch) => {
@@ -68,6 +72,10 @@ export const editOneComment = (comment, id) => async (dispatch) => {
   if (res.ok) {
     const comment = await res.json();
     dispatch(editComment(comment));
+    return comment
+  } else {
+    const comment = await res.json();
+    dispatch(setErrors(comment))
   }
 };
 
