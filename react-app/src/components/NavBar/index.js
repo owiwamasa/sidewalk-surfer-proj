@@ -49,13 +49,13 @@ const NavBar = () => {
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder='Search...'>
                     </input>
-                    {/* {search &&
+                    {search &&
                         <select>
                             {searchSpots.map(spot => (
                                 <option key={spot.id} value={spot.id}>{spot.name}</option>
                             ))}
                         </select>
-                    } */}
+                    }
                 </form>
         </div>
         { !user ?

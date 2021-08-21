@@ -41,14 +41,6 @@ const MediaCard = ({ media, comments }) => {
           )}
         </div>
       </div>
-      {/* <iframe
-        width="613.75"
-        height="100%"
-        src={url}
-        title={media.name}
-        scrolling="no"
-        frameborder="0"
-      ></iframe> */}
       {media?.mediaUrl.includes("youtube") ? (
           <iframe
             width="613.75"
@@ -56,7 +48,7 @@ const MediaCard = ({ media, comments }) => {
             src={url}
             title={media.name}
             scrolling="no"
-            frameborder="0"
+            frameBorder="0"
           ></iframe>
         ) : (
           <div className='mediaCard-img-div'>
@@ -71,7 +63,7 @@ const MediaCard = ({ media, comments }) => {
         <TimeAgo datetime={media.createdAt} />
         <div className='mediaCard-comments'>
           {comments.map((comment) => (
-            <div className="comment">
+            <div className="comment" key={comment.id}>
               <NavLink to={`/users/${comment.userId}`}>
                 <span className="userName">{comment.username}</span>
               </NavLink>

@@ -7,7 +7,7 @@ const Errors = () =>{
     // console.log('errors',errors)
 
     return(
-        <div className='errors'>
+        <div className='errors-div'>
             { errors?.map((errors,idx) => (
                 <div className="errors" key={idx}>
                     {errors}

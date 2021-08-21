@@ -8,7 +8,6 @@ import './HomePage.css'
 
 
   function HomePage() {
-    const user = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(fetchHomeMedia());
@@ -30,10 +29,9 @@ import './HomePage.css'
                   (comment) => comment.mediaId === medium.id
                 );
                 return (
-                  <div className='home-mediaCard'>
+                  <div className='home-mediaCard' key={medium.id}>
                     <MediaCard
                       media={medium}
-                      key={medium.id}
                       comments={mediaComments}
                     />
                   </div>
