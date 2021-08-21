@@ -1,3 +1,5 @@
 .errors {
-    color: red;
+  color: red;
+  text-align: center;
+  margin-bottom: 5px;
 }

@@ -137,6 +137,10 @@
   background-color: white;
 }
 
+.modal {
+  display: flex;
+}
+
 #profilePage-modal {
   background-color: white;
 }

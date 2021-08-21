@@ -69,7 +69,7 @@ function MediaPage({ media, comments }) {
             src={url}
             title={media.name}
             scrolling="no"
-            frameborder="0"
+            frameBorder="0"
           ></iframe>
         ) : (
           <img src={media.mediaUrl} alt="media" />
@@ -88,7 +88,6 @@ function MediaPage({ media, comments }) {
                   <img
                     className="mediaPage-profilePic"
                     alt="profilePic"
-                    onCanPlayThroughCapture
                     src={media.profilePic}
                   />
                 </NavLink>

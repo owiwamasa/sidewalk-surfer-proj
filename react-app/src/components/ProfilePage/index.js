@@ -5,7 +5,6 @@ import { fetchSpots } from "../../store/spots";
 import { fetchAllMedia } from "../../store/media";
 import { fetchComments } from "../../store/comments";
 import EditMediaModal from "../EditPost";
-import { NavLink } from "react-router-dom";
 import { deleteMedium } from "../../store/media";
 import MediaModal from "../MediaModal";
 
@@ -14,6 +13,7 @@ import "./ProfilePage.css";
 function ProfilePage() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
+  const currentUser = useSelector(state => state.session.user)
 
   const dispatch = useDispatch();
 
@@ -44,10 +44,8 @@ function ProfilePage() {
     return url;
   }
 
-  const spots = useSelector((state) => state.spotReducer.spots);
   const media = useSelector((state) => state.mediaReducer.media);
   const comments = useSelector((state) => state.commentReducer.comments);
-  console.log(comments);
   if (!user) {
     return null;
   }
@@ -75,9 +73,13 @@ function ProfilePage() {
                                 <img src={convertLink(m)} alt=""></img>
                     </div>
                         <div className="modal">
-                            <MediaModal class='profilePage-modal' media={m} comments={comments}></MediaModal>
-                            {/* <EditMediaModal id='profilePage-modal' media={m}/>
-                            <button className='mediaCard-delete' onClick={deleteMedia}>Delete</button> */}
+                            <MediaModal className='profilePage-modal' media={m} comments={comments.filter(c => c.mediaId === m.id)}></MediaModal>
+                            {currentUser.id === user.id ? (
+                                <div>
+                                    <EditMediaModal id='profilePage-modal' media={m}/>
+                                    <button className='mediaCard-delete' onClick={deleteMedia}>Delete</button>
+                                </div>
+                            ) : null}
                         </div>
                 </div>
               ) : null}

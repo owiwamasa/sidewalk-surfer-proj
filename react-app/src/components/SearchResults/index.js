@@ -22,7 +22,7 @@ function SearchResults ({search, setSearch}){
                         <Link onClick={() => setSearch('')} to={`/spots/${spot.id}`}>
                             <div>{spot.name}</div>
                             <div className='search-img-container'>
-                                <img src={spot.imageUrl}/>
+                                <img src={spot.imageUrl} alt='searched spot'/>
                             </div>
                         </Link>
                     </div>
