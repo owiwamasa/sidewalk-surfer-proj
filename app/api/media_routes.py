@@ -9,7 +9,7 @@ media_routes = Blueprint('media', __name__)
 
 @media_routes.route('/')
 def recent_media():
-	media = Media.query.join(Comment).order_by(Media.createdAt.desc())
+	media = Media.query.order_by(Media.createdAt.desc()).all()
 	return {'media': [medium.to_dict() for medium in media]}
 
 @media_routes.route('/spots/<int:id>')

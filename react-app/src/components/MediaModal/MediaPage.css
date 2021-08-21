@@ -175,3 +175,17 @@ time {
   font-size: 14px;
   margin-bottom: 5px;
 }
+
+#mediaPage-spotlink {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 200;
+  font-size: 12px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.descript {
+  padding-left: 18px;
+  margin-bottom: 10px;
+  font-weight: 200;
+}

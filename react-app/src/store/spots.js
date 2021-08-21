@@ -1,5 +1,4 @@
-import {setErrors} from './errors'
-
+import { setErrors } from "./errors";
 
 const GET_SPOTS = "spots/getSpots";
 const GET_ONE_SPOT = "spots/getOneSpot";
@@ -50,7 +49,7 @@ export const addOneSpot = (spot) => async (dispatch) => {
     return spot;
   } else {
     const spot = await res.json();
-    dispatch(setErrors(spot))
+    dispatch(setErrors(spot));
   }
 };
 
@@ -66,7 +65,7 @@ export const editOneSpot = (payload, spotId) => async (dispatch) => {
     return spot;
   } else {
     const spot = await res.json();
-    dispatch(setErrors(spot))
+    dispatch(setErrors(spot));
   }
 };
 
@@ -81,7 +80,14 @@ const spotReducer = (state = initialState, action) => {
     case ADD_SPOT:
       return { ...state, spots: [...state.spots, action.spot] };
     case EDIT_SPOT:
-      return { ...state, curSpot: action.spot };
+      return {
+        ...state,
+        spots: [
+          ...state.spots.filter((spot) => spot.id !== action.spot.id),
+          action.spot,
+        ],
+        curSpot: action.spot,
+      };
     default:
       return state;
   }

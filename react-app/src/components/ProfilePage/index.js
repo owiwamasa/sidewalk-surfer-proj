@@ -13,11 +13,11 @@ import "./ProfilePage.css";
 function ProfilePage() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
-  const currentUser = useSelector(state => state.session.user)
+  const currentUser = useSelector((state) => state.session.user);
 
   const dispatch = useDispatch();
 
-  function deleteMedia() {
+  function deleteMedia(media) {
     dispatch(deleteMedium(media.id));
   }
 
@@ -51,7 +51,7 @@ function ProfilePage() {
   }
 
   return (
-    <div className='profilePage-container'>
+    <div className="profilePage-container">
       <div className="top">
         <div className="top_left">
           <img src={user.profilepic} alt="" />
@@ -63,24 +63,33 @@ function ProfilePage() {
       </div>
 
       <div className="whole">
-            <div className='whole-title'>My Posts</div>
+        <div className="whole-title">My Posts</div>
         <div className="grid-container">
           {media.map((m) => (
             <div key={m.id}>
               {user?.id === m?.userId ? (
                 <div className="spotdiv">
-                    <div className='profilePage-img'>
-                                <img src={convertLink(m)} alt=""></img>
-                    </div>
-                        <div className="modal">
-                            <MediaModal className='profilePage-modal' media={m} comments={comments.filter(c => c.mediaId === m.id)}></MediaModal>
-                            {currentUser.id === user.id ? (
-                                <div>
-                                    <EditMediaModal id='profilePage-modal' media={m}/>
-                                    <button className='mediaCard-delete' onClick={deleteMedia}>Delete</button>
-                                </div>
-                            ) : null}
-                        </div>
+                  <div className="profilePage-img">
+                    <img src={convertLink(m)} alt=""></img>
+                  </div>
+                  <div className="modal">
+                    <MediaModal
+                      className="profilePage-modal"
+                      media={m}
+                      comments={comments.filter((c) => c.mediaId === m.id)}
+                    ></MediaModal>
+                    {currentUser.id === user.id ? (
+                      <div>
+                        <EditMediaModal id="profilePage-modal" media={m} />
+                        <button
+                          className="mediaCard-delete"
+                          onClick={() => deleteMedia(m)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
               ) : null}
             </div>

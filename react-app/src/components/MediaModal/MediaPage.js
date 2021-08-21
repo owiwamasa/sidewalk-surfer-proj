@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import TimeAgo from "timeago-react";
 import {
   postComment,
@@ -8,10 +8,12 @@ import {
   deleteOneComment,
 } from "../../store/comments";
 import "./MediaPage.css";
-import Errors from '../errors'
+import Errors from "../errors";
 
-function MediaPage({ media, comments }) {
+function MediaPage({ media, comments, setShowModal }) {
   const user = useSelector((state) => state.session.user);
+  const spots = useSelector((state) => state.spotReducer.spots);
+  const spot = spots.filter((spot) => spot.id === media.spotId)[0];
   const [editClicked, setEditClicked] = useState(false);
   const [comment, setComment] = useState("");
   const [editComment, setEditComment] = useState("");
@@ -27,30 +29,35 @@ function MediaPage({ media, comments }) {
     url = url.join("");
   }
 
-  const commentSubmit = async(e) => {
+  const commentSubmit = async (e) => {
     e.preventDefault();
     const payload = { comment, userId: user?.id, mediaId: media?.id };
 
     const success = await dispatch(postComment(payload));
-    if (success){
-        setComment("");
+    if (success) {
+      setComment("");
     } else {
-        setCommentErrors(true)
+      setCommentErrors(true);
     }
   };
 
+  function closeModal() {
+    setShowModal(false);
+  }
+
   const editCommentSubmit = async (e, id) => {
     e.preventDefault();
-    const success = await dispatch(editOneComment(
+    const success = await dispatch(
+      editOneComment(
         { comment: editComment, userId: user?.id, mediaId: media?.id },
         id
       )
     );
-    if (success){
-    setEditClicked(false);
+    if (success) {
+      setEditClicked(false);
     } else {
-    setEditCommentErrors(true)
-    setCommentErrors(false)
+      setEditCommentErrors(true);
+      setCommentErrors(false);
     }
   };
 
@@ -93,18 +100,24 @@ function MediaPage({ media, comments }) {
                 </NavLink>
               </div>
             </div>
-            {/* <img
-              className="mediaPage-profilePic"
-              alt="profilePic"
-              src={media.profilePic}
-            /> */}
             <NavLink to={`/users/${media.userId}`}>
               <span className="mediaPage-mainuserName">{media.username}</span>
             </NavLink>
           </div>
           <TimeAgo datetime={media.createdAt} />
         </div>
+        <div id="mediaPage-spotlink">
+          <Link to={`/spots/${spot?.id}`} onClick={closeModal}>
+            📍{spot.name}
+          </Link>
+        </div>
         <div className="mediaPage-comments">
+          <div className="mediaPage-comment">
+            <NavLink to={`/users/${media?.userId}`}>
+              <span className="mediaPage-userName">{media?.username} </span>
+            </NavLink>
+            <span className="descript">{media?.description}</span>
+          </div>
           {comments.map((comment) => (
             <div className="mediaPage-comment" key={comment.id}>
               <div className="mediaPage-comment-info">
@@ -125,9 +138,9 @@ function MediaPage({ media, comments }) {
                       Edit
                     </button>
                     <div>
-                        <button onClick={(e) => deleteComment(e, comment.id)}>
+                      <button onClick={(e) => deleteComment(e, comment.id)}>
                         Delete
-                        </button>
+                      </button>
                     </div>
                   </div>
                 )}
