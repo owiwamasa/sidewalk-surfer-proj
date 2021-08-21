@@ -4,12 +4,14 @@ import session from "./session";
 import spotReducer from "./spots";
 import mediaReducer from "./media";
 import commentReducer from "./comments";
+import errorsReducer from "./errors";
 
 const rootReducer = combineReducers({
   session,
   spotReducer,
   mediaReducer,
-  commentReducer
+  commentReducer,
+  errorsReducer
 });
 
 let enhancer;

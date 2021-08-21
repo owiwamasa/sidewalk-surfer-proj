@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editMedium } from "../../store/media";
+import Errors from '../errors'
+
 
 const EditMediaForm = ({ setShowModal, media }) => {
   const [description, setDescription] = useState(media.description);
   const [mediaUrl, setMediaUrl] = useState(media.mediaUrl);
   const dispatch = useDispatch();
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
 
     const payload = { description, mediaUrl };
 
-    dispatch(editMedium(payload, media.id));
-    setShowModal(false);
+    const success = await dispatch(editMedium(payload, media.id));
+    if (success){
+      setShowModal(false);
+    }
   };
 
   return (
@@ -24,6 +28,7 @@ const EditMediaForm = ({ setShowModal, media }) => {
             <div className="form-h3-container">
               <h3 className="form-h3">Media</h3>
             </div>
+              <Errors/>
             <div className="form-input-container">
               <label className="form-label">Description</label>
               <input
