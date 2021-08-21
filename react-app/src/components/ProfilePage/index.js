@@ -58,7 +58,7 @@ function ProfilePage() {
         </div>
         <div className="top_right">
           <div className="un">{user.username}</div>
-          <div className="email">Email: {user.email}</div>
+          <div className="email"><a href={`mailto:${user.email}`} target="_blank" rel="noreferrer">{user.email}</a></div>
         </div>
       </div>
 
