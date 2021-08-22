@@ -52,7 +52,7 @@ iframe {
 }
 
 .mediaCard-img-div {
-  height: 406px;
+  height: 402px;
   width: 613.75px;
   display: flex;
   justify-content: center;
@@ -64,7 +64,7 @@ iframe {
 }
 
 .mediaCard-img {
-  height: 406px;
+  height: 402px;
   width: auto;
 }
 
@@ -129,4 +129,9 @@ iframe {
   border: none;
   background-color: #fafafa;
   font-family: "Prompt";
+}
+
+.mediaCard-description {
+  font-style: italic;
+  font-size: 16px;
 }
