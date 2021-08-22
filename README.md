@@ -48,7 +48,6 @@ View live: <a href='https://sidewalk-surfers.herokuapp.com/'>Sidewalk Surfers Ap
 - Backend:
   ![](https://img.shields.io/badge/-Flask-ffffff?style=flat-square&logo=flask&logoColor=ff0000)
   ![](https://img.shields.io/badge/-SQLAlchemy-ffffff?style=flat-square&logo=sqlalchemy&logoColor=ff0000)
-  ![](https://img.shields.io/badge/-PostgreSQL-ffffff?style=flat-square&logo=postgresql&logoColor=ff0000)
 
 <br />
 
