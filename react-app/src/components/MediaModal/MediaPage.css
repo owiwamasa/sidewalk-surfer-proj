@@ -17,6 +17,7 @@
 .mediaPage-info {
   width: 300px;
   margin-left: 45px;
+  margin-top: -10px;
 }
 
 .mediaPage-media {
@@ -106,7 +107,7 @@
 
 .mediaPage-comments {
   margin-top: 10px;
-  height: 240px;
+  height: 230px;
   overflow-y: scroll;
 }
 
@@ -185,7 +186,14 @@ time {
 }
 
 .descript {
-  padding-left: 18px;
+  padding-left: 10px;
   margin-bottom: 10px;
   font-weight: 200;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.mediaPage-main-userName {
+  font-size: 15px;
+  white-space: nowrap;
 }

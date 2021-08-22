@@ -113,9 +113,9 @@ function MediaPage({ media, comments, setShowModal }) {
         </div>
         <div className="mediaPage-comments">
           <div className="mediaPage-comment">
-            <NavLink to={`/users/${media?.userId}`}>
-              <span className="mediaPage-userName">{media?.username} </span>
-            </NavLink>
+            {/* <NavLink to={`/users/${media?.userId}`}>
+              <span className="mediaPage-main-userName">{media?.username} </span>
+            </NavLink> */}
             <span className="descript">{media?.description}</span>
           </div>
           {comments.map((comment) => (
