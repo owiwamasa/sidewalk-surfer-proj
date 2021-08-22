@@ -1,13 +1,113 @@
-# Flask React Project
+# Sidewalk Surfers
 
-This is the starter for the Flask React project.
+<p align='center'>
+  <img src='https://i.imgur.com/2y2FmRJ.png' width='200px' >
+</p>
 
-## Getting started
+Sidewalk Surfers, an <a href='https://instagram.com'>Instagram</a> clone, is an app for users to discover skateboarding spots in the Los Angeles area and share content from these locations. It is built using React.js, Redux.js, and Flask.
+
+View live: <a href='https://sidewalk-surfers.herokuapp.com/'>Sidewalk Surfers App</a>
+
+<br />
+
+## Features
+
+- Sign up/in with email
+- Search in search bar by spot and user
+- Google Map with clickable markers for each skate spot
+- Create and edit skate spots
+- Create, edit, and delete media posts at a specific skate spot
+- Create, edit, and delete comments on media posts
+  <br />
+
+## Home Page:
+
+<img src='https://i.imgur.com/ShaOIz7.png' width='500px' />
+<br />
+
+## Spot Page:
+
+<img src='https://i.imgur.com/WPj7Rfs.png' width='500px' />
+<br />
+
+## Profile Page:
+
+<img src='https://i.imgur.com/oGNQZ5p.png' width='500px' />
+<br />
+
+## Technologies Used
+
+- Languages:
+  ![](https://img.shields.io/badge/-JavaSript-ffffff?style=flat-square&logo=javascript&logoColor=ff0000)
+  ![](https://img.shields.io/badge/-Python-ffffff?style=flat-square&logo=python&logoColor=ff0000)
+- Frontend:
+  ![](https://img.shields.io/badge/-React-ffffff?style=flat-square&logo=react&logoColor=ff0000)
+  ![](https://img.shields.io/badge/-Redux-ffffff?style=flat-square&logo=redux&logoColor=ff0000)
+  ![](https://img.shields.io/badge/-CSS3-ffffff?style=flat-square&logo=css3&logoColor=ff0000)
+  ![](https://img.shields.io/badge/-HTML5-ffffff?style=flat-square&logo=html5&logoColor=ff0000)
+- Backend:
+  ![](https://img.shields.io/badge/-Flask-ffffff?style=flat-square&logo=flask&logoColor=ff0000)
+  ![](https://img.shields.io/badge/-SQLAlchemy-ffffff?style=flat-square&logo=sqlalchemy&logoColor=ff0000)
+  ![](https://img.shields.io/badge/-PostgreSQL-ffffff?style=flat-square&logo=postgresql&logoColor=ff0000)
+
+<br />
+
+## Development Team
+
+Conner Underhill:
+<br />
+<a href='cunderhillosx@gmail.com'>
+<img src="https://i.imgur.com/jLLwTjh.png" width="25" height="25">
+</a>
+<a href='https://www.linkedin.com/in/conner-underhill-64b3921a2'>
+<img src="https://logodix.com/logo/91031.png" width="25" height="25">
+</a>
+<a href='https://github.com/conneru'>
+<img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png" width="25" height="25">
+</a>
+
+David Huang:
+<br />
+<a href='daveman@gmail.com'>
+<img src="https://i.imgur.com/jLLwTjh.png" width="25" height="25">
+</a>
+<a href='https://www.linkedin.com/in/david-h-374b30154/'>
+<img src="https://logodix.com/logo/91031.png" width="25" height="25">
+</a>
+<a href='https://github.com/deardaveed'>
+<img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png" width="25" height="25">
+</a>
+
+John Wanis:
+<br />
+<a href='john.wanis@yahoo.com'>
+<img src="https://i.imgur.com/jLLwTjh.png" width="25" height="25">
+</a>
+<a href='https://www.linkedin.com/in/john-wanis-764957138/'>
+<img src="https://logodix.com/logo/91031.png" width="25" height="25">
+</a>
+<a href='https://github.com/Jomix-13'>
+<img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png" width="25" height="25">
+</a>
+
+Owen Iwamasa:
+<br />
+<a href='owiwamasa@gmail.com'>
+<img src="https://i.imgur.com/jLLwTjh.png" width="25" height="25">
+</a>
+<a href='https://www.linkedin.com/in/owen-iwamasa-6ab3a9166/'>
+<img src="https://logodix.com/logo/91031.png" width="25" height="25">
+</a>
+<a href='https://github.com/owiwamasa'>
+<img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png" width="25" height="25">
+</a>
+
+## Getting started (Installation)
 
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/owiwamasa/sidewalk-surfer-proj
    ```
 
 2. Install dependencies
@@ -16,11 +116,22 @@ This is the starter for the Flask React project.
    pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
    ```
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+3. Install TimeAgo and google-map-react
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+   ```bash
+   npm install timeago-react
+   ```
+
+   ```bash
+   npm install --save google-map-react
+   ```
+
+4. Create a **.env** file based on the .env.example with proper settings for your
+   development environment
+
+5. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+
+6. Get into your pipenv, migrate your database, seed your database, and run your flask app
 
    ```bash
    pipenv shell
@@ -38,7 +149,7 @@ This is the starter for the Flask React project.
    flask run
    ```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 ---
 
@@ -56,7 +167,21 @@ There is a layer in the Dockerfile that will install psycopg2 (not binary) for u
 
 ---
 
-## Deploy to Heroku
+8. Start up Flask and React
+
+   -At the root of the project folder, run:
+
+   ```bash
+   flask run
+   ```
+
+   -In the react-app folder, run:
+
+   ```bash
+   npm start
+   ```
+
+<!-- ## Deploy to Heroku
 
 1. Before you deploy, don't forget to run the following command in order to
    ensure that your production environment has all of your up-to-date
@@ -133,4 +258,4 @@ There is a layer in the Dockerfile that will install psycopg2 (not binary) for u
 
    ```bash=3
    docker push registry.heroku.com/sidewalk-surfers/web
-   ```
+   ``` -->
