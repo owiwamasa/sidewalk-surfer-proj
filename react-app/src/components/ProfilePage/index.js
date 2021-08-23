@@ -58,7 +58,11 @@ function ProfilePage() {
         </div>
         <div className="top_right">
           <div className="un">{user.username}</div>
-          <div className="email"><a href={`mailto:${user.email}`} target="_blank" rel="noreferrer">{user.email}</a></div>
+          <div className="email">
+            <a href={`mailto:${user.email}`} target="_blank" rel="noreferrer">
+              {user.email}
+            </a>
+          </div>
         </div>
       </div>
 
@@ -78,7 +82,7 @@ function ProfilePage() {
                       media={m}
                       comments={comments.filter((c) => c.mediaId === m.id)}
                     ></MediaModal>
-                    {currentUser.id === user.id ? (
+                    {currentUser?.id === user?.id ? (
                       <div>
                         <EditMediaModal id="profilePage-modal" media={m} />
                         <button
