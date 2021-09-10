@@ -4,7 +4,7 @@
   <img src='https://i.imgur.com/2y2FmRJ.png' width='200px' >
 </p>
 
-Sidewalk Surfers, an <a href='https://instagram.com'>Instagram</a> clone, is an app for users to discover skateboarding spots in the Los Angeles area and share content from these locations. It is built using React.js, Redux.js, and Flask.
+Sidewalk Surfers, an <a href='https://instagram.com'>Instagram</a> clone, is an app for users to discover skateboarding spots in the Los Angeles area and share content from these locations. It is built using React.js, Redux.js, Python, and Flask.
 
 View live: <a href='https://sidewalk-surfers.herokuapp.com/'>Sidewalk Surfers App</a>
 
