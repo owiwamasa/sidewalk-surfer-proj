@@ -16,10 +16,12 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
 
-      const data = await dispatch(signUp(username, email, password, profilepic));
-      if (data && (password !== repeatPassword)) {
-        setErrors(data.concat(['Passwords do not match']));
-      } else if (data) {
+      // const data = await dispatch(signUp(username, email, password, profilepic));
+      if (password !== repeatPassword) {
+        setErrors(['Passwords do not match']);
+      }
+      if (password === repeatPassword) {
+        const data = await dispatch(signUp(username, email, password, (!profilepic ? 'https://i.imgur.com/2y2FmRJ.png' : profilepic)));
         setErrors(data)
       }
   };

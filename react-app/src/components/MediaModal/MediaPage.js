@@ -167,16 +167,20 @@ function MediaPage({ media, comments, setShowModal }) {
             </div>
           ))}
         </div>
+        {/* {!user ?
+        <div>Please log in to add your comment</div> : */}
         <form className="mediaPage-commentForm" onSubmit={commentSubmit}>
           {commentErrors ? <Errors /> : null}
           <textarea
+            disabled={!user}
             type="text"
-            placeholder="Write a comment..."
+            placeholder={!user ? "**Please log in**" : "Write a comment..."}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
-          <button type="submit">Submit Comment</button>
+          <button disabled={!user} type="submit">Submit Comment</button>
         </form>
+        {/* } */}
       </div>
     </div>
   );
