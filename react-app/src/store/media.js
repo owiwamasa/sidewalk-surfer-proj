@@ -64,11 +64,10 @@ export const fetchHomeMedia = () => async (dispatch) => {
   }
 };
 
-export const addMedium = (medium, id) => async (dispatch) => {
+export const addMedium = (formData, id) => async (dispatch) => {
   const res = await fetch(`/api/media/spots/${id}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(medium),
+    body: formData
   });
 
   if (res.ok) {

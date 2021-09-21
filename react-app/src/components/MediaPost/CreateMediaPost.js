@@ -5,28 +5,25 @@ import Errors from '../errors'
 
 const CreateMediaForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
-  const [mediaUrl, setMediaUrl] = useState("");
-  // const [errors, setErrors] = useState([]);
+  const [mediaUrl, setMediaUrl] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false)
   const spot = useSelector((state) => state.spotReducer.curSpot);
   const dispatch = useDispatch();
 
   const onSubmit = async(e) => {
     e.preventDefault();
-    // const errs = []
 
-    // if (!description.length) errs.push("Description is required");
-    // if (!mediaUrl.length) errs.push("Media URL is required");
-    // if (description.length > 500) errs.push("Description must be 500 characters or less");
-    // if (mediaUrl.length > 500) errs.push("Media URL must be 500 characters or less");
-    // setErrors(errs);
-    // console.log(errors)
-    // if (!errors){
-      const media = { description, mediaUrl };
-      const success = await dispatch(addMedium(media, spot.id))
+    const formData = new FormData();
+    formData.append("description", description);
+    formData.append("mediaUrl", mediaUrl);
+
+    setImageLoading(true)
+
+      const success = await dispatch(addMedium(formData, spot.id))
       if (success){
         setShowModal(false);
+        setImageLoading(false)
       }
-    // }
   };
 
   return (
@@ -38,11 +35,6 @@ const CreateMediaForm = ({ setShowModal }) => {
               <h3 className="form-h3">Media</h3>
             </div>
             <Errors/>
-            {/* <div className='form-error-div'>
-                {errors && errors.map(err => (
-                  <div className='form-error' key={err}>{err}</div>
-                ))}
-            </div> */}
             <div className="form-input-container">
               <label className="form-label">Description</label>
               <input
@@ -56,9 +48,9 @@ const CreateMediaForm = ({ setShowModal }) => {
               <label className="form-label">Media Url</label>
               <input
                 className="form-input"
-                type="text"
-                value={mediaUrl}
-                onChange={(e) => setMediaUrl(e.target.value)}
+                type="file"
+                accept='image/*'
+                onChange={(e) => setMediaUrl(e.target.files[0])}
               />
             </div>
           </div>
@@ -66,6 +58,7 @@ const CreateMediaForm = ({ setShowModal }) => {
             <button className="form-btn" type="submit">
               Create Media
             </button>
+            {(imageLoading)&& <p>Loading...</p>}
           </div>
         </div>
       </form>
