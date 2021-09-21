@@ -121,3 +121,45 @@ a {
 .search-results:focus {
   outline: none;
 }
+
+@media only screen and (min-width: 1250px) {
+  .small-nav-nonuser,
+  .small-nav-user {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .nav-search-input {
+    width: 400px;
+  }
+  .search-results {
+    width: 400px;
+  }
+
+  .nav-nonuser,
+  .nav-user {
+    display: none;
+  }
+
+  .fa-bars {
+    font-size: 35px;
+    margin-right: 60px;
+  }
+
+  .dropdown-items {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    right: 12px;
+    top: 80px;
+    height: 190px;
+    z-index: 2;
+  }
+
+  .nonuser-dropdown .dropdown-items {
+    right: 25px;
+  }
+}
