@@ -22,25 +22,31 @@ function GoogleMap() {
   };
   const Marker = ({ lat, lng }) => (
     <div className="mapMarker">
-      <img src="https://i.imgur.com/yyandSM.png" alt =""></img>
+      <img src="https://i.imgur.com/yyandSM.png" alt=""></img>
     </div>
   );
 
-    return(
-        <div className='google-map'>
-            <GoogleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyCAr1UIay5E-L26k5sIxbrGHmuwr2AhQ9o' }}
-                defaultCenter={props.center}
-                defaultZoom={props.zoom}
-                >
-                {!!spots && spots?.map(spot =>(
-                    <Link key={spot.id} to={`/spots/${spot.id}`} lat={spot.latitude} lng={spot.longitude}>
-                        <Marker/>
-                    </Link>
-                ))}
-            </GoogleMapReact>
-        </div>
-    )
+  return (
+    <div className="google-map">
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyCAr1UIay5E-L26k5sIxbrGHmuwr2AhQ9o" }}
+        defaultCenter={props.center}
+        defaultZoom={props.zoom}
+      >
+        {!!spots &&
+          spots?.map((spot) => (
+            <Link
+              key={spot.id}
+              to={`/spots/${spot.id}`}
+              lat={spot.latitude}
+              lng={spot.longitude}
+            >
+              <Marker />
+            </Link>
+          ))}
+      </GoogleMapReact>
+    </div>
+  );
 }
 
 export default GoogleMap;

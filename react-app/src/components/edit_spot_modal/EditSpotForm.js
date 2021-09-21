@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editOneSpot } from "../../store/spots";
-import Errors from '../errors'
+import Errors from "../errors";
+import Geocode from "react-geocode";
 
-import './EditSpotForm.css'
+import "./EditSpotForm.css";
+
+Geocode.setApiKey("AIzaSyAgdlEtqn59K7XpcMGDwsM1Ub8IlhtSruw");
 
 const EditSpotForm = ({ setShowModal }) => {
   const spot = useSelector((state) => state.spotReducer.curSpot);
   const [name, setName] = useState(spot?.name);
   const [address, setAddress] = useState(spot?.address);
-  const [latitude, setLatitude] = useState(spot?.latitude);
-  const [longitude, setLongitude] = useState(spot?.longitude);
+  // const [latitude, setLatitude] = useState(spot?.latitude);
+  // const [longitude, setLongitude] = useState(spot?.longitude);
   const [description, setDescription] = useState(spot?.description);
   const [imageUrl, setImageUrl] = useState(spot?.imageUrl);
   // const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
-  const onSubmit = async(e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     // const errs = []
+    let res = await Geocode.fromAddress(address);
+    const { lat: latitude, lng: longitude } = res.results[0].geometry.location;
     const payload = {
       name,
       address,
@@ -27,24 +32,10 @@ const EditSpotForm = ({ setShowModal }) => {
       description,
       imageUrl,
     };
-    // if (!name) errs.push("Name is required");
-    // if (!address) errs.push("Address is required");
-    // if (!latitude) errs.push("Latitude is required");
-    // if (!longitude) errs.push("Longitude is required");
-    // if (!description) errs.push("Description is required");
-    // if (!imageUrl) errs.push("Image URL is required");
-    // if (name.length > 255) errs.push("Name must be less than 255 characters");
-    // if (address.length > 255) errs.push("Address must be less than 255 characters");
-    // if (description.length > 500) errs.push("Description must be less than 500 characters");
-    // if (imageUrl.length > 500) errs.push("Image URL must be less than 500 characters");
-
-    // setErrors(errs)
-    // if (!errors) {
-      const success = await dispatch(editOneSpot(payload, spot.id));
-      if (success){
-        setShowModal(false);
-      }
-    // }
+    const success = await dispatch(editOneSpot(payload, spot.id));
+    if (success) {
+      setShowModal(false);
+    }
   };
 
   return (
@@ -55,9 +46,9 @@ const EditSpotForm = ({ setShowModal }) => {
             <div className="form-h3-container">
               <h3 className="form-h3">Edit Spot</h3>
             </div>
-            <Errors/>
+            <Errors />
 
-              {/* <div className='form-error-div'>
+            {/* <div className='form-error-div'>
                 {errors && errors.map(err => (
                   <div className='form-error' key={err}>{err}</div>
                 ))}
@@ -78,24 +69,6 @@ const EditSpotForm = ({ setShowModal }) => {
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div className="form-input-container">
-              <label className="form-label">Latitude</label>
-              <input
-                className="form-input"
-                type="number"
-                value={latitude}
-                onChange={(e) => setLatitude(e.target.value)}
-              />
-            </div>
-            <div className="form-input-container">
-              <label className="form-label">Longitude</label>
-              <input
-                className="form-input"
-                type="number"
-                value={longitude}
-                onChange={(e) => setLongitude(e.target.value)}
               />
             </div>
             <div className="form-input-container">
