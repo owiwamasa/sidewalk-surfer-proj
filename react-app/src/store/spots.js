@@ -68,6 +68,15 @@ export const editOneSpot = (payload, spotId) => async (dispatch) => {
   }
 };
 
+export const deleteSpot = (id) => async (dispatch) => {
+  const res = await fetch(`/api/spots/${id}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    return "deleted";
+  }
+};
+
 const initialState = { spots: [], curSpot: {} };
 
 const spotReducer = (state = initialState, action) => {

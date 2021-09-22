@@ -15,7 +15,7 @@ class Media(db.Model):
     updatedAt = db.Column(db.DateTime, nullable=False, default=db.func.now(), onupdate=db.func.now())
 
 
-    comments = db.relationship("Comment", back_populates="media")
+    comments = db.relationship("Comment", back_populates="media",cascade="all, delete")
     spots = db.relationship("Spot", back_populates="media")
     user = db.relationship("User", back_populates="media")
 

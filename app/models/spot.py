@@ -14,7 +14,7 @@ class Spot(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
-    media = db.relationship("Media", back_populates="spots")
+    media = db.relationship("Media", back_populates="spots",cascade="all, delete")
     user = db.relationship("User", back_populates="spots")
 
     def to_dict(self):

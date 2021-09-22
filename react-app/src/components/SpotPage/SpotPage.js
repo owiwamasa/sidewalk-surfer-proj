@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { fetchOneSpot } from "../../store/spots";
+import { useParams, useHistory } from "react-router-dom";
+import { fetchOneSpot, deleteSpot } from "../../store/spots";
 import { fetchMedia } from "../../store/media";
 import { fetchComments } from "../../store/comments";
 import EditSpotModal from "../edit_spot_modal";
@@ -11,9 +11,15 @@ import "./SpotPage.css";
 
 const SpotPage = () => {
   const user = useSelector((state) => state.session.user);
-
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
+
+  function deleteIt() {
+    dispatch(deleteSpot(id));
+    history.push("/");
+  }
+
   useEffect(() => {
     dispatch(fetchOneSpot(id));
     dispatch(fetchMedia(id));
@@ -44,6 +50,11 @@ const SpotPage = () => {
               <div className="spotPage-modal-div">
                 {user ? <CreateMediaModal /> : null}
                 {spot?.userId === user?.id && <EditSpotModal spot={spot?.id} />}
+                {spot?.userId === user?.id && (
+                  <button id="create-spot-btn" onClick={deleteIt}>
+                    Delete
+                  </button>
+                )}
               </div>
             </div>
           </div>

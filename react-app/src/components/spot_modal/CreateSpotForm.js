@@ -11,14 +11,10 @@ const CreateSpotForm = ({ setShowModal }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
-<<<<<<< HEAD
   const [imageUrl, setImageUrl] = useState(null);
-  const [imageLoading, setImageLoading] = useState(false)
+  const [imageLoading, setImageLoading] = useState(false);
 
-//   const [errors, setErrors] = useState([]);
-=======
-  const [imageUrl, setImageUrl] = useState("");
->>>>>>> main
+  //   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
   console.log(apiKey);
@@ -26,9 +22,10 @@ const CreateSpotForm = ({ setShowModal }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     // const errs = []
-<<<<<<< HEAD
-    
+
     // const spot = { name, address, latitude, longitude, description, imageUrl };
+    let res = await Geocode.fromAddress(address);
+    const { lat: latitude, lng: longitude } = res.results[0].geometry.location;
 
     const formData = new FormData();
     formData.append("name", name);
@@ -38,23 +35,14 @@ const CreateSpotForm = ({ setShowModal }) => {
     formData.append("description", description);
     formData.append("imageUrl", imageUrl);
 
-    setImageLoading(true)
+    setImageLoading(true);
 
-    const success = await dispatch(addOneSpot(formData))
-    if (success){
-=======
-    let res = await Geocode.fromAddress(address);
-    const { lat: latitude, lng: longitude } = res.results[0].geometry.location;
-    const spot = { name, address, latitude, longitude, description, imageUrl };
-
-    const success = await dispatch(addOneSpot(spot));
-    // const success = false;
+    const success = await dispatch(addOneSpot(formData));
     if (success) {
->>>>>>> main
       setShowModal(false);
-      setImageLoading(false)
+      setImageLoading(false);
     } else {
-      setImageLoading(false)
+      setImageLoading(false);
     }
   };
 
@@ -104,14 +92,14 @@ const CreateSpotForm = ({ setShowModal }) => {
               <label className="form-label">Image Url</label>
               <input
                 className="form-input"
-                type='file'
-                accept='image/*'
+                type="file"
+                accept="image/*"
                 onChange={(e) => setImageUrl(e.target.files[0])}
               />
             </div>
           </div>
           <div className="form-submit-btn">
-            {(imageLoading)&& <p>Loading...</p>}
+            {imageLoading && <p>Loading...</p>}
             <button className="form-btn" type="submit">
               Create Spot
             </button>
