@@ -37,11 +37,10 @@ export const fetchOneSpot = (id) => async (dispatch) => {
   }
 };
 
-export const addOneSpot = (spot) => async (dispatch) => {
+export const addOneSpot = (formData) => async (dispatch) => {
   const res = await fetch(`/api/spots/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(spot),
+    body: formData,
   });
   if (res.ok) {
     const spot = await res.json();
