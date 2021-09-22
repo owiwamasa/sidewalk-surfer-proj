@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { fetchOneSpot, deleteSpot } from "../../store/spots";
-import { fetchMedia } from "../../store/media";
+import { fetchOneSpot, deleteSpot, fetchSpots } from "../../store/spots";
+import { fetchMedia, fetchHomeMedia } from "../../store/media";
 import { fetchComments } from "../../store/comments";
 import EditSpotModal from "../edit_spot_modal";
 import MediaCard from "../MediaCard/MediaCard";
@@ -17,6 +17,9 @@ const SpotPage = () => {
 
   function deleteIt() {
     dispatch(deleteSpot(id));
+    dispatch(fetchSpots());
+    dispatch(fetchHomeMedia());
+    dispatch(fetchComments());
     history.push("/");
   }
 
