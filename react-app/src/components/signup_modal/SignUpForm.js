@@ -9,7 +9,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const [profilepic, setProfilepic] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
   const [imageLoading, setImageLoading] = useState(false)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -29,12 +29,12 @@ const SignUpForm = () => {
         formData.append("username", username);
         formData.append("email", email);
         formData.append("password", password);
-        formData.append("profilepic", profilepic);
-        console.log('comp 1', formData)
+        formData.append("profilePic", (!profilePic ? 'https://i.imgur.com/2y2FmRJ.png' : profilePic));
+        // formData.append("profilepic", profilepic);
+        // console.log('comp 1', formData)
         setImageLoading(true)
 
 
-        // formData.append("profilepic", (!profilepic ? 'https://i.imgur.com/2y2FmRJ.png' : profilepic));
 
         const data = await dispatch(signUp(formData));
         if (data){
@@ -138,8 +138,8 @@ const SignUpForm = () => {
             className='form-input'
             type='file'
             accept='image/*'
-            name='profilepic'
-            onChange={(e) => setProfilepic(e.target.files[0])}
+            name='profilePic'
+            onChange={(e) => setProfilePic(e.target.files[0])}
             // value={profilepic}
           ></input>
         </div>

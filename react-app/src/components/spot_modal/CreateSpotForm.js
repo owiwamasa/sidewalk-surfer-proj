@@ -19,7 +19,7 @@ const CreateSpotForm = ({ setShowModal }) => {
     e.preventDefault();
     // const errs = []
     
-    const spot = { name, address, latitude, longitude, description, imageUrl };
+    // const spot = { name, address, latitude, longitude, description, imageUrl };
 
     const formData = new FormData();
     formData.append("name", name);
@@ -111,6 +111,7 @@ const CreateSpotForm = ({ setShowModal }) => {
             </div>
           </div>
           <div className="form-submit-btn">
+            {(imageLoading)&& <p>Loading...</p>}
             <button className="form-btn" type="submit">
               Create Spot
             </button>

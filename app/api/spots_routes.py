@@ -14,28 +14,21 @@ def all_spots():
 
 @spots_routes.route('/', methods=["POST"])
 def create_spot():
-    print('>>>>>>>>>>>>>>>>>>>>>>>>>','00')
     form = SpotForm()
-    print('>>>>>>>>>>>>>>>>>>>>>>>>>','form')
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print('>>>>>>>>>>>>>>>>>>>>>>>>>','0101010101')
-    if "mediaUrl" not in request.files:
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>','11')
-        return ["mediaUrl required"], 400
+    if "imageUrl" not in request.files:
+        return ["imageUrl required"], 400
+    imageUrl = request.files["imageUrl"]
 
-    mediaUrl = request.files["mediaUrl"]
-
-    if not allowed_file(mediaUrl.filename):
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>','22')
+    if not allowed_file(imageUrl.filename):
         return ["file type not permitted"], 400
 
-    mediaUrl.filename = get_unique_filename(mediaUrl.filename)
+    imageUrl.filename = get_unique_filename(imageUrl.filename)
 
-    upload = upload_file_to_s3(mediaUrl)
+    upload = upload_file_to_s3(imageUrl)
 
     if "url" not in upload:
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>','33')
         return upload, 400
     url = upload["url"]
 

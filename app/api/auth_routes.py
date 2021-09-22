@@ -64,18 +64,22 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if "profilePic" in request.files:
-        profilePic = request.files['profilePic']
+    if "profilePic" not in request.files:
+        profilePic = form.profilePic.data
+    else :
 
-    if not allowed_file(profilePic.filename):
-        return jsonify(['Profile Picture file type is not permitted']), 400
+        # return ["profilePic required"], 400
+        profilePic = request.files["profilePic"]
 
-    profilePic.filename = get_unique_filename(profilePic.filename)
-    upload = upload_file_to_s3(profilePic)
+        if not allowed_file(profilePic.filename):
+            return jsonify(['Profile Picture file type is not permitted']), 400
 
-    if "url" not in upload:
-        return upload, 400
-    url = upload["url"]
+        profilePic.filename = get_unique_filename(profilePic.filename)
+        upload = upload_file_to_s3(profilePic)
+
+        if "url" not in upload:
+            return upload, 400
+        profilePic = upload["url"]
 
 
     if form.validate_on_submit():
@@ -83,7 +87,7 @@ def sign_up():
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
-            profilepic=url,
+            profilepic=profilePic,
         )
         db.session.add(user)
         db.session.commit()
