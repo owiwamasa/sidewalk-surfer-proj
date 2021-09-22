@@ -9,32 +9,35 @@ const CreateSpotForm = ({ setShowModal }) => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false)
+
 //   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
   const onSubmit = async(e) => {
     e.preventDefault();
     // const errs = []
+    
     const spot = { name, address, latitude, longitude, description, imageUrl };
-    // if (!name) errs.push("Name is required");
-    // if (!address) errs.push("Address is required");
-    // if (!latitude) errs.push("Latitude is required");
-    // if (!longitude) errs.push("Longitude is required");
-    // if (!description) errs.push("Description is required");
-    // if (!imageUrl) errs.push("Image URL is required");
-    // if (name.length > 255) errs.push("Name must be less than 255 characters");
-    // if (address.length > 255) errs.push("Address must be less than 255 characters");
-    // if (description.length > 500) errs.push("Description must be less than 500 characters");
-    // if (imageUrl.length > 500) errs.push("Image URL must be less than 500 characters");
 
-    // setErrors(errs)
-    // if (!errors) {
-    const success = await dispatch(addOneSpot(spot))
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("latitude", latitude);
+    formData.append("longitude", longitude);
+    formData.append("description", description);
+    formData.append("imageUrl", imageUrl);
+
+    setImageLoading(true)
+
+    const success = await dispatch(addOneSpot(formData))
     if (success){
       setShowModal(false);
+      setImageLoading(false)
+    } else {
+      setImageLoading(false)
     }
-    // }
   };
 
   return (
@@ -101,9 +104,9 @@ const CreateSpotForm = ({ setShowModal }) => {
               <label className="form-label">Image Url</label>
               <input
                 className="form-input"
-                type="text"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
+                type='file'
+                accept='image/*'
+                onChange={(e) => setImageUrl(e.target.files[0])}
               />
             </div>
           </div>

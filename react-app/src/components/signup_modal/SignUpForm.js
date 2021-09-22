@@ -9,20 +9,42 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const [profilepic, setProfilepic] = useState('');
+  const [profilepic, setProfilepic] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  
   const onSignUp = async (e) => {
     e.preventDefault();
 
       // const data = await dispatch(signUp(username, email, password, profilepic));
       if (password !== repeatPassword) {
         setErrors(['Passwords do not match']);
+        return
       }
       if (password === repeatPassword) {
-        const data = await dispatch(signUp(username, email, password, (!profilepic ? 'https://i.imgur.com/2y2FmRJ.png' : profilepic)));
-        setErrors(data)
+        
+        const formData = new FormData();
+        formData.append("username", username);
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("profilepic", profilepic);
+        console.log('comp 1', formData)
+        setImageLoading(true)
+
+
+        // formData.append("profilepic", (!profilepic ? 'https://i.imgur.com/2y2FmRJ.png' : profilepic));
+
+        const data = await dispatch(signUp(formData));
+        if (data){
+          setErrors(data)
+          setImageLoading(false)
+        } else {
+          setImageLoading(false)
+        }
+
+        // const data = await dispatch(signUp(username, email, password, (!profilepic ? 'https://i.imgur.com/2y2FmRJ.png' : profilepic)));
       }
   };
 
@@ -41,6 +63,16 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  // const formData = new FormData();
+  // formData.append("username", username);
+  // formData.append("email", email);
+  // formData.append("password", password);
+  // formData.append("profilepic", profilepic);
+
+  // setImageLoading(true)
+
+  // const success = await dispatch(addMedium(formData, user))
 
   if (user) {
     return <Redirect to='/' />;
@@ -104,14 +136,16 @@ const SignUpForm = () => {
           <label className='form-label'>Profile Picture URL</label>
           <input
             className='form-input'
-            type='text'
+            type='file'
+            accept='image/*'
             name='profilepic'
-            onChange={(e) => setProfilepic(e.target.value)}
-            value={profilepic}
+            onChange={(e) => setProfilepic(e.target.files[0])}
+            // value={profilepic}
           ></input>
         </div>
         </div>
         <div className='form-submit-btn'>
+          {(imageLoading)&& <p>Loading...</p>}
           <button className='form-btn' type='submit'>Sign Up</button>
         </div>
         </div>
