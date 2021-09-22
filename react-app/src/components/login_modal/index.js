@@ -4,7 +4,7 @@ import {setErrors} from '../../store/errors'
 import LoginForm from "./LoginForm";
 import { Modal } from '../../context/Modal'
 
-function LoginFormModal() {
+function LoginFormModal({setShowMenu}) {
     const [showModal, setShowModal] = useState(false)
     const dispatch = useDispatch()
 

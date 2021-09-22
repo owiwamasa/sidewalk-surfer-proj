@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addOneSpot } from "../../store/spots";
-import Errors from '../errors'
+import Errors from "../errors";
+import Geocode from "react-geocode";
+
+const apiKey = process.env.REACT_APP_MAPS;
+Geocode.setApiKey("AIzaSyAgdlEtqn59K7XpcMGDwsM1Ub8IlhtSruw");
 
 const CreateSpotForm = ({ setShowModal }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
   const [description, setDescription] = useState("");
+<<<<<<< HEAD
   const [imageUrl, setImageUrl] = useState(null);
   const [imageLoading, setImageLoading] = useState(false)
 
 //   const [errors, setErrors] = useState([]);
+=======
+  const [imageUrl, setImageUrl] = useState("");
+>>>>>>> main
   const dispatch = useDispatch();
 
-  const onSubmit = async(e) => {
+  console.log(apiKey);
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     // const errs = []
+<<<<<<< HEAD
     
     // const spot = { name, address, latitude, longitude, description, imageUrl };
 
@@ -33,6 +42,15 @@ const CreateSpotForm = ({ setShowModal }) => {
 
     const success = await dispatch(addOneSpot(formData))
     if (success){
+=======
+    let res = await Geocode.fromAddress(address);
+    const { lat: latitude, lng: longitude } = res.results[0].geometry.location;
+    const spot = { name, address, latitude, longitude, description, imageUrl };
+
+    const success = await dispatch(addOneSpot(spot));
+    // const success = false;
+    if (success) {
+>>>>>>> main
       setShowModal(false);
       setImageLoading(false)
     } else {
@@ -48,7 +66,7 @@ const CreateSpotForm = ({ setShowModal }) => {
             <div className="form-h3-container">
               <h3 className="form-h3">Create Spot</h3>
             </div>
-            <Errors/>
+            <Errors />
 
             {/* <div className='form-error-div'>
                 {errors && errors.map(err => (
@@ -71,24 +89,6 @@ const CreateSpotForm = ({ setShowModal }) => {
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div className="form-input-container">
-              <label className="form-label">Latitude</label>
-              <input
-                className="form-input"
-                type="number"
-                value={latitude}
-                onChange={(e) => setLatitude(e.target.value)}
-              />
-            </div>
-            <div className="form-input-container">
-              <label className="form-label">Longitude</label>
-              <input
-                className="form-input"
-                type="number"
-                value={longitude}
-                onChange={(e) => setLongitude(e.target.value)}
               />
             </div>
             <div className="form-input-container">
