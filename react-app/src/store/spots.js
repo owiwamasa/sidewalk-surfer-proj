@@ -4,6 +4,7 @@ const GET_SPOTS = "spots/getSpots";
 const GET_ONE_SPOT = "spots/getOneSpot";
 const ADD_SPOT = "spots/addSpot";
 const EDIT_SPOT = "spots/editSpot";
+const DELETE_SPOT = "spots/delSpot";
 
 const getSpots = (spots) => {
   return { type: GET_SPOTS, spots };
@@ -19,6 +20,9 @@ const addSpot = (spot) => {
 
 const editSpot = (spot) => {
   return { type: EDIT_SPOT, spot };
+};
+const delSpot = (id) => {
+  return { type: DELETE_SPOT, id };
 };
 
 export const fetchSpots = () => async (dispatch) => {
@@ -73,7 +77,7 @@ export const deleteSpot = (id) => async (dispatch) => {
     method: "DELETE",
   });
   if (res.ok) {
-    return "deleted";
+    dispatch(deleteSpot(id));
   }
 };
 
@@ -95,6 +99,11 @@ const spotReducer = (state = initialState, action) => {
           action.spot,
         ],
         curSpot: action.spot,
+      };
+    case DELETE_SPOT:
+      return {
+        ...state,
+        spots: [...state.spots.filter((spot) => spot.id !== action.id)],
       };
     default:
       return state;
