@@ -79,6 +79,7 @@ a {
   font-family: "Prompt", sans-serif;
   text-transform: uppercase;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 #demo-btn,

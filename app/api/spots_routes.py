@@ -80,3 +80,11 @@ def edit_spot(id):
                 for field in errors
                 for error in errors[field]]),400
 
+
+@spots_routes.route('/<int:id>', methods=["DELETE"])
+def delete_comment(id):
+    spot = Spot.query.get(id)
+    db.session.delete(spot)
+    db.session.commit()
+
+    return "deleted"
