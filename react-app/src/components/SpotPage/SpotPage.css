@@ -82,3 +82,38 @@
   border-bottom: 3px solid rgba(128, 128, 128, 0.591);
   margin-bottom: 70px;
 }
+
+@media only screen and (max-width: 1250px) {
+  .spotPage-header {
+    flex-direction: column-reverse;
+    margin-top: 80px;
+  }
+
+  .spotPage-info {
+    margin-top: 0px;
+    margin-left: 0;
+    align-items: center;
+  }
+  .spotPage-name,
+  .spotPage-address,
+  .spotPage-description {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .spotPage-description {
+    margin-bottom: 50px;
+  }
+
+  .spotPage-info-container {
+    height: auto;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .spotPage-modal-div {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+}

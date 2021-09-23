@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { fetchSpots } from "../../store/spots";
 import { fetchAllMedia } from "../../store/media";
@@ -14,11 +15,14 @@ function ProfilePage() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
   const currentUser = useSelector((state) => state.session.user);
+  const spots = useSelector((state) => state.spotReducer.spots);
+  const mySpots = spots.filter((spot) => spot.userId === +userId);
 
   const dispatch = useDispatch();
 
   function deleteMedia(media) {
     dispatch(deleteMedium(media.id));
+    dispatch(fetchSpots());
   }
 
   useEffect(() => {
@@ -65,6 +69,23 @@ function ProfilePage() {
           </div>
         </div>
       </div>
+
+      {mySpots.length !== 0 &&
+      <div className='my-spots'>
+        <div className='my-spots-header'>My Spots</div>
+        <div className='my-spots-container'>
+          {mySpots && mySpots?.map(spot => (
+            <div className='my-spot'>
+              <div className='my-spot-name'>{spot?.name}</div>
+              <Link to={`/spots/${spot?.id}`}>
+                <div className='my-spot-img'>
+                  <img src={spot?.imageUrl} alt='skate spot'/>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>}
 
       <div className="whole">
         <div className="whole-title">My Posts</div>
