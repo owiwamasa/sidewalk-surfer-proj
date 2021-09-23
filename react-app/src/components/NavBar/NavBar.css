@@ -123,7 +123,7 @@ a {
   outline: none;
 }
 
-@media only screen and (min-width: 1250px) {
+@media only screen and (min-width: 1251px) {
   .small-nav-nonuser,
   .small-nav-user {
     display: none;
