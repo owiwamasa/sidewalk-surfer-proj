@@ -7,16 +7,22 @@ import Errors from '../errors'
 const EditMediaForm = ({ setShowModal, media }) => {
   const [description, setDescription] = useState(media.description);
   const [mediaUrl, setMediaUrl] = useState(media.mediaUrl);
+  const [imageLoading, setImageLoading] = useState(false)
   const dispatch = useDispatch();
 
   const onSubmit = async(e) => {
     e.preventDefault();
 
-    const payload = { description, mediaUrl };
+    const formData = new FormData();
+    formData.append("description", description);
+    formData.append("mediaUrl", mediaUrl);
 
-    const success = await dispatch(editMedium(payload, media.id));
+    setImageLoading(true)
+
+    const success = await dispatch(editMedium(formData, media.id));
     if (success){
       setShowModal(false);
+      setImageLoading(false)
     }
   };
 
@@ -41,13 +47,14 @@ const EditMediaForm = ({ setShowModal, media }) => {
             <div className="form-input-container">
               <label className="form-label">Media Url</label>
               <input
-                className="form-input"
-                type="text"
-                value={mediaUrl}
-                onChange={(e) => setMediaUrl(e.target.value)}
+                className="form-input-image"
+                type="file"
+                accept='image/*'
+                onChange={(e) => setMediaUrl(e.target.files[0])}
               />
             </div>
           </div>
+          {(imageLoading)&& <p>Loading...</p>}
           <div className="form-submit-btn">
             <button className="form-btn" type="submit">
               Edit Media

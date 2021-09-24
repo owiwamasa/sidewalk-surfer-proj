@@ -144,15 +144,12 @@ const NavBar = () => {
         )}
         {!user ? (
           <div className="small-nav-nonuser">
-            {!showMenu ? (
-              <i onClick={() => setShowMenu(!showMenu)} class="fas fa-bars"></i>
-            ) : (
               <div className="nonuser-dropdown">
                 <i
                   onClick={() => setShowMenu(!showMenu)}
                   class="fas fa-bars"
                 ></i>
-                <div className="dropdown-items">
+                <div className="nonuser-dropdown-items">
                   <div>
                     <button
                       id="demo-btn"
@@ -172,14 +169,10 @@ const NavBar = () => {
                   </div>
                 </div>
               </div>
-            )}
           </div>
         ) : (
           <div className="small-nav-user">
-            {!showMenu ? (
-              <i onClick={() => setShowMenu(!showMenu)} class="fas fa-bars"></i>
-            ) : (
-              <div className="user-dropdown">
+            <div className="user-dropdown">
                 <i
                   onClick={() => setShowMenu(!showMenu)}
                   class="fas fa-bars"
@@ -206,7 +199,6 @@ const NavBar = () => {
                   </div>
                 </div>
               </div>
-            )}
           </div>
         )}
       </div>

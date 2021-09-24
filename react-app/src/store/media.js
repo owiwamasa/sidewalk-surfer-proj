@@ -80,11 +80,10 @@ export const addMedium = (formData, id) => async (dispatch) => {
   }
 };
 
-export const editMedium = (medium, id) => async (dispatch) => {
+export const editMedium = (formData, id) => async (dispatch) => {
   const res = await fetch(`/api/media/${id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(medium),
+    body: formData
   });
 
   if (res.ok) {

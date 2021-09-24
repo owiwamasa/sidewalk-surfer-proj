@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addOneSpot } from "../../store/spots";
 import Errors from "../errors";
 import Geocode from "react-geocode";
+import './CreateSpotForm.css'
 
 const apiKey = process.env.REACT_APP_MAPS;
 Geocode.setApiKey("AIzaSyAgdlEtqn59K7XpcMGDwsM1Ub8IlhtSruw");
@@ -92,15 +93,15 @@ const CreateSpotForm = ({ setShowModal, setShowMenu }) => {
             <div className="form-input-container">
               <label className="form-label">Image Url</label>
               <input
-                className="form-input"
+                className="form-input-image"
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImageUrl(e.target.files[0])}
               />
             </div>
           </div>
+            {imageLoading && <p className='loading'>Loading...</p>}
           <div className="form-submit-btn">
-            {imageLoading && <p>Loading...</p>}
             <button className="form-btn" type="submit">
               Create Spot
             </button>

@@ -1,0 +1,19 @@
+.form-input-image {
+  font-family: "Prompt";
+  padding-top: 5px;
+  width: 250px;
+}
+
+input::-webkit-file-upload-button {
+  border-radius: 20px;
+  padding: 5px 15px;
+  background-color: white;
+  border: 2px solid #a50e02;
+  color: #a50e02;
+  margin-right: 15px;
+}
+
+input::-webkit-file-upload-button:hover {
+  background-color: #a50e02;
+  color: white;
+}

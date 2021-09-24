@@ -14,7 +14,7 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  
+
   const onSignUp = async (e) => {
     e.preventDefault();
 
@@ -24,7 +24,7 @@ const SignUpForm = () => {
         return
       }
       if (password === repeatPassword) {
-        
+
         const formData = new FormData();
         formData.append("username", username);
         formData.append("email", email);
@@ -135,7 +135,7 @@ const SignUpForm = () => {
         <div className='form-input-container'>
           <label className='form-label'>Profile Picture URL</label>
           <input
-            className='form-input'
+            className='form-input-image'
             type='file'
             accept='image/*'
             name='profilePic'
@@ -144,8 +144,8 @@ const SignUpForm = () => {
           ></input>
         </div>
         </div>
-        <div className='form-submit-btn'>
           {(imageLoading)&& <p>Loading...</p>}
+        <div className='form-submit-btn'>
           <button className='form-btn' type='submit'>Sign Up</button>
         </div>
         </div>
