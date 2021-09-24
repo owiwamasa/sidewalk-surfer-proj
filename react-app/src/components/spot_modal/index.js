@@ -10,13 +10,15 @@ function CreateSpotModal({setShowMenu}) {
 
     return (
         <>
-            <button id='create-spot-btn' onClick={() => {setShowModal(true)}}>Create Spot</button>
+            <button id='create-spot-btn' onClick={() => {
+                setShowModal(true)
+                }}>Create Spot</button>
             {showModal && (
                 <Modal onClose={() => {
                     setShowModal(false)
                     dispatch(setErrors([]))
                     }}>
-                    <CreateSpotForm setShowModal={setShowModal} />
+                    <CreateSpotForm setShowModal={setShowModal} setShowMenu={setShowMenu}/>
                 </Modal>
             )}
         </>

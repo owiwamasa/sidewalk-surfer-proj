@@ -13,7 +13,7 @@ const LogoutButton = ({setShowMenu}) => {
 
   return <button id='logout-btn' onClick={() => {
     onLogout()
-    // setShowMenu(false)
+    setShowMenu(false)
   }}>Logout</button>;
 };
 

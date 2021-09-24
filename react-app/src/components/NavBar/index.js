@@ -101,7 +101,7 @@ const NavBar = () => {
         {!user ? (
           <div className="nav-nonuser">
             <div>
-              <button id="demo-btn" onClick={demoHandler}>
+              <button id="demo-btn" onClick={(e) =>demoHandler(e)}>
                 Demo
               </button>
             </div>
@@ -156,19 +156,19 @@ const NavBar = () => {
                   <div>
                     <button
                       id="demo-btn"
-                      onClick={() => {
+                      onClick={(e) => {
                         setShowMenu(false);
-                        demoHandler();
+                        demoHandler(e);
                       }}
                     >
                       Demo
                     </button>
                   </div>
                   <div>
-                    <LoginFormModal setShowMenu={setShowMenu} />
+                    <LoginFormModal setShowMenu={setShowMenu} showMenu={showMenu}/>
                   </div>
                   <div>
-                    <SignUpFormModal setShowMenu={setShowMenu} />
+                    <SignUpFormModal setShowMenu={setShowMenu} showMenu={showMenu}/>
                   </div>
                 </div>
               </div>
@@ -199,10 +199,10 @@ const NavBar = () => {
                     </NavLink>
                   </div>
                   <div>
-                    <CreateSpotModal setShowMenu={setShowMenu} />
+                    <CreateSpotModal setShowMenu={setShowMenu} showMenu={showMenu}/>
                   </div>
                   <div>
-                    <LogoutButton setShowMenu={setShowMenu} />
+                    <LogoutButton setShowMenu={setShowMenu}/>
                   </div>
                 </div>
               </div>

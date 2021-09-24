@@ -7,7 +7,7 @@ import Geocode from "react-geocode";
 const apiKey = process.env.REACT_APP_MAPS;
 Geocode.setApiKey("AIzaSyAgdlEtqn59K7XpcMGDwsM1Ub8IlhtSruw");
 
-const CreateSpotForm = ({ setShowModal }) => {
+const CreateSpotForm = ({ setShowModal, setShowMenu }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
@@ -41,6 +41,7 @@ const CreateSpotForm = ({ setShowModal }) => {
     if (success) {
       setShowModal(false);
       setImageLoading(false);
+      setShowMenu(false)
     } else {
       setImageLoading(false);
     }
