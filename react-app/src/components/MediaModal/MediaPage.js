@@ -123,15 +123,19 @@ function MediaPage({ media, comments, setShowModal }) {
             <span className="descript">{media?.description}</span>
           </div>
           {comments.map((comment) => (
+  <div className='comment_shape'>
             <div className="mediaPage-comment" key={comment.id}>
               <div className="mediaPage-comment-info">
+                <div>
                 <NavLink to={`/users/${comment.userId}`}>
                   <span className="mediaPage-userName">
                     {comment?.username}{" "}
                   </span>
                 </NavLink>
+                </div>
                 {comment?.userId === user?.id && (
                   <div className="mediaPage-comment-btns">
+                    <div>
                     <button
                       onClick={() => {
                         setEditClicked(!editClicked);
@@ -141,6 +145,7 @@ function MediaPage({ media, comments, setShowModal }) {
                     >
                       Edit
                     </button>
+                    </div>
                     <div>
                       <button onClick={(e) => deleteComment(e, comment.id)}>
                         Delete
@@ -149,6 +154,7 @@ function MediaPage({ media, comments, setShowModal }) {
                   </div>
                 )}
               </div>
+  </div>
               {editClicked && comment?.id === targetId ? (
                 <form
                   className="editComment-form"

@@ -67,7 +67,7 @@
 
 .mediaPage-commentForm {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -132,6 +132,7 @@ time {
 
 .mediaPage-comment {
   display: flex;
+  flex-direction: row;
   padding-top: 10px;
   font-size: 14px;
   word-spacing: 2px;
@@ -139,8 +140,9 @@ time {
 
 .mediaPage-comment-info {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-right: 15px;
+  justify-content: space-between;
 }
 
 .mediaPage-comment-info a {
@@ -154,9 +156,16 @@ time {
   border: none;
   background-color: transparent;
   color: #a50e02;
-  padding: 0;
+  padding-left: 10px;
+  padding-top: 0px;
 }
-
+.mediaPage-comment-btns{
+  display: flex;
+  flex-direction: row;
+}
+.mediaPage-userName{
+  text-decoration: underline;
+}
 .mediaModal-btn {
   border: none;
   background-color: transparent;
