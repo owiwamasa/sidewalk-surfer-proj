@@ -15,8 +15,8 @@ const SpotPage = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  function deleteIt() {
-    dispatch(deleteSpot(id));
+  async function deleteIt() {
+    await dispatch(deleteSpot(id));
     dispatch(fetchSpots());
     dispatch(fetchHomeMedia());
     dispatch(fetchComments());

@@ -76,7 +76,7 @@ export const deleteSpot = (id) => async (dispatch) => {
     method: "DELETE",
   });
   if (res.ok) {
-    dispatch(deleteSpot(id));
+    dispatch(delSpot(id));
   }
 };
 
