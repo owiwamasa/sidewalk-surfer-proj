@@ -16,6 +16,7 @@ const EditSpotForm = ({ setShowModal }) => {
   // const [longitude, setLongitude] = useState(spot?.longitude);
   const [description, setDescription] = useState(spot?.description);
   const [imageUrl, setImageUrl] = useState(spot?.imageUrl);
+  const [imageLoading, setImageLoading] = useState(false)
   // const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
@@ -24,17 +25,28 @@ const EditSpotForm = ({ setShowModal }) => {
     // const errs = []
     let res = await Geocode.fromAddress(address);
     const { lat: latitude, lng: longitude } = res.results[0].geometry.location;
-    const payload = {
-      name,
-      address,
-      latitude,
-      longitude,
-      description,
-      imageUrl,
-    };
-    const success = await dispatch(editOneSpot(payload, spot.id));
+    // const payload = {
+    //   name,
+    //   address,
+    //   latitude,
+    //   longitude,
+    //   description,
+    //   imageUrl,
+    // };
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("latitude", latitude);
+    formData.append("longitude", longitude);
+    formData.append("description", description);
+    formData.append("imageUrl", imageUrl);
+
+    setImageLoading(true)
+    const success = await dispatch(editOneSpot(formData, spot.id));
     if (success) {
       setShowModal(false);
+      setImageLoading(false)
     }
   };
 
@@ -83,13 +95,14 @@ const EditSpotForm = ({ setShowModal }) => {
             <div className="form-input-container">
               <label className="form-label">Image Url</label>
               <input
-                className="form-input"
-                type="text"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
+                className="form-input-image"
+                type="file"
+                accept='image/*'
+                onChange={(e) => setImageUrl(e.target.files[0])}
               />
             </div>
           </div>
+          {(imageLoading)&& <p>Loading...</p>}
           <div className="form-submit-btn">
             <button className="form-btn" type="submit">
               Edit Spot

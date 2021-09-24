@@ -47,18 +47,18 @@ const CreateMediaForm = ({ setShowModal }) => {
             <div className="form-input-container">
               <label className="form-label">Media Url</label>
               <input
-                className="form-input"
+                className="form-input-image"
                 type="file"
                 accept='image/*'
                 onChange={(e) => setMediaUrl(e.target.files[0])}
               />
             </div>
           </div>
+            {(imageLoading)&& <p>Loading...</p>}
           <div className="form-submit-btn">
             <button className="form-btn" type="submit">
               Create Media
             </button>
-            {(imageLoading)&& <p>Loading...</p>}
           </div>
         </div>
       </form>

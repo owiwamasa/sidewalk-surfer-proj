@@ -65,13 +65,30 @@ def edit_spot(id):
     spot = Spot.query.get(id)
     form = SpotForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    if "imageUrl" not in request.files:
+        url = form.imageUrl.data
+    else:
+        imageUrl = request.files["imageUrl"]
+
+        if not allowed_file(imageUrl.filename):
+            return ["file type not permitted"], 400
+
+        imageUrl.filename = get_unique_filename(imageUrl.filename)
+
+        upload = upload_file_to_s3(imageUrl)
+
+        if "url" not in upload:
+            return upload, 400
+        url = upload["url"]
+
     if form.validate_on_submit():
         spot.name=form.name.data,
         spot.address=form.address.data,
         spot.latitude=form.latitude.data,
         spot.longitude=form.longitude.data,
         spot.description=form.description.data,
-        spot.imageUrl=form.imageUrl.data,
+        spot.imageUrl=url,
         spot.userId=current_user.id
         db.session.commit()
         return spot.to_dict()
