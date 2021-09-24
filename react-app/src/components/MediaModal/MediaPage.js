@@ -96,6 +96,10 @@ function MediaPage({ media, comments, setShowModal }) {
                     className="mediaPage-profilePic"
                     alt="profilePic"
                     src={media.profilePic}
+                    onError={(e) =>
+                      (e.target.src =
+                        "https://media.wired.com/photos/5a0201b14834c514857a7ed7/master/pass/1217-WI-APHIST-01.jpg")
+                    }
                   />
                 </NavLink>
               </div>
@@ -178,7 +182,9 @@ function MediaPage({ media, comments, setShowModal }) {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
-          <button disabled={!user} type="submit">Submit Comment</button>
+          <button disabled={!user} type="submit">
+            Submit Comment
+          </button>
         </form>
         {/* } */}
       </div>

@@ -58,7 +58,14 @@ function ProfilePage() {
     <div className="profilePage-container">
       <div className="top">
         <div className="top_left">
-          <img src={user.profilepic} alt="" />
+          <img
+            src={user.profilepic}
+            alt=""
+            onError={(e) =>
+              (e.target.src =
+                "https://media.wired.com/photos/5a0201b14834c514857a7ed7/master/pass/1217-WI-APHIST-01.jpg")
+            }
+          />
         </div>
         <div className="top_right">
           <div className="un">{user.username}</div>
@@ -70,22 +77,24 @@ function ProfilePage() {
         </div>
       </div>
 
-      {mySpots.length !== 0 &&
-      <div className='my-spots'>
-        <div className='my-spots-header'>My Spots</div>
-        <div className='my-spots-container'>
-          {mySpots && mySpots?.map(spot => (
-            <div className='my-spot'>
-              <div className='my-spot-name'>{spot?.name}</div>
-              <Link to={`/spots/${spot?.id}`}>
-                <div className='my-spot-img'>
-                  <img src={spot?.imageUrl} alt='skate spot'/>
+      {mySpots.length !== 0 && (
+        <div className="my-spots">
+          <div className="my-spots-header">My Spots</div>
+          <div className="my-spots-container">
+            {mySpots &&
+              mySpots?.map((spot) => (
+                <div className="my-spot">
+                  <div className="my-spot-name">{spot?.name}</div>
+                  <Link to={`/spots/${spot?.id}`}>
+                    <div className="my-spot-img">
+                      <img src={spot?.imageUrl} alt="skate spot" />
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
-          ))}
+              ))}
+          </div>
         </div>
-      </div>}
+      )}
 
       <div className="whole">
         <div className="whole-title">My Posts</div>

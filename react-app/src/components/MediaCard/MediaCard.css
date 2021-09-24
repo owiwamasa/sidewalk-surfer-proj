@@ -123,12 +123,14 @@ iframe {
   background-color: #fafafa;
   font-family: "Prompt";
   margin-right: 10px;
+  cursor: pointer;
 }
 
 #edit-media-btn {
   border: none;
   background-color: #fafafa;
   font-family: "Prompt";
+  cursor: pointer;
 }
 
 .mediaCard-description {

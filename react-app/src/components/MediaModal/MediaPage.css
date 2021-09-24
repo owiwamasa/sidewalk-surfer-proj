@@ -164,6 +164,7 @@ time {
   font-size: 14px;
   margin-left: 15px;
   color: grey;
+  cursor: pointer;
 }
 
 .comment-error {

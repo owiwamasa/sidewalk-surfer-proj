@@ -30,6 +30,10 @@ const MediaCard = ({ media, comments }) => {
               className="profilePic"
               alt="profilePic"
               src={media.profilePic}
+              onError={(e) =>
+                (e.target.src =
+                  "https://media.wired.com/photos/5a0201b14834c514857a7ed7/master/pass/1217-WI-APHIST-01.jpg")
+              }
             />
             <span className="mainuserName">{media.username}</span>
           </div>
@@ -37,31 +41,33 @@ const MediaCard = ({ media, comments }) => {
         <div>
           {media?.userId === user?.id && <EditMediaModal media={media} />}
           {media?.userId === user?.id && (
-            <button className='mediaCard-delete' onClick={deleteMedia}>Delete</button>
+            <button className="mediaCard-delete" onClick={deleteMedia}>
+              Delete
+            </button>
           )}
         </div>
       </div>
       {media?.mediaUrl.includes("youtube") ? (
-          <iframe
-            width="613.75"
-            height="100%"
-            src={url}
-            title={media.name}
-            scrolling="no"
-            frameBorder="0"
-          ></iframe>
-        ) : (
-          <div className='mediaCard-img-div'>
-            <img className='mediaCard-img' src={media.mediaUrl} alt="media" />
-          </div>
-        )}
+        <iframe
+          width="613.75"
+          height="100%"
+          src={url}
+          title={media.name}
+          scrolling="no"
+          frameBorder="0"
+        ></iframe>
+      ) : (
+        <div className="mediaCard-img-div">
+          <img className="mediaCard-img" src={media.mediaUrl} alt="media" />
+        </div>
+      )}
       <div className="description">
-        <div className='mediaCard-user'>
+        <div className="mediaCard-user">
           <span className="mainuserName">{media.username} </span>{" "}
-          <span className='mediaCard-description'>{media.description}</span>
+          <span className="mediaCard-description">{media.description}</span>
         </div>
         <TimeAgo datetime={media.createdAt} />
-        <div className='mediaCard-comments'>
+        <div className="mediaCard-comments">
           {comments.map((comment) => (
             <div className="comment" key={comment.id}>
               <NavLink to={`/users/${comment.userId}`}>
@@ -71,7 +77,7 @@ const MediaCard = ({ media, comments }) => {
             </div>
           ))}
         </div>
-          <MediaModal media={media} comments={comments} />
+        <MediaModal media={media} comments={comments} />
       </div>
     </div>
   );
