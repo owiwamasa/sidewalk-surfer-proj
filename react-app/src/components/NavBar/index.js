@@ -101,7 +101,7 @@ const NavBar = () => {
         {!user ? (
           <div className="nav-nonuser">
             <div>
-              <button id="demo-btn" onClick={(e) =>demoHandler(e)}>
+              <button id="demo-btn" onClick={(e) => demoHandler(e)}>
                 Demo
               </button>
             </div>
@@ -115,10 +115,10 @@ const NavBar = () => {
         ) : (
           <div className="nav-user">
             <div>
-              <CreateSpotModal />
+              <CreateSpotModal setShowMenu={setShowMenu} />
             </div>
             <div>
-              <LogoutButton />
+              <LogoutButton setShowMenu={setShowMenu} />
             </div>
             <div>
               <NavLink
@@ -144,61 +144,64 @@ const NavBar = () => {
         )}
         {!user ? (
           <div className="small-nav-nonuser">
-              <div className="nonuser-dropdown">
-                <i
-                  onClick={() => setShowMenu(!showMenu)}
-                  class="fas fa-bars"
-                ></i>
-                <div className="nonuser-dropdown-items">
-                  <div>
-                    <button
-                      id="demo-btn"
-                      onClick={(e) => {
-                        setShowMenu(false);
-                        demoHandler(e);
-                      }}
-                    >
-                      Demo
-                    </button>
-                  </div>
-                  <div>
-                    <LoginFormModal setShowMenu={setShowMenu} showMenu={showMenu}/>
-                  </div>
-                  <div>
-                    <SignUpFormModal setShowMenu={setShowMenu} showMenu={showMenu}/>
-                  </div>
+            <div className="nonuser-dropdown">
+              <i onClick={() => setShowMenu(!showMenu)} class="fas fa-bars"></i>
+              <div className="nonuser-dropdown-items">
+                <div>
+                  <button
+                    id="demo-btn"
+                    onClick={(e) => {
+                      setShowMenu(false);
+                      demoHandler(e);
+                    }}
+                  >
+                    Demo
+                  </button>
+                </div>
+                <div>
+                  <LoginFormModal
+                    setShowMenu={setShowMenu}
+                    showMenu={showMenu}
+                  />
+                </div>
+                <div>
+                  <SignUpFormModal
+                    setShowMenu={setShowMenu}
+                    showMenu={showMenu}
+                  />
                 </div>
               </div>
+            </div>
           </div>
         ) : (
           <div className="small-nav-user">
             <div className="user-dropdown">
-                <i
-                  onClick={() => setShowMenu(!showMenu)}
-                  class="fas fa-bars"
-                ></i>
-                <div className="dropdown-items">
-                  <div>
-                    <NavLink
-                      to={`/users/${user.id}`}
-                      exact={true}
-                      activeClassName="active"
-                    >
-                      <div onClick={() => setShowMenu(false)}>
-                        <div className="nav-profile-pic">
-                          <img src={user.profilepic} alt="" />
-                        </div>
+              <i onClick={() => setShowMenu(!showMenu)} class="fas fa-bars"></i>
+              <div className="dropdown-items">
+                <div>
+                  <NavLink
+                    to={`/users/${user.id}`}
+                    exact={true}
+                    activeClassName="active"
+                  >
+                    <div onClick={() => setShowMenu(false)}>
+                      <div className="nav-profile-pic">
+                        <img src={user.profilepic} alt="" />
                       </div>
-                    </NavLink>
-                  </div>
-                  <div>
-                    <CreateSpotModal setShowMenu={setShowMenu} showMenu={showMenu}/>
-                  </div>
-                  <div>
-                    <LogoutButton setShowMenu={setShowMenu}/>
-                  </div>
+                    </div>
+                  </NavLink>
+                </div>
+                <div>
+                  <CreateSpotModal
+                    setShowMenu={setShowMenu}
+                    showMenu={showMenu}
+                  />
+                </div>
+                <div>
+                  <LogoutButton setShowMenu={setShowMenu} />
                 </div>
               </div>
+            </div>
           </div>
         )}
       </div>
