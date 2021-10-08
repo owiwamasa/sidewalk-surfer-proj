@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
 import { fetchSpots } from "../../store/spots";
 import "./GoogleMap.css";
@@ -8,6 +8,41 @@ import "./GoogleMap.css";
 function GoogleMap() {
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spotReducer.spots);
+  const history = useHistory();
+  const [infoLat, setInfoLat] = useState("");
+  const [infoLng, setInfoLng] = useState("");
+  const [spotInfo, setSpotInfo] = useState();
+  const [display, setDisplay] = useState("none");
+
+  function toSpot(spotNum) {
+    history.push(`/spots/${spotNum}`);
+  }
+
+  function setLatnLng(spot) {
+    setInfoLat(spot.latitude);
+    setInfoLng(spot.longitude);
+    setSpotInfo(spot);
+    setDisplay("");
+  }
+
+  function ShowInfo({ lat, lng, spot, display }) {
+    return (
+      <div className="infoBlock" style={{ color: "red", display: display }}>
+        <img src={spot?.imageUrl} className="infoImg" alt={spot?.id}></img>
+        <div className="spotInfo">
+          <span id="spotName">{spot?.name}</span>
+          <Link to={`/spots/${spot?.id}`}>Visit Spot</Link>
+        </div>
+        <span
+          id="exit"
+          onClick={() => setDisplay("none")}
+          style={{ cursor: "pointer" }}
+        >
+          X
+        </span>
+      </div>
+    );
+  }
 
   useEffect(() => {
     dispatch(fetchSpots());
@@ -35,15 +70,22 @@ function GoogleMap() {
       >
         {!!spots &&
           spots?.map((spot) => (
-            <Link
+            <div
+              className="spotMarker"
               key={spot.id}
-              to={`/spots/${spot.id}`}
+              onClick={(e) => setLatnLng(spot)}
               lat={spot.latitude}
               lng={spot.longitude}
             >
               <Marker />
-            </Link>
+            </div>
           ))}
+        <ShowInfo
+          lat={infoLat}
+          lng={infoLng}
+          spot={spotInfo}
+          display={display}
+        />
       </GoogleMapReact>
     </div>
   );
